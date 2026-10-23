@@ -259,12 +259,12 @@
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var btn = document.getElementById("submit-btn"), label = btn.querySelector(".label");
-      function busy(on){ btn.disabled = on; btn.classList.toggle("busy", on); label.textContent = on ? "Sending" : "Submit"; }
+      function busy(on){ btn.disabled = on; btn.classList.toggle("busy", on); label.textContent = "Submit"; }
       if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email contact@consistentcreative.com in the meantime."; return; }
       status.textContent = "";
       busy(true);
       fetch(FORM_ENDPOINT, { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } })
-        .then(function(r){ if (r.ok) { label.textContent = "Sent"; setTimeout(showBooking, 400); } else { throw new Error(); } })
+        .then(function(r){ if (r.ok) { btn.classList.remove("busy"); label.textContent = "Received!"; setTimeout(showBooking, 900); } else { throw new Error(); } })
         .catch(function(){ busy(false); status.textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
     });
   })();
