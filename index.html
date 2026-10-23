@@ -116,8 +116,6 @@
   footer a{color:#8A949B}
   footer p{margin:0}
 
-  /* A/B: variant A hides everything between the hero and the form */
-  html.v-a .page-only{display:none}
 
   /* Apply section is hidden until a button reveals it */
   #apply{display:none}
@@ -154,7 +152,7 @@
 
 <main>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>Who this is for</h2>
     <p>This is for people already earning from the craft who are tired of starting every month at zero.</p>
@@ -181,7 +179,7 @@
   </div>
 </section>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>You're good at the work. The business underneath it is the problem.</h2>
     <p>Every month starts at zero. You quote, you chase, you shoot, you invoice, you wait. A good month means you were busy, not that you were safe. A quiet month means the mortgage comes out of savings.</p>
@@ -191,7 +189,7 @@
   </div>
 </section>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>Retainers are the floor. One-off work is the ceiling.</h2>
     <p>Most creatives only have a ceiling. In 90 days you'll have monthly retainers covering your fixed costs, so every job after that is profit and choice.</p>
@@ -206,7 +204,7 @@
   </div>
 </section>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>What you get</h2>
     <p>90 days of 1-on-1 work with me, built around pitching retainers to real clients within the first two weeks.</p>
@@ -225,7 +223,7 @@
   </div>
 </section>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>The guarantee</h2>
     <p class="quote">Hit your retainer target in 90 days or I keep working with you at no charge until you do, provided you've done the work.</p>
@@ -241,7 +239,7 @@
   </div>
 </section>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>Price</h2>
     <p class="price">$3,000 AUD<small>Paid upfront, or 3 monthly payments of $1,200 AUD. GST included.</small></p>
@@ -250,7 +248,7 @@
   </div>
 </section>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>About Mitch</h2>
     <p>I've been a commercial photographer and videographer for 15 years, mostly automotive and real estate in Queensland. For most of that time I ran a freelance business that looked successful and felt like a treadmill. The thing that changed it was moving clients onto monthly retainers.</p>
@@ -258,7 +256,7 @@
   </div>
 </section>
 
-<section class="page-only">
+<section>
   <div class="wrap">
     <h2>Questions</h2>
     <details><summary>I don't have many clients yet. Will this work?</summary><p>No. The method converts clients you already have or have worked with. If you're still building a client base, follow the free content and apply when you've got a few paying clients behind you.</p></details>
@@ -273,7 +271,7 @@
   </div>
 </section>
 
-<section class="page-only cta-end">
+<section class="cta-end">
   <div class="wrap">
     <h2>Think it's a fit?</h2>
     <p>Applications take about 3 minutes. I read every one myself.</p>
@@ -317,7 +315,6 @@
       </fieldset>
       <div class="field"><label for="niche">Primary niche or industry</label><span class="hint">e.g. automotive, real estate, weddings, hospitality</span><input id="niche" name="Primary niche" required></div>
       <div class="field"><label for="blocker">What's the main thing holding your business back right now?</label><textarea id="blocker" name="Main thing holding them back" required></textarea></div>
-      <input type="hidden" name="Page version" id="variant">
       <div class="submit">
         <button class="btn" type="submit" id="submit-btn"><span class="spin" aria-hidden="true"></span><span class="label">Submit</span></button>
         <p class="form-note" id="form-status" aria-live="polite"></p>
@@ -347,16 +344,6 @@
   var VIMEO_ID = "";                       // e.g. "123456789". Leave blank until the VSL is recorded.
   var FORM_ENDPOINT = "https://formspree.io/f/mdeenrgl";                  // e.g. "https://formspree.io/f/abcdwxyz". Blank = form shows a notice instead of sending.
   var BOOKING_URL = "https://calendly.com/mitch-consistentcreative/30min";                    // e.g. "https://cal.com/mitchhemming/ftr-call". Blank = placeholder text.
-
-  // ---- A/B variant: ?v=a or ?v=b forces one; otherwise a 30-day cookie decides ----
-  (function(){
-    var q = new URLSearchParams(location.search).get("v");
-    var m = document.cookie.match(/(?:^|; )ftr_v=([ab])/);
-    var v = (q === "a" || q === "b") ? q : (m ? m[1] : (Math.random() < 0.5 ? "a" : "b"));
-    document.cookie = "ftr_v=" + v + "; Max-Age=2592000; Path=/; SameSite=Lax";
-    document.documentElement.classList.add("v-" + v);
-    var f = document.getElementById("variant"); if (f) f.value = v;
-  })();
 
   // ---- Video ----
   if (VIMEO_ID) {
