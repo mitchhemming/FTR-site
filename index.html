@@ -46,7 +46,8 @@
   /* Brand */
   .brand{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.5rem 0 2.5rem;border-bottom:1px solid var(--line);margin-bottom:2.5rem}
   .wordmark{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.05rem;letter-spacing:.01em;color:var(--teal)}
-  .byline{font-size:.85rem;color:var(--muted);white-space:nowrap}
+  .cc img{display:block;height:11px;width:auto}
+  .cc{opacity:.9}
   @media(max-width:520px){.brand{flex-direction:column;gap:.25rem;align-items:flex-start}}
 
   /* Hero */
@@ -139,6 +140,7 @@
   footer{padding:2.5rem 0 3rem;color:#8A949B;font-size:.8rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8A949B}
   footer p{margin:0}
+  .cc-foot img{display:block;height:34px;width:auto;margin:0 auto 1.25rem}
   .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
 
 
@@ -157,7 +159,7 @@
 <header class="hero">
   <div class="wrap brand">
     <span class="wordmark">Freedom Through Retainers<sup class="tm">&trade;</sup></span>
-    <span class="byline">A Consistent Creative<sup class="tm">&trade;</sup> program</span>
+    <a class="cc" href="https://consistentcreative.com" aria-label="Consistent Creative"><img src="/assets/consistent-creative-wide.png" alt="Consistent Creative" width="2335" height="155"></a>
   </div>
   <div class="wrap">
     <p class="eyebrow">For established photographers, videographers and media business owners</p>
@@ -233,6 +235,7 @@
 
 <footer>
   <div class="wrap">
+    <a class="cc-foot" href="https://consistentcreative.com" aria-label="Consistent Creative"><img src="/assets/consistent-creative-stacked.png" alt="Consistent Creative" width="2500" height="689"></a>
     <p>Freedom Through Retainers<sup class="tm">&trade;</sup> is a Consistent Creative<sup class="tm">&trade;</sup> program.<br>
     Consistent Creative<sup class="tm">&trade;</sup> Pty Ltd &middot; ABN 37 694 627 695<br>PO Box 2820, Ascot QLD 4007, Australia<br><a href="mailto:contact@consistentcreative.com">contact@consistentcreative.com</a><br>
     <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
