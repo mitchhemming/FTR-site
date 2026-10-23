@@ -52,6 +52,8 @@
   .mark-by{margin-left:0}
   @media(min-width:421px){.mark-name{margin-right:.5rem}.mark-row{display:flex;gap:.5rem}}
   .hero h1{text-align:center;margin:0 auto;white-space:nowrap}
+  .ul{position:relative;display:inline-block;white-space:nowrap}
+  .ul-svg{position:absolute;left:-2%;right:-2%;bottom:-.08em;width:104%;height:.22em;color:var(--brass);pointer-events:none}
   @media(max-width:700px){.hero h1{font-size:clamp(1.45rem,7.2vw,2.1rem);letter-spacing:-0.015em}}
   .micro{color:var(--muted);font-size:1rem;line-height:1.65;margin:0 auto 1.5rem;max-width:62ch;text-align:center}
 
@@ -174,7 +176,7 @@
 <header class="hero">
   <div class="wrap">
     <p class="mark"><img class="avatar" src="/assets/mitch.jpg" alt="Mitch Hemming" width="400" height="400"><span class="mark-name">Freedom Through Retainers<sup class="tm">&trade;</sup></span><span class="mark-by">by Mitch Hemming</span></p>
-    <h1>Cover your fixed costs<br>with monthly retainers in 90 days</h1>
+    <h1>Cover your fixed costs<br>with monthly retainers in <span class="ul">90 days<svg class="ul-svg" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10 C 40 4, 90 3, 197 7" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
   </div>
   <div class="wide video">
     <div class="frame" id="vsl">
