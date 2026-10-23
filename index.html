@@ -319,14 +319,14 @@
       <div class="field"><label for="niche">Primary niche or industry</label><span class="hint">e.g. automotive, real estate, weddings, hospitality</span><input id="niche" name="niche" required></div>
       <div class="field"><label for="blocker">What's the main thing holding your business back right now?</label><textarea id="blocker" name="main_blocker" required></textarea></div>
       <div class="submit">
-        <button class="btn" type="submit">Submit</button>
+        <button class="btn" type="submit" id="submit-btn"><span class="spin" aria-hidden="true"></span><span class="label">Submit</span></button>
         <p class="form-note" id="form-status" aria-live="polite"></p>
       </div>
     </form>
 
     <div id="book" hidden>
-      <h2>Thanks. Let's talk.</h2>
-      <p>Pick a time that suits you for a 45-minute call. We'll go through your business, work out your fixed-cost floor, and see what it would take to cover it with retainers.</p>
+      <h2>Application received</h2>
+      <p>Thanks. The next step is a 45-minute call with me, Mitch. We'll go through your business, work out your fixed-cost floor, and see what it would take to cover it with retainers. Pick a time below.</p>
       <div class="cal" id="cal"><div class="placeholder">Booking calendar coming shortly. I'll email you a time instead.</div></div>
     </div>
   </div>
@@ -399,11 +399,14 @@
     form.addEventListener("submit", function(e){
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email " + "contact@consistentcreative.com" + " in the meantime."; return; }
-      status.textContent = "Sending…";
+      var btn = document.getElementById("submit-btn"), label = btn.querySelector(".label");
+      function busy(on){ btn.disabled = on; btn.classList.toggle("busy", on); label.textContent = on ? "Sending" : "Submit"; }
+      if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email contact@consistentcreative.com in the meantime."; return; }
+      status.textContent = "";
+      busy(true);
       fetch(FORM_ENDPOINT, { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } })
-        .then(function(r){ if (r.ok) { showBooking(); } else { throw new Error(); } })
-        .catch(function(){ status.textContent = "That didn't send. Try again, or email " + "contact@consistentcreative.com" + "."; });
+        .then(function(r){ if (r.ok) { label.textContent = "Sent"; setTimeout(showBooking, 400); } else { throw new Error(); } })
+        .catch(function(){ busy(false); status.textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
     });
   })();
 </script>
