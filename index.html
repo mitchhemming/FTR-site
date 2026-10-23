@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freedom Through Retainers</title>
+<meta name="description" content="A 90-day 1-on-1 program for established photographers and videographers. Cover your fixed costs with monthly retainers so project work becomes a choice, not the bills.">
+<meta property="og:title" content="Freedom Through Retainers">
+<meta property="og:description" content="Cover your fixed costs with monthly retainers in 90 days. For established photo and video business owners.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freedomthroughretainers.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F3D3E'/%3E%3Crect x='6' y='21' width='20' height='3' fill='%23C9A227'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F3F0;
+    --ink:#141C22;
+    --muted:#5C6770;
+    --line:#D6D9D5;
+    --teal:#0F3D3E;
+    --teal-ink:#0B2F30;
+    --brass:#C9A227;
+    --max:680px;
+    --wide:880px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:1.0625rem;line-height:1.6;
+  }
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;letter-spacing:-0.01em;line-height:1.1;margin:0}
+  h1{font-size:clamp(2.1rem,6.4vw,3.6rem);font-variation-settings:"opsz" 144}
+  h2{font-size:clamp(1.5rem,3.6vw,2.1rem);margin-bottom:1rem}
+  h3{font-size:1.15rem;font-weight:600;margin-bottom:.25rem}
+  p{margin:0 0 1rem}
+  a{color:var(--teal)}
+  .wrap{width:min(100% - 32px,var(--max));margin:0 auto}
+  .wide{width:min(100% - 32px,var(--wide));margin:0 auto}
+  section{padding:3.5rem 0}
+  section + section{border-top:1px solid var(--line)}
+
+  /* Hero */
+  .hero{padding:3rem 0 2.5rem;text-align:left}
+  .eyebrow{color:var(--muted);margin-bottom:1rem;font-size:1rem}
+  .sub{font-size:1.25rem;color:var(--muted);margin:1.25rem 0 0;max-width:38ch}
+  .floor{height:3px;width:72px;background:var(--brass);margin:1.5rem 0 0;border:0}
+
+  /* Video */
+  .video{margin:2rem auto 0;}
+  .frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--teal-ink);border-radius:8px;overflow:hidden}
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .frame .placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#CFE3E1;font-family:"Fraunces",serif;font-size:1.25rem;padding:1rem;text-align:center}
+  .cta{margin:1.75rem auto 0;text-align:center}
+  .btn{
+    display:inline-block;background:var(--teal);color:#fff;text-decoration:none;
+    padding:1rem 1.75rem;border-radius:6px;font-weight:600;font-size:1.05rem;border:0;cursor:pointer;
+  }
+  .btn:hover{background:var(--teal-ink)}
+  .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+  .micro{color:var(--muted);font-size:.95rem;margin:.75rem 0 0}
+
+  /* Lists */
+  ul,ol{padding-left:1.25rem;margin:0 0 1rem}
+  li{margin-bottom:.5rem}
+  .two{display:grid;gap:2rem;grid-template-columns:1fr}
+  @media(min-width:720px){.two{grid-template-columns:1fr 1fr}}
+  .steps li{margin-bottom:1rem}
+  .steps b{display:block}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;margin:0 0 1rem;font-size:1rem}
+  th,td{text-align:left;padding:.75rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-weight:600;width:40%}
+  @media(max-width:560px){th,td{display:block;width:100%;padding:.35rem 0}th{border:0;padding-top:.9rem}}
+
+  .quote{font-family:"Fraunces",serif;font-size:1.35rem;line-height:1.35;border-left:3px solid var(--brass);padding-left:1rem;margin:1.5rem 0}
+
+  /* Price */
+  .price{font-family:"Fraunces",serif;font-size:2.2rem;line-height:1.1;margin:0 0 .25rem}
+  .price small{display:block;font-family:"Figtree",sans-serif;font-size:1rem;color:var(--muted);margin-top:.5rem}
+
+  /* FAQ */
+  details{border-bottom:1px solid var(--line);padding:.9rem 0}
+  details:first-of-type{border-top:1px solid var(--line)}
+  summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--muted);font-weight:400}
+  details[open] summary::after{content:"\2013"}
+  details p{margin:.75rem 0 0;color:var(--ink)}
+
+  /* Form */
+  form{display:grid;gap:1.1rem}
+  label{display:block;font-weight:600;margin-bottom:.35rem}
+  .hint{font-weight:400;color:var(--muted);display:block;font-size:.95rem}
+  input,select,textarea{
+    width:100%;font:inherit;padding:.8rem .9rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)
+  }
+  textarea{min-height:110px;resize:vertical}
+  .row{display:grid;gap:1.1rem;grid-template-columns:1fr}
+  @media(min-width:600px){.row{grid-template-columns:1fr 1fr}}
+  .form-note{color:var(--muted);font-size:.95rem}
+
+  footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
+  footer a{color:var(--muted)}
+
+  /* A/B: variant A hides everything between the hero and the form */
+  html.v-a .page-only{display:none}
+
+  @media(prefers-reduced-motion:no-preference){
+    details p{animation:fade .18s ease-out}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">For established photographers, videographers and media business owners</p>
+    <h1>Cover your fixed costs with monthly retainers in 90 days</h1>
+    <p class="sub">So project work becomes something you choose, not something you need to pay the bills.</p>
+    <hr class="floor">
+  </div>
+  <div class="wide video">
+    <div class="frame" id="vsl">
+      <!-- Set VIMEO_ID in the script at the bottom. Until then this placeholder shows. -->
+      <div class="placeholder">Free training: how the retainer floor works</div>
+    </div>
+  </div>
+  <div class="wrap cta">
+    <a class="btn" href="#apply">Apply for Freedom Through Retainers</a>
+    <p class="micro">90-day 1-on-1 program. $3,000 AUD or 3 x $1,200. Application only, not everyone is accepted.</p>
+  </div>
+</header>
+
+<main>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>Who this is for</h2>
+    <p>This is for people already earning from the craft who are tired of starting every month at zero.</p>
+    <div class="two">
+      <div>
+        <h3>This is for you if</h3>
+        <ul>
+          <li>You've been shooting photo or video for businesses for 3+ years and people depend on your income</li>
+          <li>You have clients and a reputation but no predictable revenue</li>
+          <li>You're quoting on jobs you don't want because you need the money</li>
+          <li>You want your business to run on reliability and relationships, not on going viral</li>
+        </ul>
+      </div>
+      <div>
+        <h3>This is not for you if</h3>
+        <ul>
+          <li>You haven't landed paying clients yet. Follow the free content and come back when you have</li>
+          <li>You only shoot for consumers with no business clients in your market</li>
+          <li>You want a course to watch. This is 90 days of doing the work with me</li>
+          <li>You're looking for someone to find clients for you</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>You're good at the work. The business underneath it is the problem.</h2>
+    <p>Every month starts at zero. You quote, you chase, you shoot, you invoice, you wait. A good month means you were busy, not that you were safe. A quiet month means the mortgage comes out of savings.</p>
+    <p>The standard advice is to post more, grow your reach and build a better portfolio. That's a lottery ticket. It rewards the 23-year-old shooting cheap for Instagram clout, not the operator with 10 years of experience and a family.</p>
+    <p>Experienced operators win on reliability and communication with professional businesses. The problem is you've never packaged that into something a business can pay for every month.</p>
+    <p class="quote">Roughly 90% of my media company's revenue is retainers billed on the 1st of every month. I know what January looks like in October.</p>
+  </div>
+</section>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>Retainers are the floor. One-off work is the ceiling.</h2>
+    <p>Most creatives only have a ceiling. In 90 days you'll have monthly retainers covering your fixed costs, so every job after that is profit and choice.</p>
+    <ol class="steps">
+      <li><b>Calculate your floor.</b> Your non-negotiable monthly fixed costs, business and personal minimum. That number is the target. We do it live on your kickoff call.</li>
+      <li><b>Reverse engineer the retainers.</b> How many, at what price, using my pricing and structuring method. Retainers sit at roughly two-thirds of your one-off rate, because reliability is worth more than margin.</li>
+      <li><b>Mine your existing and past clients.</b> Your first retainers are already in your inbox. We package the offer and pitch it. You'll be pitching within 2 weeks.</li>
+      <li><b>Stack and systemise.</b> Lock in the retainers, build a weekly schedule around them, tighten the workflow so they take less time each month.</li>
+      <li><b>Sell the ceiling.</b> Remaining capacity goes to one-off work at 2 to 3 times your retainer rate. You take it because you want to, not because you have to.</li>
+    </ol>
+    <p>Retainer clients are always businesses, never consumers. A wedding photographer's retainer clients are the venue, the planner and the florist, not the couple.</p>
+  </div>
+</section>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>What you get</h2>
+    <p>90 days of 1-on-1 work with me, built around pitching retainers to real clients within the first two weeks.</p>
+    <table>
+      <tr><th>Kickoff session, 90 minutes</th><td>Floor calculation, client audit, retainer target set, first pitches identified</td></tr>
+      <tr><th>Six fortnightly 1-on-1 calls, 45 minutes</th><td>Review pitches, pricing, objections and scheduling. Adjust as retainers land</td></tr>
+      <tr><th>Direct access between calls</th><td>Voice notes or messages, replies within one business day</td></tr>
+      <tr><th>Floor calculator</th><td>Work out the exact monthly number you need to cover</td></tr>
+      <tr><th>Pricing calculator</th><td>Retainer price, scope and how it relates to your one-off rate</td></tr>
+      <tr><th>Client audit</th><td>Which existing and past clients convert to retainers first</td></tr>
+      <tr><th>Pitch script and follow-up sequence</th><td>What to say, how to say it, when to follow up</td></tr>
+      <tr><th>Weekly schedule template</th><td>How to structure a week once retainers are stacked</td></tr>
+      <tr><th>Retainer agreement builder</th><td>Template plus prompts to tailor it. Not legal advice; have a lawyer check it</td></tr>
+    </table>
+    <p class="form-note">Not included: finding clients for you, done-for-you pitching, or ads management.</p>
+  </div>
+</section>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>The guarantee</h2>
+    <p class="quote">Hit your retainer target in 90 days or I keep working with you at no charge until you do, provided you've done the work.</p>
+    <p>We set your retainer target together on the kickoff call, based on your actual fixed costs, current clients and market. If you reach day 90 without hitting it, I continue coaching you free until you do.</p>
+    <h3>Doing the work means</h3>
+    <ul>
+      <li>Attend every scheduled call or reschedule with 24 hours notice</li>
+      <li>Pitch at least 10 qualified business clients within the 90 days</li>
+      <li>Follow up every pitch within 48 hours using the sequence provided</li>
+      <li>Use the floor calculator, pricing calculator and pitch script as provided</li>
+    </ul>
+    <p>The target is set case by case. If yours doesn't look reachable, I'll tell you at application, not after you've paid.</p>
+  </div>
+</section>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>Price</h2>
+    <p class="price">$3,000 AUD<small>Paid upfront, or 3 monthly payments of $1,200 AUD. GST included.</small></p>
+    <p>One retainer at $1,000 a month pays for the program in 3 months. Most people in this bracket are aiming for 5 to 10.</p>
+    <p>Application only. Spots are limited by my calendar, not by marketing. The first intake is capped at 10.</p>
+  </div>
+</section>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>About Mitch</h2>
+    <p>I've been a commercial photographer and videographer for 15 years, mostly automotive and real estate in Queensland. For most of that time I ran a freelance business that looked successful and felt like a treadmill. The thing that changed it was moving clients onto monthly retainers.</p>
+    <p>Today I run a media company with an in-house team where around 90% of revenue is retainer-based, billed on the 1st of every month. I still shoot, but only the work I want to. This program is the system I used, taught one-on-one.</p>
+  </div>
+</section>
+
+<section class="page-only">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>I don't have many clients yet. Will this work?</summary><p>No. The method converts clients you already have or have worked with. If you're still building a client base, follow the free content and apply when you've got a few paying clients behind you.</p></details>
+    <details><summary>I shoot weddings. Do I have retainer clients?</summary><p>Yes, but they're not couples. They're the venues, planners, florists and celebrants who need content every month. If there are none of those in your market, this isn't for you yet.</p></details>
+    <details><summary>How much time does it take each week?</summary><p>Plan for 3 to 5 hours a week in the first month, mostly pitching and follow-up. Less after retainers are signed.</p></details>
+    <details><summary>What if a client says no?</summary><p>Most will. The target is 10 pitches minimum because that's what it takes to land 3 to 5. We work on the no's together.</p></details>
+    <details><summary>Will retainers lower my rates?</summary><p>Per deliverable, usually yes, by about a third. Per month, you earn more because the work is guaranteed and your one-off rate goes up once you're not desperate for it.</p></details>
+    <details><summary>Is this a course?</summary><p>No. There's no video library to work through. It's 90 days of calls, tools and direct access to me while you pitch real clients.</p></details>
+    <details><summary>What happens after 90 days?</summary><p>You have the system and the agreements. There's no upsell on the final call.</p></details>
+    <details><summary>Can I pay monthly?</summary><p>3 x $1,200 AUD, charged automatically. The first payment is due before kickoff.</p></details>
+    <details><summary>I'm in the US. Does this apply?</summary><p>Yes. The method is the same. Pricing and payment are in AUD.</p></details>
+  </div>
+</section>
+
+<section id="apply">
+  <div class="wrap">
+    <h2>Apply</h2>
+    <p>Takes about 3 minutes. I read every application myself and reply within 24 hours.</p>
+
+    <!--
+      FORM ENDPOINT
+      Option 1 (quickest): Formspree. Create a form at formspree.io, paste the endpoint into FORM_ENDPOINT below.
+      Option 2: Tally. Replace this whole <form> with the Tally embed and add a hidden field "variant".
+      The hidden "variant" field is filled by the script so you can see which page version each applicant saw.
+    -->
+    <form id="apply-form" method="POST" action="#" novalidate>
+      <input type="hidden" name="variant" id="variant">
+      <input type="hidden" name="_subject" value="New FTR application">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="row">
+        <div><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
+        <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+      </div>
+      <div class="row">
+        <div><label for="phone">Phone <span class="hint">Include country code if outside Australia</span></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div><label for="link">Instagram or website</label><input id="link" name="link" placeholder="@handle or URL"></div>
+      </div>
+      <div><label for="location">Where are you based?</label><input id="location" name="location" required></div>
+      <div><label for="work">What do you shoot, and who are your clients?</label><textarea id="work" name="work" required></textarea></div>
+      <div class="row">
+        <div>
+          <label for="years">How long have you been doing this for money?</label>
+          <select id="years" name="years" required>
+            <option value="" disabled selected>Choose</option>
+            <option>Under 1 year</option><option>1 to 3 years</option><option>3 to 5 years</option><option>5+ years</option>
+          </select>
+        </div>
+        <div>
+          <label for="revenue">Roughly how much did you invoice in the last 12 months?</label>
+          <select id="revenue" name="revenue" required>
+            <option value="" disabled selected>Choose</option>
+            <option>Under $30k</option><option>$30k to $75k</option><option>$75k to $150k</option><option>$150k+</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="repeat">How many clients have you worked with more than once?</label>
+          <select id="repeat" name="repeat_clients" required>
+            <option value="" disabled selected>Choose</option>
+            <option>0</option><option>1 to 3</option><option>4 to 10</option><option>10+</option>
+          </select>
+        </div>
+        <div>
+          <label for="costs">Rough monthly fixed costs <span class="hint">Business and personal minimum, in your currency</span></label>
+          <input id="costs" name="fixed_costs" required>
+        </div>
+      </div>
+      <div><label for="why">Why now?</label><textarea id="why" name="why_now" required></textarea></div>
+      <div>
+        <label for="invest">Are you able to invest $3,000 AUD, or 3 x $1,200, in the next 2 weeks?</label>
+        <select id="invest" name="can_invest" required>
+          <option value="" disabled selected>Choose</option>
+          <option>Yes</option><option>No</option><option>Need to discuss</option>
+        </select>
+      </div>
+      <div>
+        <button class="btn" type="submit">Send application</button>
+        <p class="form-note" id="form-status">You'll hear back within 24 hours. If accepted you'll get a link to book a 45-minute call.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Freedom Through Retainers is a Consistent Creative program.<br>
+    Consistent Creative Pty Ltd &middot; ABN [ADD ABN] &middot; <a href="mailto:[ADD EMAIL]">[ADD EMAIL]</a><br>
+    <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+  </div>
+</footer>
+
+<script>
+  // ---- Settings ----
+  var VIMEO_ID = "";                       // e.g. "123456789". Leave blank until the VSL is recorded.
+  var FORM_ENDPOINT = "";                  // e.g. "https://formspree.io/f/abcdwxyz". Blank = form shows a notice instead of sending.
+  var THANKS_URL = "/thanks";
+
+  // ---- A/B variant: ?v=a or ?v=b forces one; otherwise a 30-day cookie decides ----
+  (function(){
+    var q = new URLSearchParams(location.search).get("v");
+    var m = document.cookie.match(/(?:^|; )ftr_v=([ab])/);
+    var v = (q === "a" || q === "b") ? q : (m ? m[1] : (Math.random() < 0.5 ? "a" : "b"));
+    document.cookie = "ftr_v=" + v + "; Max-Age=2592000; Path=/; SameSite=Lax";
+    document.documentElement.classList.add("v-" + v);
+    var f = document.getElementById("variant"); if (f) f.value = v;
+  })();
+
+  // ---- Video ----
+  if (VIMEO_ID) {
+    document.getElementById("vsl").innerHTML =
+      '<iframe src="https://player.vimeo.com/video/' + VIMEO_ID + '?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Freedom Through Retainers training"></iframe>';
+  }
+
+  // ---- Form ----
+  (function(){
+    var form = document.getElementById("apply-form");
+    var status = document.getElementById("form-status");
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email " + "[ADD EMAIL]" + " in the meantime."; return; }
+      status.textContent = "Sending…";
+      fetch(FORM_ENDPOINT, { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } })
+        .then(function(r){ if (r.ok) { location.href = THANKS_URL; } else { throw new Error(); } })
+        .catch(function(){ status.textContent = "That didn't send. Try again, or email " + "[ADD EMAIL]" + "."; });
+    });
+  })();
+</script>
+</body>
+</html>
