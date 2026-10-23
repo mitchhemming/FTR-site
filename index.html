@@ -346,7 +346,7 @@
   // ---- Settings ----
   var VIMEO_ID = "";                       // e.g. "123456789". Leave blank until the VSL is recorded.
   var FORM_ENDPOINT = "";                  // e.g. "https://formspree.io/f/abcdwxyz". Blank = form shows a notice instead of sending.
-  var BOOKING_URL = "";                    // e.g. "https://cal.com/mitchhemming/ftr-call". Blank = placeholder text.
+  var BOOKING_URL = "https://calendly.com/mitch-consistentcreative/30min";                    // e.g. "https://cal.com/mitchhemming/ftr-call". Blank = placeholder text.
 
   // ---- A/B variant: ?v=a or ?v=b forces one; otherwise a 30-day cookie decides ----
   (function(){
@@ -384,7 +384,8 @@
     form.hidden = true;
     if (BOOKING_URL) {
       var u = BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") +
-        "name=" + encodeURIComponent(document.getElementById("name").value) +
+        "hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=141c22&primary_color=0f3d3e" +
+        "&name=" + encodeURIComponent(document.getElementById("name").value) +
         "&email=" + encodeURIComponent(document.getElementById("email").value);
       document.getElementById("cal").innerHTML = '<iframe src="' + u + '" title="Book a call"></iframe>';
     }
