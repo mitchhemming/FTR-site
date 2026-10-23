@@ -293,31 +293,31 @@
       The hidden "variant" field is filled by the script so you can see which page version each applicant saw.
     -->
     <form id="apply-form" method="POST" action="#" novalidate>
-      <input type="hidden" name="variant" id="variant">
       <input type="hidden" name="_subject" value="New FTR application">
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-      <div class="field"><label for="name">Full name</label><input id="name" name="name" required autocomplete="name"></div>
-      <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required autocomplete="email"></div>
-      <div class="field"><label for="instagram">Instagram account</label><input id="instagram" name="instagram" placeholder="@handle" required></div>
-      <div class="field"><label for="website">Website</label><input id="website" name="website" type="text" placeholder="yourstudio.com" autocomplete="url" autocapitalize="none" spellcheck="false"></div>
-      <div class="field"><label for="location">Location</label><span class="hint">City, country</span><input id="location" name="location" required></div>
-      <div class="field"><label for="years">How many years working professionally?</label><input id="years" name="years" type="text" inputmode="numeric" placeholder="e.g. 6" required></div>
+      <div class="field"><label for="name">Full name</label><input id="name" name="Full name" required autocomplete="name"></div>
+      <div class="field"><label for="email">Email address</label><input id="email" name="Email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="instagram">Instagram account</label><input id="instagram" name="Instagram" placeholder="@handle" required></div>
+      <div class="field"><label for="website">Website</label><input id="website" name="Website" type="text" placeholder="yourstudio.com" autocomplete="url" autocapitalize="none" spellcheck="false"></div>
+      <div class="field"><label for="location">Location</label><span class="hint">City, country</span><input id="location" name="Location" required></div>
+      <div class="field"><label for="years">How many years working professionally?</label><input id="years" name="Years professional" type="text" inputmode="numeric" placeholder="e.g. 6" required></div>
       <div class="field">
         <label for="revenue">Average monthly revenue</label>
-        <select id="revenue" name="monthly_revenue" required>
+        <select id="revenue" name="Average monthly revenue" required>
           <option value="" disabled selected>Choose</option>
           <option>$3k to $5k</option><option>$5k to $10k</option><option>$10k to $15k</option><option>$15k+</option>
         </select>
       </div>
       <fieldset class="field choice">
         <legend>What do you shoot?</legend>
-        <label class="opt"><input type="radio" name="medium" value="Photo only" required><span>Photo only</span></label>
-        <label class="opt"><input type="radio" name="medium" value="Video only"><span>Video only</span></label>
-        <label class="opt"><input type="radio" name="medium" value="Both photo and video"><span>Both photo and video</span></label>
+        <label class="opt"><input type="radio" name="Photo or video" value="Photo only" required><span>Photo only</span></label>
+        <label class="opt"><input type="radio" name="Photo or video" value="Video only"><span>Video only</span></label>
+        <label class="opt"><input type="radio" name="Photo or video" value="Both photo and video"><span>Both photo and video</span></label>
       </fieldset>
-      <div class="field"><label for="niche">Primary niche or industry</label><span class="hint">e.g. automotive, real estate, weddings, hospitality</span><input id="niche" name="niche" required></div>
-      <div class="field"><label for="blocker">What's the main thing holding your business back right now?</label><textarea id="blocker" name="main_blocker" required></textarea></div>
+      <div class="field"><label for="niche">Primary niche or industry</label><span class="hint">e.g. automotive, real estate, weddings, hospitality</span><input id="niche" name="Primary niche" required></div>
+      <div class="field"><label for="blocker">What's the main thing holding your business back right now?</label><textarea id="blocker" name="Main thing holding them back" required></textarea></div>
+      <input type="hidden" name="Page version" id="variant">
       <div class="submit">
         <button class="btn" type="submit" id="submit-btn"><span class="spin" aria-hidden="true"></span><span class="label">Submit</span></button>
         <p class="form-note" id="form-status" aria-live="polite"></p>
