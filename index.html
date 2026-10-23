@@ -334,7 +334,7 @@
 <footer>
   <div class="wrap">
     <p>Freedom Through Retainers is a Consistent Creative program.<br>
-    Consistent Creative Pty Ltd &middot; ABN 37 694 627 695<br>PO Box 2820, Ascot QLD 4007, Australia<br><a href="mailto:mitch@mhemming.com">mitch@mhemming.com</a><br>
+    Consistent Creative Pty Ltd &middot; ABN 37 694 627 695<br>PO Box 2820, Ascot QLD 4007, Australia<br><a href="mailto:contact@consistentcreative.com">contact@consistentcreative.com</a><br>
     <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
   </div>
 </footer>
@@ -368,11 +368,11 @@
     form.addEventListener("submit", function(e){
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email " + "mitch@mhemming.com" + " in the meantime."; return; }
+      if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email " + "contact@consistentcreative.com" + " in the meantime."; return; }
       status.textContent = "Sending…";
       fetch(FORM_ENDPOINT, { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } })
         .then(function(r){ if (r.ok) { location.href = THANKS_URL; } else { throw new Error(); } })
-        .catch(function(){ status.textContent = "That didn't send. Try again, or email " + "mitch@mhemming.com" + "."; });
+        .catch(function(){ status.textContent = "That didn't send. Try again, or email " + "contact@consistentcreative.com" + "."; });
     });
   })();
 </script>
