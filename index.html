@@ -301,18 +301,12 @@
       <div class="field"><label for="instagram">Instagram account</label><input id="instagram" name="instagram" placeholder="@handle" required></div>
       <div class="field"><label for="website">Website</label><input id="website" name="website" type="url" placeholder="https://" autocomplete="url"></div>
       <div class="field"><label for="location">Location</label><span class="hint">City, country</span><input id="location" name="location" required></div>
-      <div class="field">
-        <label for="years">How many years working professionally?</label>
-        <select id="years" name="years" required>
-          <option value="" disabled selected>Choose</option>
-          <option>Under 1 year</option><option>1 to 3 years</option><option>3 to 5 years</option><option>5 to 10 years</option><option>10+ years</option>
-        </select>
-      </div>
+      <div class="field"><label for="years">How many years working professionally?</label><input id="years" name="years" type="number" inputmode="numeric" min="0" max="60" step="1" required></div>
       <div class="field">
         <label for="revenue">Average monthly revenue</label>
         <select id="revenue" name="monthly_revenue" required>
           <option value="" disabled selected>Choose</option>
-          <option>Under $3k</option><option>$3k to $6k</option><option>$6k to $10k</option><option>$10k to $20k</option><option>$20k+</option>
+          <option>$3k to $5k</option><option>$5k to $10k</option><option>$10k to $15k</option><option>$15k+</option>
         </select>
       </div>
       <fieldset class="field choice">
