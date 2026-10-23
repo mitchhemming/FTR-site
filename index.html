@@ -212,7 +212,7 @@
     <div id="book" hidden>
       <h2>Application received</h2>
       <p>Thanks so much. Next up is a quick 30 minute chat. We'll talk through your business, work out the number you need to cover each month, and see what it would take to get there with retainers. Grab a time below that suits you.</p>
-      <div class="cal" id="cal"><div class="placeholder">Booking calendar coming shortly. I'll email you a time instead.</div></div>
+      <div class="cal" id="cal"></div>
     </div>
   </div>
 </section>
@@ -251,17 +251,21 @@
   if (location.hash === "#apply") { document.getElementById("apply").classList.add("open"); }
 
   // ---- After submit: swap the form for the calendar ----
+  function calendlyUrl(){
+    return BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") +
+      "hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=141c22&primary_color=0f3d3e" +
+      "&name=" + encodeURIComponent(document.getElementById("name").value) +
+      "&email=" + encodeURIComponent(document.getElementById("email").value);
+  }
+  function mountCalendar(){
+    var cal = document.getElementById("cal");
+    cal.innerHTML = '<iframe src="' + calendlyUrl() + '" title="Book a call" loading="eager"></iframe>';
+  }
   function showBooking(){
     var form = document.getElementById("apply-form");
     var book = document.getElementById("book");
     var intro = document.querySelectorAll("#apply .intro");
-    if (BOOKING_URL) {
-      var u = BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") +
-        "hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=141c22&primary_color=0f3d3e" +
-        "&name=" + encodeURIComponent(document.getElementById("name").value) +
-        "&email=" + encodeURIComponent(document.getElementById("email").value);
-      document.getElementById("cal").innerHTML = '<iframe src="' + u + '" title="Book a call"></iframe>';
-    }
+    mountCalendar();
     form.classList.add("fade"); intro.forEach(function(el){ el.classList.add("fade"); });
     setTimeout(function(){
       form.hidden = true; intro.forEach(function(el){ el.hidden = true; });
