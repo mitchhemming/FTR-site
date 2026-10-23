@@ -284,7 +284,7 @@
 <section id="apply">
   <div class="wrap">
     <h2>Apply</h2>
-    <p>Takes about 3 minutes. Once you submit, you'll book a 45-minute call with me straight away.</p>
+    <p>Tell me a bit about your business and where you're at, so I can see whether this program is the right fit for you.</p>
 
     <!--
       FORM ENDPOINT
@@ -323,6 +323,12 @@
         <p class="form-note" id="form-status" aria-live="polite"></p>
       </div>
     </form>
+
+    <div id="book" hidden>
+      <h2>Thanks. Let's talk.</h2>
+      <p>Pick a time that suits you for a 45-minute call. We'll go through your business, work out your fixed-cost floor, and see what it would take to cover it with retainers.</p>
+      <div class="cal" id="cal"><div class="placeholder">Booking calendar coming shortly. I'll email you a time instead.</div></div>
+    </div>
   </div>
 </section>
 
@@ -340,7 +346,7 @@
   // ---- Settings ----
   var VIMEO_ID = "";                       // e.g. "123456789". Leave blank until the VSL is recorded.
   var FORM_ENDPOINT = "";                  // e.g. "https://formspree.io/f/abcdwxyz". Blank = form shows a notice instead of sending.
-  var THANKS_URL = "/thanks";
+  var BOOKING_URL = "";                    // e.g. "https://cal.com/mitchhemming/ftr-call". Blank = placeholder text.
 
   // ---- A/B variant: ?v=a or ?v=b forces one; otherwise a 30-day cookie decides ----
   (function(){
@@ -369,6 +375,23 @@
   });
   if (location.hash === "#apply") { document.getElementById("apply").classList.add("open"); }
 
+  // ---- After submit: swap the form for the calendar ----
+  function showBooking(){
+    var form = document.getElementById("apply-form");
+    var book = document.getElementById("book");
+    var intro = document.querySelector("#apply .wrap > h2, #apply .wrap > p");
+    document.querySelectorAll("#apply .wrap > h2, #apply .wrap > p").forEach(function(el){ el.hidden = true; });
+    form.hidden = true;
+    if (BOOKING_URL) {
+      var u = BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") +
+        "name=" + encodeURIComponent(document.getElementById("name").value) +
+        "&email=" + encodeURIComponent(document.getElementById("email").value);
+      document.getElementById("cal").innerHTML = '<iframe src="' + u + '" title="Book a call"></iframe>';
+    }
+    book.hidden = false;
+    book.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   // ---- Form ----
   (function(){
     var form = document.getElementById("apply-form");
@@ -379,7 +402,7 @@
       if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email " + "contact@consistentcreative.com" + " in the meantime."; return; }
       status.textContent = "Sending…";
       fetch(FORM_ENDPOINT, { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } })
-        .then(function(r){ if (r.ok) { location.href = THANKS_URL; } else { throw new Error(); } })
+        .then(function(r){ if (r.ok) { showBooking(); } else { throw new Error(); } })
         .catch(function(){ status.textContent = "That didn't send. Try again, or email " + "contact@consistentcreative.com" + "."; });
     });
   })();
