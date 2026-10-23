@@ -104,6 +104,12 @@
   select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235C6770' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.4rem}
   textarea{height:auto;min-height:120px;padding:.75rem .9rem;resize:vertical}
   .form-note{color:var(--muted);font-size:.95rem}
+  fieldset.choice{border:0;padding:0;margin:0;min-width:0}
+  fieldset.choice legend{font-weight:600;line-height:1.3;padding:0;margin-bottom:.4rem}
+  .opt{display:flex;align-items:center;gap:.75rem;font-weight:400;height:48px;padding:0 .9rem;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+  .opt + .opt{margin-top:.5rem}
+  .opt input{width:18px;height:18px;margin:0;padding:0;accent-color:var(--teal);appearance:auto;-webkit-appearance:auto;border:0}
+  .opt:has(input:checked){border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
 
   footer{padding:2.5rem 0 3rem;color:#8A949B;font-size:.8rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8A949B}
@@ -290,42 +296,32 @@
       <input type="hidden" name="_subject" value="New FTR application">
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-      <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
-      <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
-      <div class="field"><label for="phone">Phone</label><span class="hint">Include country code if outside Australia</span><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-      <div class="field"><label for="link">Instagram or website</label><input id="link" name="link" placeholder="@handle or URL"></div>
-      <div class="field"><label for="location">Where are you based?</label><input id="location" name="location" required></div>
-      <div class="field"><label for="work">What do you shoot, and who are your clients?</label><textarea id="work" name="work" required></textarea></div>
+      <div class="field"><label for="name">Full name</label><input id="name" name="name" required autocomplete="name"></div>
+      <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="instagram">Instagram account</label><input id="instagram" name="instagram" placeholder="@handle" required></div>
+      <div class="field"><label for="website">Website</label><input id="website" name="website" type="url" placeholder="https://" autocomplete="url"></div>
+      <div class="field"><label for="location">Location</label><span class="hint">City, country</span><input id="location" name="location" required></div>
       <div class="field">
-        <label for="years">How long have you been doing this for money?</label>
+        <label for="years">How many years working professionally?</label>
         <select id="years" name="years" required>
           <option value="" disabled selected>Choose</option>
-          <option>Under 1 year</option><option>1 to 3 years</option><option>3 to 5 years</option><option>5+ years</option>
+          <option>Under 1 year</option><option>1 to 3 years</option><option>3 to 5 years</option><option>5 to 10 years</option><option>10+ years</option>
         </select>
       </div>
       <div class="field">
-        <label for="revenue">Roughly how much did you invoice in the last 12 months?</label>
-        <select id="revenue" name="revenue" required>
+        <label for="revenue">Average monthly revenue</label>
+        <select id="revenue" name="monthly_revenue" required>
           <option value="" disabled selected>Choose</option>
-          <option>Under $30k</option><option>$30k to $75k</option><option>$75k to $150k</option><option>$150k+</option>
+          <option>Under $3k</option><option>$3k to $6k</option><option>$6k to $10k</option><option>$10k to $20k</option><option>$20k+</option>
         </select>
       </div>
-      <div class="field">
-        <label for="repeat">How many clients have you worked with more than once?</label>
-        <select id="repeat" name="repeat_clients" required>
-          <option value="" disabled selected>Choose</option>
-          <option>0</option><option>1 to 3</option><option>4 to 10</option><option>10+</option>
-        </select>
-      </div>
-      <div class="field"><label for="costs">Rough monthly fixed costs</label><span class="hint">Business and personal minimum, in your currency</span><input id="costs" name="fixed_costs" required></div>
-      <div class="field"><label for="why">Why now?</label><textarea id="why" name="why_now" required></textarea></div>
-      <div class="field">
-        <label for="invest">Are you able to invest $3,000 AUD, or 3 x $1,200, in the next 2 weeks?</label>
-        <select id="invest" name="can_invest" required>
-          <option value="" disabled selected>Choose</option>
-          <option>Yes</option><option>No</option><option>Need to discuss</option>
-        </select>
-      </div>
+      <fieldset class="field choice">
+        <legend>What do you shoot?</legend>
+        <label class="opt"><input type="radio" name="medium" value="Photo only" required><span>Photo only</span></label>
+        <label class="opt"><input type="radio" name="medium" value="Video only"><span>Video only</span></label>
+        <label class="opt"><input type="radio" name="medium" value="Both photo and video"><span>Both photo and video</span></label>
+      </fieldset>
+      <div class="field"><label for="niche">Primary niche or industry</label><span class="hint">e.g. automotive, real estate, weddings, hospitality</span><input id="niche" name="niche" required></div>
       <div>
         <button class="btn" type="submit">Submit</button>
         <p class="form-note" id="form-status" aria-live="polite"></p>
