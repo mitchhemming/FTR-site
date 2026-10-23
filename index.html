@@ -111,6 +111,12 @@
   /* A/B: variant A hides everything between the hero and the form */
   html.v-a .page-only{display:none}
 
+  /* Apply section is hidden until a button reveals it */
+  #apply{display:none}
+  #apply.open{display:block}
+  .cta-end{text-align:center;padding:3.5rem 0}
+  section + .cta-end{border-top:1px solid var(--line)}
+
   @media(prefers-reduced-motion:no-preference){
     details p{animation:fade .18s ease-out}
     @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -133,7 +139,7 @@
     </div>
   </div>
   <div class="wrap cta">
-    <a class="btn" href="#apply">Apply for Freedom Through Retainers</a>
+    <button class="btn apply-btn" type="button">Apply for Freedom Through Retainers</button>
     <p class="micro">90-day 1-on-1 program. $3,000 AUD or 3 x $1,200. Application only, not everyone is accepted.</p>
   </div>
 </header>
@@ -259,6 +265,14 @@
   </div>
 </section>
 
+<section class="page-only cta-end">
+  <div class="wrap">
+    <h2>Think it's a fit?</h2>
+    <p>Applications take about 3 minutes. I read every one myself.</p>
+    <button class="btn apply-btn" type="button">Apply for Freedom Through Retainers</button>
+  </div>
+</section>
+
 <section id="apply">
   <div class="wrap">
     <h2>Apply</h2>
@@ -361,6 +375,17 @@
     document.getElementById("vsl").innerHTML =
       '<iframe src="https://player.vimeo.com/video/' + VIMEO_ID + '?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Freedom Through Retainers training"></iframe>';
   }
+
+  // ---- Reveal application on click ----
+  document.querySelectorAll(".apply-btn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var a = document.getElementById("apply");
+      a.classList.add("open");
+      a.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      setTimeout(function(){ var f = document.getElementById("name"); if (f) f.focus({ preventScroll: true }); }, 500);
+    });
+  });
+  if (location.hash === "#apply") { document.getElementById("apply").classList.add("open"); }
 
   // ---- Form ----
   (function(){
