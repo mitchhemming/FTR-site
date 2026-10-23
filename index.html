@@ -46,6 +46,9 @@
   /* Hero */
   .hero{padding:1.5rem 0 2.5rem}
   .mark{font-size:.8rem;letter-spacing:.02em;color:var(--muted);margin:0 0 2.25rem}
+  .mark-name{color:var(--teal);font-weight:600}
+  .mark-by{margin-left:.5rem}
+  @media(max-width:420px){.mark-name,.mark-by{display:block}.mark-by{margin:.1rem 0 0}}
   .hero h1{text-align:center;max-width:16ch;margin:0 auto}
   .micro{color:var(--muted);font-size:.95rem;margin:.9rem auto 0;max-width:46ch;text-align:center}
 
@@ -153,7 +156,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <p class="mark">Freedom Through Retainers<sup class="tm">&trade;</sup></p>
+    <p class="mark"><span class="mark-name">Freedom Through Retainers<sup class="tm">&trade;</sup></span><span class="mark-by">by Mitch Hemming</span></p>
     <h1>Cover your fixed costs with monthly retainers in 90 days</h1>
   </div>
   <div class="wide video">
