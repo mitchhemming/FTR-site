@@ -46,7 +46,24 @@
   /* Brand */
   .brand{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.5rem 0 2.5rem;border-bottom:1px solid var(--line);margin-bottom:2.5rem}
   .wordmark{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.05rem;letter-spacing:.01em;color:var(--teal)}
-  @media(max-width:520px){.brand{flex-direction:column;gap:.25rem;align-items:flex-start}}
+  @media(max-width:600px){
+    .brand{padding:1.1rem 0 1.1rem;margin-bottom:1.75rem}
+    .wordmark{font-size:1rem}
+    .eyebrow{font-size:.95rem;margin-bottom:.75rem}
+    .sub{font-size:1.1rem;margin-top:1rem}
+    .floor{margin-top:1.25rem}
+    .video{margin-top:1.5rem}
+    .frame{border-radius:6px}
+    .frame .placeholder{font-size:1.05rem}
+    .cta{margin-top:1.25rem}
+    .btn{display:block;width:100%;padding:1rem}
+    .micro{font-size:.9rem}
+    section{padding:2.75rem 0}
+    form{gap:1.2rem}
+    footer{font-size:.78rem;line-height:1.75}
+    footer .sep{display:none}
+    footer .nowrap{white-space:nowrap}
+  }
 
   /* Hero */
   .hero{padding:0 0 2.5rem;text-align:left}
@@ -138,6 +155,8 @@
   footer{padding:2.5rem 0 3rem;color:#8A949B;font-size:.8rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8A949B}
   footer p{margin:0}
+  footer .mob{display:none}
+  @media(max-width:600px){footer .mob{display:inline}}
   .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
 
 
@@ -170,7 +189,7 @@
     </div>
   </div>
   <div class="wrap cta">
-    <button class="btn apply-btn" type="button">Apply for Freedom Through Retainers<sup class="tm">&trade;</sup></button>
+    <button class="btn apply-btn" type="button">Apply now</button>
     <p class="micro">90 day coaching program. Application only.</p>
   </div>
 </header>
@@ -231,8 +250,8 @@
 
 <footer>
   <div class="wrap">
-    <p>Freedom Through Retainers<sup class="tm">&trade;</sup> is a Consistent Creative<sup class="tm">&trade;</sup> program.<br>
-    Consistent Creative<sup class="tm">&trade;</sup> Pty Ltd &middot; ABN 37 694 627 695<br>PO Box 2820, Ascot QLD 4007, Australia<br><a href="mailto:contact@consistentcreative.com">contact@consistentcreative.com</a><br>
+    <p><span class="nowrap">Freedom Through Retainers<sup class="tm">&trade;</sup></span> is a <span class="nowrap">Consistent Creative<sup class="tm">&trade;</sup> program.</span><br>
+    <span class="nowrap">Consistent Creative<sup class="tm">&trade;</sup> Pty Ltd</span><span class="sep"> &middot; </span><br class="mob"><span class="nowrap">ABN 37 694 627 695</span><br>PO Box 2820, Ascot QLD 4007, Australia<br><a href="mailto:contact@consistentcreative.com">contact@consistentcreative.com</a><br>
     <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
   </div>
 </footer>
