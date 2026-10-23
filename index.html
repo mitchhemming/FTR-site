@@ -152,8 +152,8 @@
 
 <section id="apply">
   <div class="wrap">
-    <h2>Apply</h2>
-    <p>Tell me a bit about your business and where you're at 👇🏼</p>
+    <h2 class="intro">Apply</h2>
+    <p class="intro">Tell me a bit about your business and where you're at 👇🏼</p>
 
     <!--
       FORM ENDPOINT
@@ -237,9 +237,7 @@
   function showBooking(){
     var form = document.getElementById("apply-form");
     var book = document.getElementById("book");
-    var intro = document.querySelector("#apply .wrap > h2, #apply .wrap > p");
-    document.querySelectorAll("#apply .wrap > h2, #apply .wrap > p").forEach(function(el){ el.hidden = true; });
-    form.hidden = true;
+    var intro = document.querySelectorAll("#apply .intro");
     if (BOOKING_URL) {
       var u = BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") +
         "hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=141c22&primary_color=0f3d3e" +
@@ -247,8 +245,13 @@
         "&email=" + encodeURIComponent(document.getElementById("email").value);
       document.getElementById("cal").innerHTML = '<iframe src="' + u + '" title="Book a call"></iframe>';
     }
-    book.hidden = false;
-    book.scrollIntoView({ behavior: "smooth", block: "start" });
+    form.classList.add("fade"); intro.forEach(function(el){ el.classList.add("fade"); });
+    setTimeout(function(){
+      form.hidden = true; intro.forEach(function(el){ el.hidden = true; });
+      book.hidden = false;
+      document.getElementById("apply").scrollIntoView({ behavior: "smooth", block: "start" });
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ book.classList.add("show"); }); });
+    }, 420);
   }
 
   // ---- Form ----
