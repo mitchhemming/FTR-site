@@ -43,36 +43,15 @@
   section{padding:3.5rem 0}
   section + section{border-top:1px solid var(--line)}
 
-  /* Brand */
-  .brand{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.5rem 0 2.5rem;border-bottom:1px solid var(--line);margin-bottom:2.5rem}
-  .wordmark{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.05rem;letter-spacing:.01em;color:var(--teal)}
-  @media(max-width:600px){
-    .brand{padding:1.1rem 0 1.1rem;margin-bottom:1.75rem}
-    .wordmark{font-size:1rem}
-    .eyebrow{font-size:.95rem;margin-bottom:.75rem}
-    .sub{font-size:1.1rem;margin-top:1rem}
-    .floor{margin-top:1.25rem}
-    .video{margin-top:1.5rem}
-    .frame{border-radius:6px}
-    .frame .placeholder{font-size:1.05rem}
-    .cta{margin-top:1.25rem}
-    .btn{display:block;width:100%;padding:1rem}
-    .micro{font-size:.9rem}
-    section{padding:2.75rem 0}
-    form{gap:1.2rem}
-    footer{font-size:.78rem;line-height:1.75}
-    footer .sep{display:none}
-    footer .nowrap{white-space:nowrap}
-  }
-
   /* Hero */
-  .hero{padding:0 0 2.5rem;text-align:left}
-  .eyebrow{color:var(--muted);margin-bottom:1rem;font-size:1rem}
-  .sub{font-size:1.25rem;color:var(--muted);margin:1.25rem 0 0;max-width:38ch}
-  .floor{height:3px;width:72px;background:var(--brass);margin:1.5rem 0 0;border:0}
+  .hero{padding:1.5rem 0 2.5rem}
+  .mark{font-size:.8rem;letter-spacing:.02em;color:var(--muted);margin:0 0 2.25rem}
+  .hero h1{text-align:center;max-width:16ch;margin:0 auto}
+  .micro{color:var(--muted);font-size:.95rem;margin:.9rem auto 0;max-width:46ch;text-align:center}
 
   /* Video */
-  .video{margin:2rem auto 0;}
+  .video{margin:2rem auto 0}
+  .mark{text-align:center}
   .frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--teal-ink);border-radius:8px;overflow:hidden}
   .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .frame .placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#CFE3E1;font-family:"Fraunces",serif;font-size:1.25rem;padding:1rem;text-align:center}
@@ -173,14 +152,9 @@
 <body>
 
 <header class="hero">
-  <div class="wrap brand">
-    <span class="wordmark">Freedom Through Retainers<sup class="tm">&trade;</sup></span>
-  </div>
   <div class="wrap">
-    <p class="eyebrow">For established photographers, videographers and media business owners</p>
+    <p class="mark">Freedom Through Retainers<sup class="tm">&trade;</sup></p>
     <h1>Cover your fixed costs with monthly retainers in 90 days</h1>
-    <p class="sub">So project work becomes something you choose, not something you need to pay the bills.</p>
-    <hr class="floor">
   </div>
   <div class="wide video">
     <div class="frame" id="vsl">
@@ -190,7 +164,7 @@
   </div>
   <div class="wrap cta">
     <button class="btn apply-btn" type="button">Apply now</button>
-    <p class="micro">90 day coaching program. Application only.</p>
+    <p class="micro">For established photographers, videographers and media business owners. 90 day coaching program, application only.</p>
   </div>
 </header>
 
