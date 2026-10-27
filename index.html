@@ -143,9 +143,9 @@
   #book.show{opacity:1}
   #book h2,#book p{text-align:center}
   #book p{max-width:48ch;margin-left:auto;margin-right:auto}
-  .cal{width:100%;margin-top:.5rem}
-  .cal iframe{display:block;width:100%;height:1000px;border:0;background:transparent}
-  @media(max-width:600px){.cal iframe{height:1100px}}
+  .cal{width:100%;margin-top:.5rem;min-height:760px}
+  .cal iframe{display:block;width:100%;border:0;background:transparent}
+  @media(max-width:600px){.cal{min-height:900px}}
   .cal .placeholder{padding:3rem 1rem;text-align:center;color:var(--muted)}
   @media(prefers-reduced-motion:reduce){#apply-form,#apply .intro,#book{transition:none}.btn .spin{animation:none}}
   fieldset.choice{border:0;padding:0;margin:0;min-width:0}
@@ -280,13 +280,22 @@
   // ---- After submit: swap the form for the calendar ----
   function calendlyUrl(){
     return BOOKING_URL + (BOOKING_URL.indexOf("?") > -1 ? "&" : "?") +
-      "hide_gdpr_banner=1&hide_landing_page_details=1&background_color=f2f3f0&text_color=141c22&primary_color=0f3d3e" +
-      "&name=" + encodeURIComponent(document.getElementById("name").value) +
-      "&email=" + encodeURIComponent(document.getElementById("email").value);
+      "hide_gdpr_banner=1&hide_landing_page_details=1&background_color=f2f3f0&text_color=141c22&primary_color=0f3d3e";
   }
   function mountCalendar(){
     var cal = document.getElementById("cal");
-    cal.innerHTML = '<iframe src="' + calendlyUrl() + '" title="Book a call" loading="eager"></iframe>';
+    cal.innerHTML = "";
+    function init(){
+      Calendly.initInlineWidget({
+        url: calendlyUrl(),
+        parentElement: cal,
+        prefill: { name: document.getElementById("name").value, email: document.getElementById("email").value }
+      });
+    }
+    if (window.Calendly) { init(); return; }
+    var sc = document.createElement("script");
+    sc.src = "https://assets.calendly.com/assets/external/widget.js"; sc.async = true; sc.onload = init;
+    document.head.appendChild(sc);
   }
   function showBooking(){
     var form = document.getElementById("apply-form");
