@@ -21,7 +21,7 @@
   .mark-by{color:var(--ink);font-weight:500}
   .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
   h1{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-0.025em;line-height:1.05;font-size:clamp(1.8rem,5vw,2.6rem);margin:0 0 1rem;text-align:center;color:var(--teal)}
-  p{margin:0 auto;max-width:44ch;text-align:center;color:var(--teal)}
+  p{margin:0 auto;max-width:50ch;text-align:center;color:var(--teal)}
   .lead{font-size:1.2rem;font-weight:500;margin-bottom:.9rem}
   .sub{font-size:1.05rem;line-height:1.6;color:var(--muted);margin-bottom:.9rem}
   .sub:last-of-type{margin-bottom:0}
@@ -59,6 +59,12 @@
     Calendly.initInlineWidget({ url: url, parentElement: document.getElementById("cal"),
       prefill: { name: q.get("name") || "", email: q.get("email") || "" } });
   }
+  // Grow the embed to its content so the page is the only thing that scrolls
+  window.addEventListener("message", function(e){
+    if (e.origin !== "https://calendly.com" || !e.data || e.data.event !== "calendly.page_height") return;
+    var h = parseInt(e.data.payload && e.data.payload.height, 10);
+    if (h > 0) document.getElementById("cal").style.height = (h + 24) + "px";
+  });
   var sc = document.createElement("script");
   sc.src = "https://assets.calendly.com/assets/external/widget.js"; sc.async = true; sc.onload = init;
   document.head.appendChild(sc);
