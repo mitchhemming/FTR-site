@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book your call</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F3D3E'/%3E%3Crect x='6' y='21' width='20' height='3' fill='%23C9A227'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3F0;--ink:#141C22;--muted:#5C6770;--line:#D6D9D5;--teal:#0F3D3E;--brass:#C9A227}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:1.125rem;line-height:1.55}
+  .wrap{width:min(100% - 32px,680px);margin:0 auto}
+  .wide{width:min(100% - 32px,880px);margin:0 auto}
+  .mark{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.82rem;letter-spacing:.01em;color:var(--muted);margin:0 0 2.5rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;padding-top:1.5rem}
+  .avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:.35rem}
+  .mark-name{color:var(--teal);font-weight:600}
+  .mark-by{color:var(--ink);font-weight:500}
+  .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
+  h1{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-0.025em;line-height:1.05;font-size:clamp(1.8rem,5vw,2.6rem);margin:0 0 1rem;text-align:center}
+  p{margin:0 auto 1rem;max-width:48ch;text-align:center}
+  .cal{width:100%;margin-top:1.5rem;min-height:760px}
+  .cal iframe{display:block;width:100%;border:0;background:transparent}
+  @media(max-width:600px){.cal{min-height:900px}}
+  footer{font-family:"Schibsted Grotesk",system-ui,sans-serif;padding:3rem 0 3.5rem;color:#8A949B;font-size:.78rem;line-height:1.75;text-align:center;border-top:1px solid var(--line);margin-top:4rem}
+  footer a{color:#8A949B}
+  footer p{margin:0;max-width:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="mark"><img class="avatar" src="/assets/mitch.jpg" alt="Mitch Hemming" width="400" height="400"><span class="mark-name">Freedom Through Retainers<sup class="tm">&trade;</sup></span><span class="mark-by">by Mitch Hemming</span></p>
+  <h1>Application received</h1>
+  <p>Thanks so much. Next up is a quick 30 minute chat. We'll talk through your business, work out the number you need to cover each month, and see what it would take to get there with retainers. Grab a time below that suits you.</p>
+</div>
+<div class="wide"><div class="cal" id="cal"></div></div>
+<footer><div class="wrap"><p>Freedom Through Retainers<sup class="tm">&trade;</sup> is a Consistent Creative<sup class="tm">&trade;</sup> program.<br>Consistent Creative<sup class="tm">&trade;</sup> Pty Ltd &middot; ABN 37 694 627 695<br>PO Box 2820, Ascot QLD 4007, Australia<br><a href="mailto:contact@consistentcreative.com">contact@consistentcreative.com</a><br><a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p></div></footer>
+<script>
+  var BOOKING_URL = "https://calendly.com/mitch-consistentcreative/30min";
+  var q = new URLSearchParams(location.search);
+  var url = BOOKING_URL + "?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=f2f3f0&text_color=141c22&primary_color=0f3d3e";
+  function init(){
+    Calendly.initInlineWidget({ url: url, parentElement: document.getElementById("cal"),
+      prefill: { name: q.get("name") || "", email: q.get("email") || "" } });
+  }
+  var sc = document.createElement("script");
+  sc.src = "https://assets.calendly.com/assets/external/widget.js"; sc.async = true; sc.onload = init;
+  document.head.appendChild(sc);
+</script>
+</body>
+</html>
