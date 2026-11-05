@@ -417,7 +417,7 @@
         <div class="offer" id="waitlist">
           <p class="offer-kicker"><span>Freedom Through Retainers<sup class="tm">&trade;</sup></span></p>
           <p class="offer-title">Cover your fixed costs with monthly retainers in&nbsp;90&nbsp;days.</p>
-          <p class="offer-text">A 90-day, 1-on-1 program where I show you exactly how to price, position and land the retainers that cover your <b id="offer-num">fixed costs</b> every month, so you never have a low month again.</p>
+          <p class="offer-text">A 90-day, 1-on-1 program where I show you exactly how to price, position and land the retainers that cover your fixed costs every month, so you never have a low month again.</p>
           <ul class="offer-points">
             <li>90 days, 1-on-1 with me</li>
             <li>Built for established service businesses</li>
@@ -433,7 +433,7 @@
           <ul class="outcomes">
             <li><b>Your retainer offer</b>, priced and packaged so clients say yes</li>
             <li><b>The right clients to pitch</b>, and exactly what to say to them</li>
-            <li><b>Your first retainers signed</b>, with a clear path to your full number</li>
+            <li><b>Your first retainers pitched</b>, with a clear plan to build towards your number</li>
           </ul>
 
           <div class="fit">
@@ -652,9 +652,6 @@
     var s = $("status");
     if (covered) { s.className = "status ok"; s.textContent = "✓ Covers what you need" + (total > S ? ", " + money(total - S) + " spare" : ""); }
     else { s.className = "status short"; s.textContent = money(S - total) + " short of what you need"; }
-
-    // Waitlist headline uses their own number
-    $("offer-num").textContent = money(S);
 
     // The problem
     if (short.length) {
