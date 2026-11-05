@@ -10,7 +10,7 @@ async function listAll(prefix) {
   return out;
 }
 async function readJson(pathname) {
-  const r = await get(pathname, { access: "private", useCache: false });
+  const r = await get(pathname, { access: "private" }); // cached reads keep this inside the free plan
   if (!r || r.statusCode !== 200) return null;
   try { return JSON.parse(await new Response(r.stream).text()); } catch (e) { return null; }
 }
@@ -39,9 +39,9 @@ module.exports = async (req, res) => {
   if (!process.env.STATS_PASSWORD) { res.statusCode = 503; res.setHeader("content-type", "text/plain"); return res.end("Stats are locked. Add a STATS_PASSWORD environment variable in Vercel, then redeploy."); }
   if (!keyOk(url.searchParams.get("key"))) { res.statusCode = 401; res.setHeader("content-type", "text/plain"); return res.end("Not authorised."); }
 
-  const [calcB, planB, joinB] = await Promise.all([listAll("calc/"), listAll("plan/"), listAll("join/")]);
-  const [calc, plans, joins] = await Promise.all([readAll(calcB), readAll(planB), readAll(joinB)]);
-  const planBy = Object.fromEntries(plans.map((p) => [p.id, p]));
+  const [calcB, joinB] = await Promise.all([listAll("calc/"), listAll("join/")]);
+  const [calc, joins] = await Promise.all([readAll(calcB), readAll(joinB)]);
+  const planBy = Object.fromEntries(joins.map((p) => [p.id, p])); // sign-ups record where they left the sliders
   const joined = new Set(joins.map((j) => j.id));
   const rows = calc.map((c) => {
     const p = planBy[c.id] || {};

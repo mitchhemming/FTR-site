@@ -6,7 +6,7 @@ const { readBody, money, count, text, validId } = require("./_lib");
 module.exports = async (req, res) => {
   if (req.method !== "POST") { res.statusCode = 405; return res.end(); }
   const b = await readBody(req);
-  if (!b || !validId(b.id) || !["complete", "plan", "join"].includes(b.type)) { res.statusCode = 400; return res.end(); }
+  if (!b || !validId(b.id) || !["complete", "join"].includes(b.type)) { res.statusCode = 400; return res.end(); }
 
   const rec = { id: b.id, type: b.type, ts: new Date().toISOString() };
   if (b.type === "complete") {

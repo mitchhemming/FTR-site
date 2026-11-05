@@ -588,8 +588,6 @@
     var body = Object.assign({ id: trackId, type: type, source: source, campaign: qs.get("utm_campaign") || "", device: innerWidth < 700 ? "mobile" : "desktop" }, data || {});
     try { fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(function(){}); } catch (e) {}
   }
-  var planTimer;
-  function trackPlan(){ clearTimeout(planTimer); planTimer = setTimeout(function(){ track("plan", { clients: st.clients, price: st.price }); }, 1500); }
 
   function reveal(){
     $("quiz").hidden = true;
@@ -649,8 +647,8 @@
   }
   function paint(el){ el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); }
 
-  sc.addEventListener("input", function(){ st.clients = +sc.value; paint(sc); render(); trackPlan(); });
-  sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); render(); trackPlan(); });
+  sc.addEventListener("input", function(){ st.clients = +sc.value; paint(sc); render(); });
+  sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); render(); });
 
   function render(first){
     var S = st.survival, total = st.clients * st.price, vals = yearValues();
