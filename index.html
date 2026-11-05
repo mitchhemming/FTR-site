@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freedom Through Retainers</title>
-<meta name="description" content="Work out how many monthly retainers it takes to cover your fixed costs. A free 60-second calculator from Mitch Hemming.">
+<meta name="description" content="See what your business looks like when your jobs become monthly retainers. A free calculator from Mitch Hemming.">
 <meta property="og:title" content="Freedom Through Retainers">
-<meta property="og:description" content="How many retainers would cover your fixed costs? Work out your foundation in 60 seconds.">
+<meta property="og:description" content="Turn your average job into a monthly retainer and see how close you are to covering your survival number.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freedomthroughretainers.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F3D3E'/%3E%3Crect x='6' y='21' width='20' height='3' fill='%23C9A227'/%3E%3C/svg%3E">
@@ -21,23 +21,22 @@
     --line:#D6D9D5;
     --teal:#0F3D3E;
     --teal-ink:#0B2F30;
+    --teal-soft:#E3ECEA;
     --brass:#C9A227;
+    --brass-soft:#F5EDD3;
+    --short:#B5543F;
+    --short-soft:#E9C3B8;
+    --bar:#C3C9C3;
     --max:680px;
   }
   *{box-sizing:border-box}
   [hidden]{display:none!important}
   html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:"Newsreader",Georgia,serif;
-    font-size:1.125rem;line-height:1.55;
-  }
-  h1,h2,h3{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-0.025em;line-height:1.05;margin:0}
-  h1{font-size:clamp(2rem,5.4vw,3.2rem)}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:1.125rem;line-height:1.55;overflow-x:hidden}
+  h1{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-0.025em;line-height:1.05;margin:0;font-size:clamp(2rem,5.4vw,3.2rem)}
   p{margin:0 0 1rem}
   a{color:var(--teal)}
   .wrap{width:min(100% - 32px,var(--max));margin:0 auto}
-  .sans{font-family:"Schibsted Grotesk",system-ui,sans-serif}
 
   /* Hero (unchanged) */
   .hero{padding:1.5rem 0 2.5rem}
@@ -48,61 +47,134 @@
   .hero h1{text-align:center;margin:0 auto;white-space:nowrap}
   .ul{position:relative;display:inline-block;white-space:nowrap}
   .ul-svg{position:absolute;left:-2%;right:-2%;bottom:-.08em;width:104%;height:.22em;color:var(--brass);pointer-events:none}
-  @media(max-width:700px){.hero h1{font-size:clamp(1.45rem,7.2vw,2.1rem);letter-spacing:-0.015em}}
+  @media(max-width:700px){.hero h1{font-size:min(2.1rem,calc((100vw - 36px) / 16.6));letter-spacing:-0.015em}}
   .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
 
-  /* Calculator card */
-  .calc{padding:0 0 5rem}
-  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:2rem 1.75rem 1.75rem;max-width:560px;margin:0 auto}
-  @media(max-width:600px){.hero{padding:1rem 0 2rem}.mark{margin-bottom:1.5rem}.card{padding:1.5rem 1.15rem 1.25rem}}
-  .kicker{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
-  .progress{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin:0 0 1.5rem}
-  .progress span{display:block;height:100%;width:0;background:var(--brass);transition:width .3s ease}
-  .step{display:none}
-  .step.on{display:block}
-  .q{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.35rem;line-height:1.2;letter-spacing:-0.02em;margin:0 0 .4rem}
-  .hint{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.92rem;line-height:1.45;margin:0 0 1.1rem}
-  .opt{display:flex;align-items:center;gap:.75rem;width:100%;min-height:52px;padding:.6rem .95rem;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;color:var(--ink);text-align:left}
-  .opt + .opt{margin-top:.5rem}
-  .opt:hover{border-color:var(--teal)}
-  .opt.sel{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
-  .money{position:relative}
-  .money span{position:absolute;left:.95rem;top:50%;transform:translateY(-50%);font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:1.15rem}
-  input{display:block;width:100%;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1.05rem;height:52px;padding:0 .95rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none}
-  .money input{padding-left:2rem;font-size:1.25rem;font-weight:600}
-  .field + .field{margin-top:.8rem}
-  label.lbl{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:600;font-size:.95rem;margin:0 0 .35rem}
-  .err{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:#9B2C2C;font-size:.9rem;min-height:1.3em;margin:.5rem 0 0}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.25rem}
-  .back{background:none;border:0;padding:.5rem 0;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.95rem;color:var(--muted);cursor:pointer}
-  .back[hidden]{display:none}
-  .btn{font-family:"Schibsted Grotesk",system-ui,sans-serif;letter-spacing:-0.01em;display:inline-block;background:var(--teal);color:#fff;text-decoration:none;padding:.95rem 1.6rem;border-radius:6px;font-weight:600;font-size:1.02rem;border:0;cursor:pointer;text-align:center}
-  .btn:hover{background:var(--teal-ink)}
-  .btn.full{display:block;width:100%}
-  .btn[disabled]{opacity:.7;cursor:progress}
-  .btn:focus-visible,.opt:focus-visible,input:focus-visible,.back:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+  /* Card */
+  main{padding:0 0 5rem}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem 1.75rem;max-width:600px;margin:0 auto;box-shadow:0 1px 2px rgba(20,28,34,.04),0 12px 32px -18px rgba(15,61,62,.25)}
+  @media(max-width:600px){.hero{padding:1rem 0 2rem}.mark{margin-bottom:1.5rem}.card{padding:1.5rem 1.1rem 1.25rem;border-radius:12px}}
+  .kicker{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+  .progress{display:flex;gap:6px;margin:0 0 1.6rem}
+  .progress i{flex:1;height:4px;border-radius:2px;background:var(--line);transition:background .3s}
+  .progress i.on{background:var(--brass)}
 
-  /* Result */
-  .big{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(2.4rem,9vw,3.4rem);line-height:1;letter-spacing:-0.03em;color:var(--teal);margin:.2rem 0 .3rem}
-  .big small{font-size:.38em;font-weight:600;color:var(--muted);letter-spacing:0}
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.25rem 0}
-  .stat{border:1px solid var(--line);border-radius:6px;padding:.8rem .9rem}
-  .stat b{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1.5rem;line-height:1.1;color:var(--ink)}
-  .stat span{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.85rem;line-height:1.3;color:var(--muted);margin-top:.2rem}
-  .explain{font-size:1.05rem}
-  .rule{border:0;border-top:1px solid var(--line);margin:1.5rem 0}
-  .h-join{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-0.015em;margin:0 0 .35rem}
-  .alt{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.92rem;color:var(--muted);text-align:center;margin:1rem 0 0}
-  .done{text-align:center;padding:.5rem 0}
-  .done .tick{width:48px;height:48px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.4rem}
+  /* Question steps */
+  .step{display:none}
+  .step.on{display:block;animation:rise .35s ease-out}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .q{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.4rem;line-height:1.18;letter-spacing:-0.02em;margin:0 0 .45rem}
+  .hint{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.93rem;line-height:1.45;margin:0 0 1.2rem}
+  .bigin{display:flex;align-items:center;gap:.25rem;border-bottom:2px solid var(--line);padding:.2rem 0;transition:border-color .2s}
+  .bigin:focus-within{border-color:var(--teal)}
+  .bigin span{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:600;font-size:2.2rem;color:var(--muted)}
+  .bigin input{flex:1;min-width:0;border:0;outline:0;background:none;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:2.6rem;letter-spacing:-0.03em;color:var(--teal);padding:0;height:auto}
+  .bigin small{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.95rem;white-space:nowrap}
+  .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0 0}
+  .chip{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.88rem;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:.5rem .9rem;cursor:pointer;min-height:38px}
+  .chip:hover{border-color:var(--teal)}
+  .chip.sel{background:var(--teal);border-color:var(--teal);color:#fff}
+  .stepper{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin:.5rem 0 0}
+  .stepper button{width:56px;height:56px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:1.6rem;line-height:1;color:var(--teal);cursor:pointer;font-family:"Schibsted Grotesk",system-ui,sans-serif}
+  .stepper button:hover{border-color:var(--teal)}
+  .stepper button:active{transform:scale(.95)}
+  .stepper input{width:3.6ch;text-align:center;border:0;outline:0;background:none;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:3.4rem;letter-spacing:-0.03em;color:var(--teal);padding:0}
+  .stepper-cap{text-align:center;font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.9rem;margin:.2rem 0 0}
+  .live{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.92rem;color:var(--muted);background:var(--paper);border-radius:8px;padding:.7rem .85rem;margin:1.25rem 0 0}
+  .live b{color:var(--ink)}
+  .err{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--short);font-size:.9rem;min-height:1.3em;margin:.5rem 0 0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.1rem}
+  .back{background:none;border:0;padding:.5rem 0;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.95rem;color:var(--muted);cursor:pointer}
+  .btn{font-family:"Schibsted Grotesk",system-ui,sans-serif;letter-spacing:-0.01em;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--teal);color:#fff;text-decoration:none;padding:.95rem 1.6rem;border-radius:8px;font-weight:600;font-size:1.02rem;border:0;cursor:pointer;min-height:52px}
+  .btn:hover{background:var(--teal-ink)}
+  .btn.full{display:flex;width:100%}
+  .btn[disabled]{opacity:.7;cursor:progress}
+  :focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+
+  /* Gate */
+  .gate .q{text-align:center}
+  .gate .hint{text-align:center;max-width:42ch;margin-left:auto;margin-right:auto}
+  .field + .field{margin-top:.75rem}
+  .lbl{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:600;font-size:.92rem;margin:0 0 .35rem}
+  .txt{display:block;width:100%;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1.05rem;height:52px;padding:0 .95rem;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none}
+  .txt:focus{border-color:var(--teal);outline:0;box-shadow:0 0 0 3px var(--teal-soft)}
   .fine{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8rem;color:var(--muted);margin:.75rem 0 0;text-align:center}
+  .peek{position:relative;margin-top:1.5rem;max-height:230px;overflow:hidden;border-radius:10px;pointer-events:none;user-select:none}
+  .peek > div{filter:blur(7px);opacity:.85}
+  .peek::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,#fff 95%)}
+
+  /* Results */
+  #results.reveal{animation:rise .5s ease-out}
+  .total-wrap{display:flex;align-items:center;gap:1.25rem}
+  .ring{position:relative;width:112px;height:112px;flex:none}
+  .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring circle{fill:none;stroke-width:10}
+  .ring .track{stroke:var(--teal-soft)}
+  .ring .val{stroke:var(--teal);stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.2,1),stroke .3s}
+  .ring .val.over{stroke:var(--brass)}
+  .ring-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:"Schibsted Grotesk",system-ui,sans-serif}
+  .ring-txt b{font-size:1.55rem;line-height:1;letter-spacing:-0.02em;color:var(--teal)}
+  .ring-txt span{font-size:.7rem;color:var(--muted);margin-top:.2rem;text-transform:uppercase;letter-spacing:.06em}
+  .total{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(1.85rem,8vw,3rem);line-height:1;letter-spacing:-0.035em;color:var(--teal);margin:0 0 .45rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .total small{font-size:.36em;font-weight:600;letter-spacing:0;color:var(--muted)}
+  .status{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem;font-weight:600;margin:0;display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .7rem;border-radius:999px;line-height:1.3}
+  .status.short{background:#F6E3DD;color:var(--short)}
+  .status.ok{background:var(--teal-soft);color:var(--teal)}
+  .eq{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem;line-height:1.45;color:var(--muted);margin:1rem 0 0}
+  .eq b{color:var(--ink)}
+  @media(max-width:420px){.total-wrap{gap:.9rem}.ring{width:88px;height:88px}.ring-txt b{font-size:1.2rem}.ring-txt span{font-size:.6rem}.status{font-size:.82rem}.slider-top output{font-size:1.05rem}}
+
+  .panel{background:var(--paper);border-radius:12px;padding:1.2rem 1.1rem 1.1rem;margin:1.4rem 0 0}
+  .slider + .slider{margin-top:1.3rem}
+  .slider-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin:0 0 .4rem;font-family:"Schibsted Grotesk",system-ui,sans-serif}
+  .slider-top label{font-weight:600;font-size:.95rem}
+  .slider-top output{font-weight:700;font-size:1.2rem;color:var(--teal);font-variant-numeric:tabular-nums}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:transparent;margin:0;cursor:pointer}
+  input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(to right,var(--teal) 0,var(--teal) var(--p,50%),#D6DCD8 var(--p,50%))}
+  input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:#D6DCD8}
+  input[type=range]::-moz-range-progress{height:8px;border-radius:4px;background:var(--teal)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:#fff;border:3px solid var(--teal);box-shadow:0 2px 6px rgba(15,61,62,.3);transition:transform .15s}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--teal);box-shadow:0 2px 6px rgba(15,61,62,.3)}
+  input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
+  .scale{display:flex;justify-content:space-between;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.75rem;color:var(--muted);margin-top:.1rem}
+  .fixes{margin:1.2rem 0 0}
+  .fixes p{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.76rem;font-weight:600;color:var(--muted);margin:0 0 .5rem;text-transform:uppercase;letter-spacing:.08em}
+  .fixes .chips{margin:0}
+  .note{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem;line-height:1.45;border-left:3px solid var(--brass);background:var(--brass-soft);padding:.75rem .9rem;border-radius:0 8px 8px 0;margin:1.2rem 0 0}
+
+  .h2{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-0.015em;margin:0 0 .35rem}
+  .section{margin:2rem 0 0;padding:1.75rem 0 0;border-top:1px solid var(--line)}
+  .chart{width:100%;height:auto;display:block;margin:.8rem 0 0;overflow:visible}
+  .chart .b{transform-box:fill-box;transform-origin:bottom}
+  .chart.grow .b{animation:grow .7s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  .chart text{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:10px;fill:var(--muted)}
+  .chart .lbl-r{font-weight:700;fill:var(--teal);font-size:10.5px}
+  .chart .lbl-s{font-weight:600;fill:#8A6D10;font-size:10px}
+  .legend{display:flex;flex-wrap:wrap;gap:.4rem 1rem;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8rem;color:var(--muted);margin:.7rem 0 0}
+  .legend span{display:inline-flex;align-items:center;gap:.4rem}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1rem 0 0}
+  .vs div{border:1px solid var(--line);border-radius:10px;padding:.85rem .9rem}
+  .vs b{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1.6rem;line-height:1.1;letter-spacing:-0.02em}
+  .vs span{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.82rem;line-height:1.35;color:var(--muted);margin-top:.25rem}
+  .vs .bad b{color:var(--short)}
+  .vs .good b{color:var(--teal)}
+  .disclaim{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.75rem;color:var(--muted);margin:.6rem 0 0}
+
+  .how{list-style:none;padding:0;margin:1rem 0 0;counter-reset:h}
+  .how li{counter-increment:h;display:flex;gap:.8rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--line);font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.98rem;line-height:1.4}
+  .how li:last-child{border-bottom:0}
+  .how li::before{content:counter(h);flex:none;width:26px;height:26px;border-radius:50%;background:var(--teal-soft);color:var(--teal);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;margin-top:-1px}
+  .closer{font-size:1.1rem;line-height:1.5;margin:1.2rem 0 0}
+  .again{display:block;margin:1.5rem auto 0;background:none;border:0;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem;color:var(--muted);text-decoration:underline;cursor:pointer;padding:.5rem}
 
   footer{font-family:"Schibsted Grotesk",system-ui,sans-serif;padding:3rem 0 3.5rem;color:#8A949B;font-size:.78rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8A949B}
   footer p{margin:0}
   footer .mob{display:none}
   @media(max-width:600px){footer .mob{display:inline}footer .sep{display:none}}
-  @media(prefers-reduced-motion:reduce){.progress span{transition:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -114,88 +186,147 @@
   </div>
 </header>
 
-<main class="calc">
+<main>
   <div class="wrap">
-    <div class="card" id="card">
-      <p class="kicker" id="kicker">Work out your foundation &middot; 60 seconds</p>
-      <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+    <div class="card">
 
-      <!-- Step 1 -->
-      <div class="step on" data-step="1">
-        <p class="q">What kind of business do you run?</p>
-        <p class="hint">Pick the closest one.</p>
-        <div data-choice="business">
-          <button type="button" class="opt" data-value="Photography">Photography</button>
-          <button type="button" class="opt" data-value="Videography">Videography</button>
-          <button type="button" class="opt" data-value="Photo and video">Photo and video</button>
-          <button type="button" class="opt" data-value="Other service business">Another service business</button>
+      <div id="quiz">
+        <p class="kicker">Free retainer calculator &middot; 60 seconds</p>
+        <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+        <!-- 1. Survival number -->
+        <div class="step on" data-step="1">
+          <p class="q">What's the minimum you need each month to survive?</p>
+          <p class="hint">One number. Rent or mortgage, food, bills, car, insurance. The non-negotiables for you and your business.</p>
+          <label class="bigin"><span>$</span><input id="survival" inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Minimum monthly survival number in dollars"><small>/ month</small></label>
+          <div class="chips" data-for="survival">
+            <button type="button" class="chip" data-v="5000">$5k</button>
+            <button type="button" class="chip" data-v="8000">$8k</button>
+            <button type="button" class="chip" data-v="10000">$10k</button>
+            <button type="button" class="chip" data-v="15000">$15k</button>
+          </div>
+          <p class="err" id="err1" aria-live="polite"></p>
+        </div>
+
+        <!-- 2. Average job value -->
+        <div class="step" data-step="2">
+          <p class="q">What do you earn from an average job?</p>
+          <p class="hint">A rough estimate is fine. What a typical shoot, project or booking pays you.</p>
+          <label class="bigin"><span>$</span><input id="aov" inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Average dollars per job"><small>/ job</small></label>
+          <div class="chips" data-for="aov">
+            <button type="button" class="chip" data-v="500">$500</button>
+            <button type="button" class="chip" data-v="1000">$1k</button>
+            <button type="button" class="chip" data-v="2000">$2k</button>
+            <button type="button" class="chip" data-v="3500">$3.5k</button>
+          </div>
+          <p class="err" id="err2" aria-live="polite"></p>
+        </div>
+
+        <!-- 3. Jobs per month -->
+        <div class="step" data-step="3">
+          <p class="q">How many jobs do you do in an average month?</p>
+          <p class="hint">Think across the whole year, good months and quiet ones.</p>
+          <div class="stepper">
+            <button type="button" id="minus" aria-label="Fewer jobs">&minus;</button>
+            <input id="jobs" inputmode="numeric" value="6" aria-label="Jobs per month">
+            <button type="button" id="plus" aria-label="More jobs">+</button>
+          </div>
+          <p class="stepper-cap">jobs per month</p>
+          <p class="live" id="live-now"></p>
+        </div>
+
+        <!-- 4. Gate -->
+        <div class="step gate" data-step="4">
+          <p class="q">Your numbers are ready.</p>
+          <p class="hint">Pop in your name and email to see what your business looks like on retainers. Free, no obligation, no sales calls.</p>
+          <form id="gate" novalidate>
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <div class="field"><label class="lbl" for="name">First name</label><input class="txt" id="name" name="Name" autocomplete="given-name" required></div>
+            <div class="field"><label class="lbl" for="email">Email</label><input class="txt" id="email" name="Email" type="email" autocomplete="email" required></div>
+            <p class="err" id="err4" aria-live="polite"></p>
+            <button class="btn full" type="submit" id="gate-btn">Show my numbers &rarr;</button>
+            <p class="fine">Your details stay with me. Unsubscribe any time.</p>
+          </form>
+          <div class="peek" aria-hidden="true"><div id="peek"></div></div>
+        </div>
+
+        <div class="nav" id="nav">
+          <button type="button" class="back" id="back">&larr; Back</button>
+          <button type="button" class="btn" id="next">Next</button>
         </div>
       </div>
 
-      <!-- Step 2 -->
-      <div class="step" data-step="2">
-        <p class="q">What are your fixed costs each month?</p>
-        <p class="hint">Everything that has to be paid whether you work or not. Rent, wages, software, insurance, loans, and the minimum you need to pay yourself.</p>
-        <div class="money"><span>$</span><input id="fixed" inputmode="numeric" autocomplete="off" placeholder="8,000" aria-label="Monthly fixed costs in dollars"></div>
-        <p class="err" id="err2" aria-live="polite"></p>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="step" data-step="3">
-        <p class="q">What's a typical one-off job worth to you?</p>
-        <p class="hint">Your average single project or booking, before any retainer.</p>
-        <div class="money"><span>$</span><input id="job" inputmode="numeric" autocomplete="off" placeholder="1,500" aria-label="Typical job value in dollars"></div>
-        <p class="err" id="err3" aria-live="polite"></p>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="step" data-step="4">
-        <p class="q">How much of your income is recurring right now?</p>
-        <p class="hint">Money that arrives every month without you having to win it again.</p>
-        <div data-choice="recurring">
-          <button type="button" class="opt" data-value="None">None of it</button>
-          <button type="button" class="opt" data-value="Under 25%">Under 25%</button>
-          <button type="button" class="opt" data-value="25 to 50%">25 to 50%</button>
-          <button type="button" class="opt" data-value="Over 50%">Over 50%</button>
+      <!-- Results -->
+      <div id="results" hidden>
+        <p class="kicker" id="r-kicker">If your jobs became retainers</p>
+        <div class="total-wrap">
+          <div class="ring" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="val" id="ring" cx="60" cy="60" r="52"/></svg>
+            <div class="ring-txt"><b id="pct">0%</b><span>covered</span></div>
+          </div>
+          <div>
+            <p class="total"><span id="total">$0</span> <small>/ month</small></p>
+            <p class="status" id="status"></p>
+          </div>
         </div>
-      </div>
+        <p class="eq" id="eq"></p>
 
-      <!-- Result + waitlist -->
-      <div class="step" data-step="5">
-        <p class="kicker" style="margin-bottom:.2rem">Your foundation</p>
-        <p class="big"><span id="r-fixed">$0</span> <small>/ month</small></p>
-        <div class="stats">
-          <div class="stat"><b id="r-count">0</b><span>retainers to cover it</span></div>
-          <div class="stat"><b id="r-price">$0</b><span>per retainer, per month</span></div>
+        <div class="panel">
+          <div class="slider">
+            <div class="slider-top"><label for="s-clients">Retainer clients</label><output id="o-clients"></output></div>
+            <input type="range" id="s-clients" min="1" max="20" step="1">
+            <div class="scale"><span id="c-min"></span><span id="c-max"></span></div>
+          </div>
+          <div class="slider">
+            <div class="slider-top"><label for="s-price">Retainer price</label><output id="o-price"></output></div>
+            <input type="range" id="s-price" min="100" max="5000" step="50">
+            <div class="scale"><span id="p-min"></span><span id="p-max"></span></div>
+          </div>
+          <div class="fixes">
+            <p>Hit your number with</p>
+            <div class="chips">
+              <button type="button" class="chip" data-fix="clients">More clients</button>
+              <button type="button" class="chip" data-fix="price">A higher price</button>
+              <button type="button" class="chip" data-fix="both">A bit of both</button>
+              <button type="button" class="chip" data-fix="reset">Reset</button>
+            </div>
+          </div>
         </div>
-        <p class="explain" id="r-text"></p>
+        <p class="note" id="capacity"></p>
 
-        <hr class="rule">
-
-        <form id="join" novalidate>
-          <p class="h-join">Want help building it?</p>
-          <p class="hint">Freedom Through Retainers is a 90-day 1-on-1 program. Places are limited. Join the waitlist and you'll hear first when the next intake opens.</p>
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-          <div class="field"><label class="lbl" for="name">First name</label><input id="name" name="Name" autocomplete="given-name" required></div>
-          <div class="field"><label class="lbl" for="email">Email</label><input id="email" name="Email" type="email" autocomplete="email" required></div>
-          <p class="err" id="err5" aria-live="polite"></p>
-          <button class="btn full" type="submit" id="join-btn">Join the waitlist</button>
-          <p class="fine">No spam. One email when the intake opens, plus the occasional note from me.</p>
-        </form>
-
-        <div class="done" id="done" hidden>
-          <div class="tick" aria-hidden="true">&#10003;</div>
-          <p class="h-join">You're on the list.</p>
-          <p class="hint">I'll be in touch when the next intake opens.</p>
+        <div class="section">
+          <p class="h2">Your year, two ways</p>
+          <p class="hint" style="margin:0">Same average income, very different months. Grey bars are project income landing unevenly. The teal line is your retainers, arriving on the same day every month.</p>
+          <svg class="chart" id="chart" viewBox="0 0 340 200" role="img" aria-label="Twelve months of uneven project income compared with a steady retainer line"></svg>
+          <div class="legend">
+            <span><i style="background:var(--bar)"></i>Project income</span>
+            <span><i style="background:var(--short-soft)"></i>Below survival</span>
+            <span><i style="background:var(--teal)"></i>Retainers</span>
+            <span><i style="background:var(--brass)"></i>Survival number</span>
+          </div>
+          <div class="vs">
+            <div class="bad"><b id="months-now">0 / 12</b><span>months below survival on project work alone</span></div>
+            <div class="good"><b id="months-ret">0 / 12</b><span>months below survival with your retainers</span></div>
+          </div>
+          <p class="disclaim">The project pattern is an illustration based on your average, not your actual months.</p>
         </div>
 
-        <p class="alt">Rather talk? <a id="dm" href="https://instagram.com/mitchhemming" target="_blank" rel="noopener">DM me your foundation number on Instagram</a>.</p>
+        <div class="section">
+          <p class="h2">The numbers are the easy part.</p>
+          <p class="hint" style="margin:0">Anyone can move a slider. Doing it in a real business, without scaring off clients or going backwards, is where people get stuck:</p>
+          <ol class="how">
+            <li>Which of your current clients should you offer a retainer to first?</li>
+            <li>What goes into a retainer so it's worth paying for every single month?</li>
+            <li>How do you pitch it without discounting yourself or losing the work you already have?</li>
+            <li>How do you switch over without a dip in income while you do it?</li>
+            <li>How do you fit the retainer work in so it doesn't swallow your week?</li>
+          </ol>
+          <p class="closer">That's what I've spent years working out in my own business, and it's exactly what I teach in Freedom Through Retainers.</p>
+        </div>
+
+        <button type="button" class="again" id="again">Start again with different numbers</button>
       </div>
 
-      <div class="nav" id="nav">
-        <button type="button" class="back" id="back" hidden>&larr; Back</button>
-        <button type="button" class="btn" id="next" hidden>Next</button>
-      </div>
     </div>
   </div>
 </main>
@@ -209,110 +340,273 @@
 </footer>
 
 <script>
+(function(){
   // ---- Settings ----
-  var FORM_ENDPOINT = "https://formspree.io/f/mdeenrgl"; // Waitlist sign-ups go here.
-  var RETAINER_RATIO = 2 / 3; // A retainer is priced at about two thirds of a one-off job.
+  var FORM_ENDPOINT = "https://formspree.io/f/mdeenrgl"; // Name, email and answers are sent here.
+  var RETAINER_RATE = 0.75;                              // Retainer price starts at 75% of the average job.
+  // Illustrative month-to-month swing for project income (normalised to the average).
+  var PATTERN = [1.42, 0.58, 1.12, 0.41, 1.55, 0.86, 0.66, 1.28, 0.52, 1.18, 0.95, 0.62];
+  var MONTHS = ["J","F","M","A","M","J","J","A","S","O","N","D"];
 
-  var steps = 5, cur = 1, answers = {};
-  var card = document.getElementById("card");
-  var bar = document.getElementById("bar");
-  var back = document.getElementById("back");
-  var next = document.getElementById("next");
-  var kicker = document.getElementById("kicker");
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var st = { step: 1 };
 
   function money(n){ return "$" + Math.round(n).toLocaleString("en-AU"); }
-  function num(id){ return parseFloat(String(document.getElementById(id).value).replace(/[^0-9.]/g, "")) || 0; }
+  function short(n){ return n >= 1000 ? "$" + (Math.round(n / 100) / 10).toString().replace(/\.0$/, "") + "k" : "$" + Math.round(n); }
+  function num(v){ return parseFloat(String(v).replace(/[^0-9.]/g, "")) || 0; }
+  function priceStep(a){ return a < 400 ? 10 : a < 2000 ? 25 : 50; }
+  function roundTo(n, s){ return Math.round(n / s) * s; }
+  function ceilTo(n, s){ return Math.ceil(n / s) * s; }
 
+  // ---------- Quiz steps ----------
+  var bars = document.querySelectorAll(".progress i");
   function show(n){
-    cur = n;
-    card.querySelectorAll(".step").forEach(function(s){ s.classList.toggle("on", +s.dataset.step === n); });
-    bar.style.width = (n >= steps ? 100 : ((n - 1) / (steps - 1)) * 100) + "%";
-    back.hidden = (n === 1 || n === steps);
-    next.hidden = !(n === 2 || n === 3);
-    kicker.hidden = (n === steps);
-    document.querySelector(".progress").hidden = (n === steps);
-    document.getElementById("nav").hidden = (n === steps);
-    var f = card.querySelector('.step.on input:not([name="_gotcha"])');
-    if (f && n !== steps) setTimeout(function(){ f.focus({ preventScroll: true }); }, 50);
+    st.step = n;
+    document.querySelectorAll("#quiz .step").forEach(function(s){ s.classList.toggle("on", +s.dataset.step === n); });
+    bars.forEach(function(b, i){ b.classList.toggle("on", i < n); });
+    $("back").style.visibility = n === 1 ? "hidden" : "visible";
+    $("next").hidden = n === 4;
+    if (n === 3) liveNow();
+    if (n === 4) buildPeek();
+    var f = document.querySelector('#quiz .step.on input:not([name="_gotcha"])');
+    if (f && matchMedia("(hover:hover)").matches) setTimeout(function(){ f.focus({ preventScroll: true }); }, 60);
   }
 
-  // Choice questions advance on tap
-  card.querySelectorAll("[data-choice]").forEach(function(group){
-    group.querySelectorAll(".opt").forEach(function(b){
-      b.addEventListener("click", function(){
-        group.querySelectorAll(".opt").forEach(function(x){ x.classList.remove("sel"); });
-        b.classList.add("sel");
-        answers[group.dataset.choice] = b.dataset.value;
-        setTimeout(function(){ cur === 4 ? result() : show(cur + 1); }, 180);
-      });
-    });
-  });
-
-  // Format money inputs as you type
-  ["fixed", "job"].forEach(function(id){
-    var el = document.getElementById(id);
+  // Money inputs: format as you type, chips fill them
+  ["survival", "aov"].forEach(function(id, i){
+    var el = $(id);
     el.addEventListener("input", function(){
-      var v = el.value.replace(/[^0-9]/g, "");
+      var v = el.value.replace(/[^0-9]/g, "").slice(0, 7);
       el.value = v ? (+v).toLocaleString("en-AU") : "";
-      document.getElementById(id === "fixed" ? "err2" : "err3").textContent = "";
+      $("err" + (i + 1)).textContent = "";
+      document.querySelectorAll('[data-for="' + id + '"] .chip').forEach(function(c){ c.classList.toggle("sel", +c.dataset.v === +v); });
     });
-    el.addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); next.click(); } });
+    el.addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); $("next").click(); } });
+  });
+  document.querySelectorAll(".chips[data-for] .chip").forEach(function(c){
+    c.addEventListener("click", function(){
+      var el = $(c.parentNode.dataset.for);
+      el.value = (+c.dataset.v).toLocaleString("en-AU");
+      el.dispatchEvent(new Event("input"));
+    });
   });
 
-  next.addEventListener("click", function(){
-    if (cur === 2) {
-      var f = num("fixed");
-      if (f < 100) { document.getElementById("err2").textContent = "Enter your monthly fixed costs."; return; }
-      document.getElementById("err2").textContent = ""; answers.fixed = f; show(3);
-    } else if (cur === 3) {
-      var j = num("job");
-      if (j < 50) { document.getElementById("err3").textContent = "Enter what a typical job is worth."; return; }
-      document.getElementById("err3").textContent = ""; answers.job = j; show(4);
+  // Jobs stepper
+  function setJobs(v){ v = Math.max(1, Math.min(200, Math.round(v) || 1)); $("jobs").value = v; liveNow(); }
+  $("minus").addEventListener("click", function(){ setJobs(num($("jobs").value) - 1); });
+  $("plus").addEventListener("click", function(){ setJobs(num($("jobs").value) + 1); });
+  $("jobs").addEventListener("input", function(){ $("jobs").value = $("jobs").value.replace(/[^0-9]/g, "").slice(0, 3); liveNow(); });
+  $("jobs").addEventListener("blur", function(){ setJobs(num($("jobs").value)); });
+  $("jobs").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); $("next").click(); } });
+
+  function liveNow(){
+    var a = num($("aov").value), j = Math.max(1, num($("jobs").value) || 1);
+    $("live-now").innerHTML = "That's about <b>" + money(a * j) + " a month</b> on average, if the work keeps coming in.";
+  }
+
+  $("next").addEventListener("click", function(){
+    if (st.step === 1) {
+      var s = num($("survival").value);
+      if (s < 500) { $("err1").textContent = "Enter your monthly survival number."; return; }
+      st.survival = s; show(2);
+    } else if (st.step === 2) {
+      var a = num($("aov").value);
+      if (a < 50) { $("err2").textContent = "Enter roughly what an average job pays you."; return; }
+      st.aov = a; show(3);
+    } else if (st.step === 3) {
+      st.jobs = Math.max(1, num($("jobs").value) || 1);
+      setup(); show(4);
     }
   });
-  back.addEventListener("click", function(){ if (cur > 1) show(cur - 1); });
+  $("back").addEventListener("click", function(){ if (st.step > 1) show(st.step - 1); });
 
-  function result(){
-    var price = Math.max(50, Math.round(answers.job * RETAINER_RATIO / 50) * 50);
-    var count = Math.max(1, Math.ceil(answers.fixed / price));
-    answers.price = price; answers.count = count;
-    document.getElementById("r-fixed").textContent = money(answers.fixed);
-    document.getElementById("r-count").textContent = count;
-    document.getElementById("r-price").textContent = money(price);
-    var txt = count + " business client" + (count === 1 ? "" : "s") + " paying " + money(price) +
-      " a month covers everything you have to pay. Every job you win on top of that is profit, not survival.";
-    if (answers.recurring === "Over 50%") txt += " You're already partway there. The work is closing the gap.";
-    document.getElementById("r-text").textContent = txt;
-    show(steps);
+  // ---------- Model ----------
+  var sc = $("s-clients"), sp = $("s-price");
+  function setup(){
+    st.pStep = priceStep(st.aov);
+    st.basePrice = Math.max(st.pStep, roundTo(st.aov * RETAINER_RATE, st.pStep));
+    st.baseClients = st.jobs;
+    st.clients = st.baseClients; st.price = st.basePrice;
+    sc.min = 1; sc.max = Math.max(20, st.jobs * 3, Math.ceil(st.survival / st.basePrice) + 2);
+    sp.min = Math.max(st.pStep, roundTo(st.aov * 0.3, st.pStep)); sp.step = st.pStep;
+    sp.max = Math.max(ceilTo(st.aov * 2, st.pStep), ceilTo(st.survival / Math.max(1, st.jobs) * 1.2, st.pStep));
+  }
+  function ensureRange(){
+    if (st.clients > +sc.max) sc.max = st.clients + 2;
+    if (st.price > +sp.max) sp.max = ceilTo(st.price * 1.2, st.pStep);
+    if (st.price < +sp.min) sp.min = st.price;
   }
 
-  // Waitlist submit
-  document.getElementById("join").addEventListener("submit", function(e){
+  // ---------- Peek (blurred preview behind the gate) ----------
+  function buildPeek(){
+    var t = st.basePrice * st.baseClients;
+    $("peek").innerHTML = '<p class="kicker">If your jobs became retainers</p><p class="total">' + money(t) +
+      ' <small>/ month</small></p><div class="panel" style="height:140px"></div>';
+  }
+
+  // ---------- Gate ----------
+  $("gate").addEventListener("submit", function(e){
     e.preventDefault();
-    var form = e.target, err = document.getElementById("err5"), btn = document.getElementById("join-btn");
-    var name = document.getElementById("name").value.trim(), email = document.getElementById("email").value.trim();
-    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Add your first name and a valid email."; return; }
-    err.textContent = ""; btn.disabled = true; btn.textContent = "Sending...";
-    var data = new FormData(form);
-    data.append("_subject", "FTR waitlist: " + name);
-    data.append("Business type", answers.business || "");
-    data.append("Monthly fixed costs", money(answers.fixed || 0));
-    data.append("Typical job value", money(answers.job || 0));
-    data.append("Recurring income now", answers.recurring || "");
-    data.append("Retainers needed", answers.count || "");
-    data.append("Retainer price", money(answers.price || 0));
-    fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { "Accept": "application/json" } })
-      .then(function(r){
-        if (!r.ok) throw new Error();
-        form.hidden = true; document.getElementById("done").hidden = false;
-      })
-      .catch(function(){
-        btn.disabled = false; btn.textContent = "Join the waitlist";
-        err.textContent = "That didn't send. Try again, or email contact@consistentcreative.com.";
-      });
+    var name = $("name").value.trim(), email = $("email").value.trim();
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("err4").textContent = "Add your first name and a valid email."; return; }
+    $("err4").textContent = "";
+    var btn = $("gate-btn"); btn.disabled = true; btn.textContent = "Crunching your numbers...";
+    var d = new FormData(e.target);
+    d.append("_subject", "FTR calculator: " + name);
+    d.append("Survival number", money(st.survival));
+    d.append("Average job", money(st.aov));
+    d.append("Jobs per month", st.jobs);
+    d.append("Current average monthly", money(st.aov * st.jobs));
+    d.append("Retainer price (75%)", money(st.basePrice));
+    d.append("Retainer total if converted", money(st.basePrice * st.baseClients));
+    d.append("Gap to survival", money(st.survival - st.basePrice * st.baseClients));
+    var done = false;
+    function go(){ if (done) return; done = true; reveal(name); }
+    fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { "Accept": "application/json" } })
+      .then(go).catch(go);
+    setTimeout(go, 4000); // never leave them waiting on the network
+  });
+
+  function reveal(name){
+    $("quiz").hidden = true;
+    var r = $("results"); r.hidden = false; r.classList.add("reveal");
+    $("r-kicker").textContent = (name ? name + ", if" : "If") + " your jobs became retainers";
+    ensureRange(); syncSliders(); render(true);
+    var top = r.getBoundingClientRect().top + scrollY - 16;
+    scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+  }
+
+  // ---------- Results rendering ----------
+  var C = 2 * Math.PI * 52;
+  $("ring").style.strokeDasharray = C;
+  $("ring").style.strokeDashoffset = C;
+  var shown = 0, raf;
+  function countTo(to){
+    cancelAnimationFrame(raf);
+    if (reduce) { shown = to; $("total").textContent = money(to); return; }
+    var from = shown, t0 = performance.now(), dur = 600;
+    (function tick(t){
+      var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      shown = from + (to - from) * e;
+      $("total").textContent = money(shown);
+      if (k < 1) raf = requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  function syncSliders(){
+    sc.value = st.clients; sp.value = st.price;
+    paint(sc); paint(sp);
+    $("c-min").textContent = sc.min; $("c-max").textContent = sc.max;
+    $("p-min").textContent = short(+sp.min); $("p-max").textContent = short(+sp.max);
+  }
+  function paint(el){ el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); }
+
+  sc.addEventListener("input", function(){ st.clients = +sc.value; paint(sc); clearFix(); render(); });
+  sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); clearFix(); render(); });
+  function clearFix(){ document.querySelectorAll("[data-fix]").forEach(function(x){ x.classList.remove("sel"); }); }
+
+  document.querySelectorAll("[data-fix]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var S = st.survival, f = b.dataset.fix;
+      if (f === "clients") { st.clients = Math.max(1, Math.ceil(S / st.price)); }
+      else if (f === "price") { st.price = Math.max(st.pStep, ceilTo(S / st.clients, st.pStep)); }
+      else if (f === "both") {
+        var k = Math.sqrt(S / (st.basePrice * st.baseClients));
+        st.clients = Math.max(1, Math.round(st.baseClients * k));
+        st.price = Math.max(st.pStep, ceilTo(S / st.clients, st.pStep));
+      } else { st.clients = st.baseClients; st.price = st.basePrice; }
+      clearFix(); if (f !== "reset") b.classList.add("sel");
+      ensureRange(); syncSliders(); render();
+    });
+  });
+
+  function render(first){
+    var S = st.survival, total = st.clients * st.price, pct = total / S;
+    $("o-clients").textContent = st.clients;
+    $("o-price").textContent = money(st.price) + "/mo";
+    countTo(total);
+    $("pct").textContent = Math.round(pct * 100) + "%";
+    var ring = $("ring");
+    ring.classList.toggle("over", pct >= 1);
+    var off = C * (1 - Math.min(1, pct));
+    if (first && !reduce) { ring.style.strokeDashoffset = C; requestAnimationFrame(function(){ requestAnimationFrame(function(){ ring.style.strokeDashoffset = off; }); }); }
+    else ring.style.strokeDashoffset = off;
+
+    var s = $("status");
+    if (total >= S) { s.className = "status ok"; s.textContent = "✓ Survival covered" + (total > S ? ", " + money(total - S) + " spare" : ""); }
+    else { s.className = "status short"; s.textContent = money(S - total) + " short of survival"; }
+
+    $("eq").innerHTML = "<b>" + st.clients + "</b> client" + (st.clients === 1 ? "" : "s") + " &times; <b>" + money(st.price) +
+      "</b> a month. Your starting point was your " + st.jobs + " jobs a month at 75% of your " + money(st.aov) + " average.";
+
+    var free = st.jobs - st.clients, cap = $("capacity");
+    if (total >= S && free > 0) {
+      cap.innerHTML = "Survival is locked in before the month starts. That leaves room for about <b>" + free + " more job" + (free === 1 ? "" : "s") +
+        "</b> at full price, roughly <b>" + money(free * st.aov) + "</b> a month of pure profit on top.";
+    } else if (total >= S) {
+      cap.innerHTML = "Survival is locked in before the month starts. Every project you take on top of this is profit, not rent money." +
+        (free < 0 ? " Just note that's " + (-free) + " more client" + (free === -1 ? "" : "s") + " than the jobs you handle now, so how you deliver matters." : "");
+    } else {
+      cap.innerHTML = "You're " + money(S - total) + " away. Try <b>more clients</b>, <b>a higher price</b>, or a bit of both.";
+    }
+    drawChart(total, first);
+  }
+
+  // ---------- Chart ----------
+  var norm = PATTERN.reduce(function(a, b){ return a + b; }, 0) / PATTERN.length;
+  function drawChart(retTotal, animate){
+    var S = st.survival, avg = st.aov * st.jobs;
+    var vals = PATTERN.map(function(m){ return avg * m / norm; });
+    var W = 340, H = 200, L = 34, R = 6, T = 14, B = 22, cw = W - L - R, ch = H - T - B;
+    var max = Math.max.apply(null, vals.concat([S, retTotal])) * 1.12;
+    var y = function(v){ return T + ch - (v / max) * ch; };
+    var bw = cw / 12, g = bw * 0.26, out = "";
+    [0, 0.5, 1].forEach(function(f){
+      var v = max * f, yy = y(v);
+      out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yy + '" y2="' + yy + '" stroke="#E6E9E5" stroke-width="1"/>';
+      out += '<text x="' + (L - 6) + '" y="' + (yy + 3) + '" text-anchor="end">' + short(v) + '</text>';
+    });
+    var below = 0;
+    vals.forEach(function(v, i){
+      var x = L + i * bw + g / 2, h = (v / max) * ch, low = v < S;
+      if (low) below++;
+      out += '<rect class="b" x="' + x.toFixed(1) + '" y="' + y(v).toFixed(1) + '" width="' + (bw - g).toFixed(1) + '" height="' + h.toFixed(1) +
+        '" rx="2.5" fill="' + (low ? "var(--short-soft)" : "var(--bar)") + '" style="animation-delay:' + (i * 35) + 'ms"/>';
+      out += '<text x="' + (x + (bw - g) / 2).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle">' + MONTHS[i] + '</text>';
+    });
+    var ys = y(S), yr = y(retTotal);
+    out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ys + '" y2="' + ys + '" stroke="var(--brass)" stroke-width="2" stroke-dasharray="5 4"/>';
+    out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yr + '" y2="' + yr + '" stroke="var(--teal)" stroke-width="3.5" stroke-linecap="round"/>';
+    var close = Math.abs(ys - yr) < 13, up = yr <= ys;
+    out += '<text class="lbl-r" x="' + (W - R) + '" y="' + (yr + (close && !up ? 14 : -6)) + '" text-anchor="end">Retainers ' + short(retTotal) + '</text>';
+    out += '<text class="lbl-s" x="' + (L + 4) + '" y="' + (ys + (close && up ? 13 : -5)) + '">Survival ' + short(S) + '</text>';
+    var c = $("chart");
+    c.innerHTML = out;
+    if (animate && !reduce) { c.classList.remove("grow"); void c.getBoundingClientRect(); c.classList.add("grow"); } else c.classList.remove("grow");
+    $("months-now").textContent = below + " / 12";
+    $("months-ret").textContent = (retTotal >= S ? 0 : 12) + " / 12";
+  }
+
+  // Start again: change inputs without signing up twice
+  $("again").addEventListener("click", function(){
+    $("results").hidden = true; $("quiz").hidden = false;
+    $("gate").hidden = true;
+    var p = document.querySelector('[data-step="4"]');
+    p.querySelector(".q").textContent = "Your numbers are updated.";
+    p.querySelector(".hint").textContent = "No need to sign up again.";
+    if (!$("show-again")) {
+      var b = document.createElement("button");
+      b.className = "btn full"; b.id = "show-again"; b.type = "button"; b.textContent = "Show my numbers →";
+      b.addEventListener("click", function(){ reveal($("name").value.trim()); });
+      p.insertBefore(b, p.querySelector(".peek"));
+    }
+    show(1);
+    scrollTo({ top: document.querySelector("main").getBoundingClientRect().top + scrollY - 16, behavior: reduce ? "auto" : "smooth" });
   });
 
   show(1);
+})();
 </script>
 </body>
 </html>
