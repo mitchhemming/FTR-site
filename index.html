@@ -165,6 +165,13 @@
   .panel .total{margin-bottom:.5rem}
   .panel .status{margin-bottom:1.1rem}
   .vs b{font-size:2.4rem;margin:.15rem 0 0}
+  .story{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;line-height:1.5;color:var(--muted);max-width:44ch;margin:.4rem auto .2rem}
+  .story b{color:var(--ink)}
+  .story b.red{color:var(--short)}
+  .vs b{font-size:1.9rem!important}
+  .vs span:first-child{font-weight:600;color:var(--ink)}
+  .panel .total{margin:1rem 0 .45rem}
+  .how li span{max-width:40ch}
   .disclaim{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.75rem;color:var(--muted);margin:.6rem 0 0}
 
   .how{list-style:none;padding:0;margin:1rem 0 0;counter-reset:h}
@@ -281,45 +288,54 @@
 
       <!-- Results -->
       <div id="results" hidden>
-        <p class="kicker">Your next 12 months</p>
-        <p class="res-title">Chasing jobs vs retainers</p>
-        <svg class="chart" id="chart" viewBox="0 0 340 200" role="img" aria-label="Twelve months of income from chasing jobs compared with a steady retainer line"></svg>
+
+        <!-- The problem -->
+        <p class="kicker">Where you are now</p>
+        <p class="res-title" id="pain-title"></p>
+        <p class="story" id="pain-text"></p>
+        <svg class="chart" id="chart-now" viewBox="0 0 340 180" role="img" aria-label="Your next 12 months chasing jobs"></svg>
         <div class="legend">
-          <span><i style="background:var(--bar)"></i>Chasing jobs</span>
-          <span><i style="background:var(--short-soft)"></i>Short months</span>
-          <span><i style="background:var(--teal)"></i>Retainers</span>
+          <span><i style="background:var(--short-soft)"></i>Short month</span>
+          <span><i style="background:var(--bar)"></i>Covered</span>
           <span><i style="background:var(--brass)"></i>What you need</span>
         </div>
-        <div class="vs">
-          <div class="bad"><span>Chasing jobs</span><b id="months-now">0</b><span>short months a year</span></div>
-          <div class="good"><span>On retainers</span><b id="months-ret">0</b><span>short months a year</span></div>
+
+        <!-- The outcome -->
+        <div class="section">
+          <p class="kicker">With retainers</p>
+          <p class="res-title" id="ret-title"></p>
+          <p class="story" id="ret-text"></p>
+          <svg class="chart" id="chart-ret" viewBox="0 0 340 180" role="img" aria-label="Your next 12 months on retainers"></svg>
+          <div class="vs">
+            <div class="bad"><span>Lowest month now</span><b id="low-now"></b><span id="short-now"></span></div>
+            <div class="good"><span>Lowest month on retainers</span><b id="low-ret"></b><span id="short-ret"></span></div>
+          </div>
         </div>
-        <p class="swing" id="swing"></p>
 
         <div class="panel">
-          <p class="panel-title">Adjust your retainers</p>
-          <p class="total"><span id="total">$0</span> <small>a month</small></p>
-          <p class="status" id="status"></p>
+          <p class="panel-title">Try your own numbers</p>
           <div class="slider">
             <div class="slider-top"><label for="s-clients">Retainer clients</label><output id="o-clients"></output></div>
             <input type="range" id="s-clients" min="1" max="20" step="1">
           </div>
           <div class="slider">
-            <div class="slider-top"><label for="s-price">Price per client</label><output id="o-price"></output></div>
+            <div class="slider-top"><label for="s-price">Monthly price per client</label><output id="o-price"></output></div>
             <input type="range" id="s-price" min="100" max="5000" step="50">
           </div>
-          <p class="fine" style="margin-top:1rem">Priced at 75% of your average job. Drag either slider to try your own mix.</p>
+          <p class="total"><span id="total">$0</span> <small>a month</small></p>
+          <p class="status" id="status"></p>
+          <p class="fine" style="margin-top:.9rem">We've started you at a price clients happily commit to every month.</p>
         </div>
 
+        <!-- The curiosity -->
         <div class="section">
-          <p class="h2">The numbers are the easy part.</p>
-          <p class="hint" style="margin:0">Doing it without losing clients or going backwards is where people get stuck:</p>
+          <p class="h2">Knowing your number is the easy part.</p>
+          <p class="story" id="how-intro"></p>
           <ol class="how">
-            <li>Which clients do you offer a retainer to first?</li>
-            <li>How do you pitch it without discounting yourself?</li>
-            <li>How do you switch over without a dip in income?</li>
+            <li><span><b>The price.</b> There's a sweet spot where paying every month feels like a no-brainer to the client, and still pays you properly.</span></li>
+            <li><span><b>The positioning.</b> Pitch the right kind of client in the right way and they don't just say yes. They stay.</span></li>
           </ol>
-          <p class="closer">That's what I've spent years working out in my own business, and it's exactly what I teach in Freedom Through Retainers.</p>
+          <p class="closer">That's the exact method behind my own business, and what I teach step by step in Freedom Through Retainers.</p>
         </div>
 
         <div class="section">
@@ -522,17 +538,47 @@
   sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); render(); });
 
   function render(first){
-    var S = st.survival, total = st.clients * st.price;
+    var S = st.survival, total = st.clients * st.price, vals = yearValues();
+    var short = vals.filter(function(v){ return v < S; });
+    var yearGap = short.reduce(function(a, v){ return a + (S - v); }, 0);
+    var covered = total >= S;
+
+    // Sliders and total
     $("o-clients").textContent = st.clients;
     $("o-price").textContent = money(st.price);
     countTo(total);
     var s = $("status");
-    if (total >= S) { s.className = "status ok"; s.textContent = "\u2713 Covers what you need" + (total > S ? ", " + money(total - S) + " spare" : ""); }
+    if (covered) { s.className = "status ok"; s.textContent = "✓ Covers what you need" + (total > S ? ", " + money(total - S) + " spare" : ""); }
     else { s.className = "status short"; s.textContent = money(S - total) + " short of what you need"; }
-    drawChart(total, first);
+
+    // The problem
+    if (short.length) {
+      $("pain-title").textContent = short.length + " of your 12 months fall short.";
+      $("pain-text").innerHTML = "Your quietest month brought in <b>" + money(st.low) + "</b> against the <b>" + money(S) +
+        "</b> you need. Over a year that's roughly <b class=\"red\">" + money(Math.round(yearGap / 100) * 100) + "</b> you have to find from savings, credit or the next job.";
+    } else {
+      $("pain-title").textContent = "Your quiet months still cover you. For now.";
+      $("pain-text").innerHTML = "But every month depends on the next job landing. Your income still swings by <b>" + money(st.high - st.low) + "</b> from your best month to your worst.";
+    }
+
+    // The outcome
+    $("ret-title").textContent = covered ? "You never have a low month again." : "Closer. Not covered yet.";
+    $("ret-text").innerHTML = "<b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> at <b>" + money(st.price) + "</b> a month puts <b>" + money(total) +
+      "</b> in your account before the month even starts." + (covered ? " Every job you win on top of that is profit, not survival." : " You're " + money(S - total) + " short. Drag the sliders below to close the gap.");
+    $("low-now").textContent = money(st.low);
+    $("short-now").textContent = short.length + " short month" + (short.length === 1 ? "" : "s");
+    $("low-ret").textContent = money(total);
+    $("short-ret").textContent = (covered ? 0 : 12) + " short months";
+
+    // The curiosity
+    $("how-intro").innerHTML = "Getting <b>" + st.clients + " clients</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, comes down to two things most service businesses get wrong:";
+
+    var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
+    drawBars("chart-now", vals, S, max, first);
+    drawBars("chart-ret", vals.map(function(){ return total; }), S, max, first, true);
   }
 
-  // ---------- Chart ----------
+  // ---------- Charts ----------
   function yearValues(){
     var lo = st.low, hi = st.high, range = hi - lo;
     var centre = st.aov * st.jobs;
@@ -545,11 +591,8 @@
       return range > 0 ? Math.min(ceil, Math.max(floor, v)) : lo;
     });
   }
-  function drawChart(retTotal, animate){
-    var S = st.survival;
-    var vals = yearValues();
-    var W = 340, H = 200, L = 34, R = 6, T = 14, B = 22, cw = W - L - R, ch = H - T - B;
-    var max = Math.max.apply(null, vals.concat([S, retTotal])) * 1.12;
+  function drawBars(id, vals, S, max, animate, retainer){
+    var W = 340, H = 180, L = 34, R = 6, T = 14, B = 22, cw = W - L - R, ch = H - T - B;
     var y = function(v){ return T + ch - (v / max) * ch; };
     var bw = cw / 12, g = bw * 0.26, out = "";
     [0, 0.5, 1].forEach(function(f){
@@ -557,26 +600,22 @@
       out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yy + '" y2="' + yy + '" stroke="#E6E9E5" stroke-width="1"/>';
       out += '<text x="' + (L - 6) + '" y="' + (yy + 3) + '" text-anchor="end">' + short(v) + '</text>';
     });
-    var below = 0;
     vals.forEach(function(v, i){
       var x = L + i * bw + g / 2, h = (v / max) * ch, low = v < S;
-      if (low) below++;
+      var fill = low ? "var(--short-soft)" : (retainer ? "var(--teal)" : "var(--bar)");
       out += '<rect class="b" x="' + x.toFixed(1) + '" y="' + y(v).toFixed(1) + '" width="' + (bw - g).toFixed(1) + '" height="' + h.toFixed(1) +
-        '" rx="2.5" fill="' + (low ? "var(--short-soft)" : "var(--bar)") + '" style="animation-delay:' + (i * 35) + 'ms"/>';
+        '" rx="2.5" fill="' + fill + '" style="animation-delay:' + (i * 35) + 'ms"/>';
       out += '<text x="' + (x + (bw - g) / 2).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle">' + MONTHS[i] + '</text>';
     });
-    var ys = y(S), yr = y(retTotal);
+    var ys = y(S);
     out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ys + '" y2="' + ys + '" stroke="var(--brass)" stroke-width="2" stroke-dasharray="5 4"/>';
-    out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yr + '" y2="' + yr + '" stroke="var(--teal)" stroke-width="3.5" stroke-linecap="round"/>';
-    var close = Math.abs(ys - yr) < 13, up = yr <= ys;
-    out += '<text class="lbl-r" x="' + (W - R) + '" y="' + (yr + (close && !up ? 14 : -6)) + '" text-anchor="end">Retainers ' + short(retTotal) + '</text>';
-    out += '<text class="lbl-s" x="' + (L + 4) + '" y="' + (ys + (close && up ? 13 : -5)) + '">You need ' + short(S) + '</text>';
-    var c = $("chart");
+    var labelY = ys - 5 < T + 6 ? ys + 13 : ys - 5;
+    if (retainer && vals[0] >= S && Math.abs(y(vals[0]) - ys) < 14) labelY = ys + 13;
+    out += '<rect x="' + (W - R - 74) + '" y="' + (labelY - 9) + '" width="74" height="13" rx="3" fill="#F5EDD3"/>';
+    out += '<text class="lbl-s" x="' + (W - R - 3) + '" y="' + labelY + '" text-anchor="end">You need ' + short(S) + '</text>';
+    var c = $(id);
     c.innerHTML = out;
     if (animate && !reduce) { c.classList.remove("grow"); void c.getBoundingClientRect(); c.classList.add("grow"); } else c.classList.remove("grow");
-    $("months-now").textContent = below;
-    $("months-ret").textContent = retTotal >= S ? 0 : 12;
-    $("swing").innerHTML = "Chasing jobs, your income swings by <b>" + money(st.high - st.low) + "</b> from month to month. On retainers it swings by <strong>$0</strong>.";
   }
 
   // Start again with different numbers
