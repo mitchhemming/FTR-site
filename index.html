@@ -351,6 +351,7 @@
           <p class="unit">in your best month</p>
           <p class="err" id="err5" aria-live="polite"></p>
           <p class="live" id="live-swing" hidden></p>
+          <p class="fine" style="margin-top:.9rem">Your answers are saved anonymously to help improve this calculator.</p>
         </div>
 
         <div class="nav" id="nav">
@@ -579,10 +580,27 @@
     if (st.price < +sp.min) sp.min = st.price;
   }
 
+  // ---------- Anonymous stats (no names or emails) ----------
+  function newId(){ var a = new Uint8Array(10); (window.crypto || {}).getRandomValues ? crypto.getRandomValues(a) : a.forEach(function(_, i){ a[i] = Math.random() * 256; }); return Array.prototype.map.call(a, function(x){ return (x % 36).toString(36); }).join(""); }
+  var trackId = newId(), qs = new URLSearchParams(location.search);
+  var source = qs.get("utm_source") || (document.referrer && document.referrer.indexOf(location.host) < 0 ? (function(){ try { return new URL(document.referrer).hostname.replace(/^www\./, ""); } catch (e) { return ""; } })() : "") || "direct";
+  function track(type, data){
+    var body = Object.assign({ id: trackId, type: type, source: source, campaign: qs.get("utm_campaign") || "", device: innerWidth < 700 ? "mobile" : "desktop" }, data || {});
+    try { fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(function(){}); } catch (e) {}
+  }
+  var planTimer;
+  function trackPlan(){ clearTimeout(planTimer); planTimer = setTimeout(function(){ track("plan", { clients: st.clients, price: st.price }); }, 1500); }
+
   function reveal(){
     $("quiz").hidden = true;
     var r = $("results"); r.hidden = false; r.classList.remove("reveal"); void r.offsetWidth; r.classList.add("reveal");
     ensureRange(); syncSliders(); render(true);
+    if (!st.tracked) {
+      st.tracked = true;
+      var S = st.survival;
+      track("complete", { survival: S, aov: st.aov, jobs: st.jobs, low: st.low, high: st.high,
+        shortMonths: yearValues().filter(function(v){ return v < S; }).length, clients: st.clients, price: st.price });
+    }
     var top = r.getBoundingClientRect().top + scrollY - 16;
     scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
   }
@@ -607,7 +625,7 @@
     d.append("Gap to survival", money(st.survival - st.basePrice * st.baseClients));
     d.append("Their adjusted plan", st.clients + " clients x " + money(st.price) + " = " + money(st.clients * st.price));
     fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { "Accept": "application/json" } })
-      .then(function(r){ if (!r.ok) throw new Error(); e.target.hidden = true; $("joined").hidden = false; })
+      .then(function(r){ if (!r.ok) throw new Error(); e.target.hidden = true; $("joined").hidden = false; track("join", { clients: st.clients, price: st.price }); })
       .catch(function(){ btn.disabled = false; btn.textContent = "Save my spot \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
   });
 
@@ -631,8 +649,8 @@
   }
   function paint(el){ el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); }
 
-  sc.addEventListener("input", function(){ st.clients = +sc.value; paint(sc); render(); });
-  sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); render(); });
+  sc.addEventListener("input", function(){ st.clients = +sc.value; paint(sc); render(); trackPlan(); });
+  sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); render(); trackPlan(); });
 
   function render(first){
     var S = st.survival, total = st.clients * st.price, vals = yearValues();
@@ -712,6 +730,7 @@
 
   // Start again with different numbers
   $("again").addEventListener("click", function(){
+    trackId = newId(); st.tracked = false;
     $("results").hidden = true; $("quiz").hidden = false;
     show(1);
     scrollTo({ top: document.querySelector("main").getBoundingClientRect().top + scrollY - 16, behavior: reduce ? "auto" : "smooth" });
