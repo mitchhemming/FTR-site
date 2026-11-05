@@ -76,7 +76,9 @@
   .chip:hover{border-color:var(--teal)}
   .chip.sel{background:var(--teal);border-color:var(--teal);color:#fff}
   .stepper{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin:.5rem 0 0}
-  .stepper button{width:56px;height:56px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:1.6rem;line-height:1;color:var(--teal);cursor:pointer;font-family:"Archivo",system-ui,sans-serif}
+  .stepper button{width:60px;height:60px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:1.6rem;line-height:1;color:var(--teal);cursor:pointer;font-family:"Archivo",system-ui,sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;transition:transform .08s,background .08s}
+  .stepper button.down{transform:scale(.92);background:#F1F2F4}
+  button,input,.chip{touch-action:manipulation}
   .stepper button:hover{border-color:var(--teal)}
   .stepper button:active{transform:scale(.95)}
   .stepper input{width:3.6ch;text-align:center;border:0;outline:0;background:none;font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:3.4rem;letter-spacing:-0.03em;color:var(--teal);padding:0}
@@ -518,8 +520,19 @@
 
   // Jobs stepper
   function setJobs(v){ v = Math.max(1, Math.min(200, Math.round(v) || 1)); $("jobs").value = v; liveNow(); }
-  $("minus").addEventListener("click", function(){ setJobs(num($("jobs").value) - 1); });
-  $("plus").addEventListener("click", function(){ setJobs(num($("jobs").value) + 1); });
+  // Tap to step, hold to keep counting. Pointer events respond instantly on phones.
+  [["minus", -1], ["plus", 1]].forEach(function(pair){
+    var btn = $(pair[0]), step = pair[1], delay, rep;
+    function bump(){ setJobs(num($("jobs").value) + step); }
+    function stop(){ clearTimeout(delay); clearInterval(rep); btn.classList.remove("down"); }
+    btn.addEventListener("pointerdown", function(e){
+      e.preventDefault(); stop(); btn.classList.add("down"); bump();
+      delay = setTimeout(function(){ rep = setInterval(bump, 90); }, 380);
+    });
+    ["pointerup", "pointerleave", "pointercancel"].forEach(function(ev){ btn.addEventListener(ev, stop); });
+    btn.addEventListener("click", function(e){ if (e.detail === 0) bump(); }); // keyboard (Enter/Space) only
+    btn.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  });
   $("jobs").addEventListener("input", function(){ $("jobs").value = $("jobs").value.replace(/[^0-9]/g, "").slice(0, 3); liveNow(); });
   $("jobs").addEventListener("blur", function(){ setJobs(num($("jobs").value)); });
   $("jobs").addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); $("next").click(); } });
