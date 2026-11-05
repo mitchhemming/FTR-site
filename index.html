@@ -468,7 +468,6 @@
 <script>
 (function(){
   // ---- Settings ----
-  var FORM_ENDPOINT = "https://formspree.io/f/mdeenrgl"; // Name, email and answers are sent here.
   var RETAINER_RATE = 0.75;                              // Retainer price starts at 75% of the average job.
   // Year model: about 20% of months at their lowest, 20% at their highest, the rest in between.
   // 12 months: L = lowest month, H = highest month, numbers = middle months spread around their average.
@@ -617,21 +616,13 @@
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("err-join").textContent = "Add your first name and a valid email."; return; }
     $("err-join").textContent = "";
     var btn = $("join-btn"); btn.disabled = true; btn.textContent = "Sending...";
-    var d = new FormData(e.target);
-    d.append("_subject", "FTR waitlist: " + name);
-    d.append("Survival number", money(st.survival));
-    d.append("Average job", money(st.aov));
-    d.append("Jobs per month", st.jobs);
-    d.append("Lowest month", money(st.low));
-    d.append("Highest month", money(st.high));
-    d.append("Current average monthly", money(st.aov * st.jobs));
-    d.append("Retainer price (75%)", money(st.basePrice));
-    d.append("Retainer total if converted", money(st.basePrice * st.baseClients));
-    d.append("Gap to survival", money(st.survival - st.basePrice * st.baseClients));
-    d.append("Their adjusted plan", st.clients + " clients x " + money(st.price) + " = " + money(st.clients * st.price));
-    fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { "Accept": "application/json" } })
-      .then(function(r){ if (!r.ok) throw new Error(); e.target.hidden = true; $("joined").hidden = false; track("join", { clients: st.clients, price: st.price }); })
-      .catch(function(){ btn.disabled = false; btn.textContent = "Save my spot \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
+    // Kit holds the waitlist. Calculator numbers are already saved anonymously by track().
+    var toKit = fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: name, email: email }) })
+      .then(function(r){ return r.ok; }).catch(function(){ return false; });
+    toKit.then(function(ok){
+      if (ok) { e.target.hidden = true; $("joined").hidden = false; track("join", { clients: st.clients, price: st.price }); }
+      else { btn.disabled = false; btn.textContent = "Save my spot \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; }
+    });
   });
 
   // ---------- Results rendering ----------

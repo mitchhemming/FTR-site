@@ -15,3 +15,4 @@ Static site for freedomthroughretainers.com. No build step.
 - `privacy.html`, `terms.html`: supporting pages (clean URLs via vercel.json).
 
 - Free-plan limits (Vercel Hobby): Blob allows about 2,000 writes a month, which is roughly 2,000 completions plus sign-ups. Over the limit the store pauses until the 30 days reset (no charge); the calculator keeps working, only stats stop saving.
+- Waitlist sign-ups go to Kit (form 10146119, "FTR Waitlist") through `api/subscribe.js`, which posts to Kit's public form endpoint (no API key). Formspree is no longer used.
