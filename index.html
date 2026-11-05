@@ -54,6 +54,8 @@
   main{padding:0 0 5rem}
   .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem 1.75rem;max-width:600px;margin:0 auto;box-shadow:0 1px 2px rgba(20,28,34,.04),0 12px 32px -18px rgba(15,61,62,.25)}
   @media(max-width:600px){.hero{padding:1rem 0 2rem}.mark{margin-bottom:1.5rem}.card{padding:1.5rem 1.1rem 1.25rem;border-radius:12px}}
+  .calc-title{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.6rem;line-height:1.1;letter-spacing:-0.025em;color:var(--teal);margin:0 0 .3rem}
+  @media(max-width:600px){.calc-title{font-size:1.4rem}}
   .kicker{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
   .progress{display:flex;gap:6px;margin:0 0 1.6rem}
   .progress i{flex:1;height:4px;border-radius:2px;background:var(--line);transition:background .3s}
@@ -67,9 +69,7 @@
   .hint{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.93rem;line-height:1.45;margin:0 0 1.2rem}
   .bigin{display:flex;align-items:center;gap:.25rem;border-bottom:2px solid var(--line);padding:.2rem 0;transition:border-color .2s}
   .bigin:focus-within{border-color:var(--teal)}
-  .bigin span{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:600;font-size:2.2rem;color:var(--muted)}
   .bigin input{flex:1;min-width:0;border:0;outline:0;background:none;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:2.6rem;letter-spacing:-0.03em;color:var(--teal);padding:0;height:auto}
-  .bigin small{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.95rem;white-space:nowrap}
   .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0 0}
   .chip{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.88rem;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:.5rem .9rem;cursor:pointer;min-height:38px}
   .chip:hover{border-color:var(--teal)}
@@ -91,17 +91,14 @@
   .btn[disabled]{opacity:.7;cursor:progress}
   :focus-visible{outline:3px solid var(--brass);outline-offset:2px}
 
-  /* Gate */
-  .gate .q{text-align:center}
-  .gate .hint{text-align:center;max-width:42ch;margin-left:auto;margin-right:auto}
+  /* Sign-up form */
   .field + .field{margin-top:.75rem}
   .lbl{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:600;font-size:.92rem;margin:0 0 .35rem}
   .txt{display:block;width:100%;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1.05rem;height:52px;padding:0 .95rem;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none}
   .txt:focus{border-color:var(--teal);outline:0;box-shadow:0 0 0 3px var(--teal-soft)}
   .fine{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8rem;color:var(--muted);margin:.75rem 0 0;text-align:center}
-  .peek{position:relative;margin-top:1.5rem;max-height:230px;overflow:hidden;border-radius:10px;pointer-events:none;user-select:none}
-  .peek > div{filter:blur(7px);opacity:.85}
-  .peek::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,#fff 95%)}
+  .joined{text-align:center;padding:.5rem 0}
+  .joined .tick{width:48px;height:48px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-size:1.3rem}
 
   /* Results */
   #results.reveal{animation:rise .5s ease-out}
@@ -169,6 +166,29 @@
   .closer{font-size:1.1rem;line-height:1.5;margin:1.2rem 0 0}
   .again{display:block;margin:1.5rem auto 0;background:none;border:0;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem;color:var(--muted);text-decoration:underline;cursor:pointer;padding:.5rem}
 
+  /* Everything centred */
+  .card{text-align:center}
+  .progress{max-width:320px;margin-left:auto;margin-right:auto}
+  .hint{max-width:46ch;margin-left:auto;margin-right:auto}
+  .bigin{justify-content:center;max-width:340px;margin:0 auto}
+  .bigin input{text-align:center;flex:1}
+  .unit{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.9rem;margin:.5rem 0 0}
+  .live{max-width:420px;margin-left:auto;margin-right:auto}
+  .nav{flex-direction:column;justify-content:center;gap:.25rem;margin-top:1.4rem}
+  .nav .btn{min-width:220px}
+  .total-wrap{flex-direction:column;justify-content:center;gap:1rem}
+  .eq{max-width:46ch;margin-left:auto;margin-right:auto}
+  .slider-top{flex-direction:column;align-items:center;gap:.1rem}
+  .fixes .chips{justify-content:center}
+  .note{border-left:0;border-top:3px solid var(--brass);border-radius:0 0 8px 8px}
+  .legend{justify-content:center}
+  .how li{flex-direction:column;align-items:center;gap:.45rem}
+  .how li::before{margin-top:0}
+  .closer{max-width:44ch;margin-left:auto;margin-right:auto}
+  .lbl{text-align:center}
+  .txt{text-align:center}
+  #join{max-width:420px;margin:0 auto}
+
   footer{font-family:"Schibsted Grotesk",system-ui,sans-serif;padding:3rem 0 3.5rem;color:#8A949B;font-size:.78rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8A949B}
   footer p{margin:0}
@@ -191,20 +211,16 @@
     <div class="card">
 
       <div id="quiz">
-        <p class="kicker">Free retainer calculator &middot; 60 seconds</p>
-        <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <p class="calc-title">Calculate your retainers</p>
+        <p class="kicker">Free &middot; takes 60 seconds</p>
+        <div class="progress" aria-hidden="true"><i></i><i></i><i></i></div>
 
         <!-- 1. Survival number -->
         <div class="step on" data-step="1">
           <p class="q">What's the minimum you need each month to survive?</p>
           <p class="hint">One number. Rent or mortgage, food, bills, car, insurance. The non-negotiables for you and your business.</p>
-          <label class="bigin"><span>$</span><input id="survival" inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Minimum monthly survival number in dollars"><small>/ month</small></label>
-          <div class="chips" data-for="survival">
-            <button type="button" class="chip" data-v="5000">$5k</button>
-            <button type="button" class="chip" data-v="8000">$8k</button>
-            <button type="button" class="chip" data-v="10000">$10k</button>
-            <button type="button" class="chip" data-v="15000">$15k</button>
-          </div>
+          <label class="bigin"><input id="survival" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Minimum monthly survival number in dollars"></label>
+          <p class="unit">per month</p>
           <p class="err" id="err1" aria-live="polite"></p>
         </div>
 
@@ -212,13 +228,8 @@
         <div class="step" data-step="2">
           <p class="q">What do you earn from an average job?</p>
           <p class="hint">A rough estimate is fine. What a typical shoot, project or booking pays you.</p>
-          <label class="bigin"><span>$</span><input id="aov" inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Average dollars per job"><small>/ job</small></label>
-          <div class="chips" data-for="aov">
-            <button type="button" class="chip" data-v="500">$500</button>
-            <button type="button" class="chip" data-v="1000">$1k</button>
-            <button type="button" class="chip" data-v="2000">$2k</button>
-            <button type="button" class="chip" data-v="3500">$3.5k</button>
-          </div>
+          <label class="bigin"><input id="aov" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Average dollars per job"></label>
+          <p class="unit">per job</p>
           <p class="err" id="err2" aria-live="polite"></p>
         </div>
 
@@ -235,24 +246,9 @@
           <p class="live" id="live-now"></p>
         </div>
 
-        <!-- 4. Gate -->
-        <div class="step gate" data-step="4">
-          <p class="q">Your numbers are ready.</p>
-          <p class="hint">Pop in your name and email to see what your business looks like on retainers. Free, no obligation, no sales calls.</p>
-          <form id="gate" novalidate>
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-            <div class="field"><label class="lbl" for="name">First name</label><input class="txt" id="name" name="Name" autocomplete="given-name" required></div>
-            <div class="field"><label class="lbl" for="email">Email</label><input class="txt" id="email" name="Email" type="email" autocomplete="email" required></div>
-            <p class="err" id="err4" aria-live="polite"></p>
-            <button class="btn full" type="submit" id="gate-btn">Show my numbers &rarr;</button>
-            <p class="fine">Your details stay with me. Unsubscribe any time.</p>
-          </form>
-          <div class="peek" aria-hidden="true"><div id="peek"></div></div>
-        </div>
-
         <div class="nav" id="nav">
-          <button type="button" class="back" id="back">&larr; Back</button>
           <button type="button" class="btn" id="next">Next</button>
+          <button type="button" class="back" id="back">&larr; Back</button>
         </div>
       </div>
 
@@ -324,6 +320,24 @@
           <p class="closer">That's what I've spent years working out in my own business, and it's exactly what I teach in Freedom Through Retainers.</p>
         </div>
 
+        <div class="section">
+          <p class="h2">Want to know when it opens?</p>
+          <p class="hint">Leave your name and email and I'll let you know when the next intake of Freedom Through Retainers opens. No obligation.</p>
+          <form id="join" novalidate>
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <div class="field"><label class="lbl" for="name">First name</label><input class="txt" id="name" name="Name" autocomplete="given-name" required></div>
+            <div class="field"><label class="lbl" for="email">Email</label><input class="txt" id="email" name="Email" type="email" autocomplete="email" required></div>
+            <p class="err" id="err-join" aria-live="polite"></p>
+            <button class="btn full" type="submit" id="join-btn">Keep me posted</button>
+            <p class="fine">Your details stay with me. Unsubscribe any time.</p>
+          </form>
+          <div class="joined" id="joined" hidden>
+            <div class="tick" aria-hidden="true">&#10003;</div>
+            <p class="h2">You're on the list.</p>
+            <p class="hint" style="margin:0">I'll be in touch when the next intake opens.</p>
+          </div>
+        </div>
+
         <button type="button" class="again" id="again">Start again with different numbers</button>
       </div>
 
@@ -365,31 +379,22 @@
     st.step = n;
     document.querySelectorAll("#quiz .step").forEach(function(s){ s.classList.toggle("on", +s.dataset.step === n); });
     bars.forEach(function(b, i){ b.classList.toggle("on", i < n); });
-    $("back").style.visibility = n === 1 ? "hidden" : "visible";
-    $("next").hidden = n === 4;
+    $("back").hidden = n === 1;
+    $("next").innerHTML = n === 3 ? "See my numbers &rarr;" : "Next";
     if (n === 3) liveNow();
-    if (n === 4) buildPeek();
     var f = document.querySelector('#quiz .step.on input:not([name="_gotcha"])');
     if (f && matchMedia("(hover:hover)").matches) setTimeout(function(){ f.focus({ preventScroll: true }); }, 60);
   }
 
-  // Money inputs: format as you type, chips fill them
+  // Money inputs: format as you type
   ["survival", "aov"].forEach(function(id, i){
     var el = $(id);
     el.addEventListener("input", function(){
       var v = el.value.replace(/[^0-9]/g, "").slice(0, 7);
-      el.value = v ? (+v).toLocaleString("en-AU") : "";
+      el.value = v ? "$" + (+v).toLocaleString("en-AU") : "";
       $("err" + (i + 1)).textContent = "";
-      document.querySelectorAll('[data-for="' + id + '"] .chip').forEach(function(c){ c.classList.toggle("sel", +c.dataset.v === +v); });
     });
     el.addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); $("next").click(); } });
-  });
-  document.querySelectorAll(".chips[data-for] .chip").forEach(function(c){
-    c.addEventListener("click", function(){
-      var el = $(c.parentNode.dataset.for);
-      el.value = (+c.dataset.v).toLocaleString("en-AU");
-      el.dispatchEvent(new Event("input"));
-    });
   });
 
   // Jobs stepper
@@ -416,7 +421,7 @@
       st.aov = a; show(3);
     } else if (st.step === 3) {
       st.jobs = Math.max(1, num($("jobs").value) || 1);
-      setup(); show(4);
+      setup(); reveal();
     }
   });
   $("back").addEventListener("click", function(){ if (st.step > 1) show(st.step - 1); });
@@ -438,20 +443,21 @@
     if (st.price < +sp.min) sp.min = st.price;
   }
 
-  // ---------- Peek (blurred preview behind the gate) ----------
-  function buildPeek(){
-    var t = st.basePrice * st.baseClients;
-    $("peek").innerHTML = '<p class="kicker">If your jobs became retainers</p><p class="total">' + money(t) +
-      ' <small>/ month</small></p><div class="panel" style="height:140px"></div>';
+  function reveal(){
+    $("quiz").hidden = true;
+    var r = $("results"); r.hidden = false; r.classList.remove("reveal"); void r.offsetWidth; r.classList.add("reveal");
+    ensureRange(); syncSliders(); render(true);
+    var top = r.getBoundingClientRect().top + scrollY - 16;
+    scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
   }
 
-  // ---------- Gate ----------
-  $("gate").addEventListener("submit", function(e){
+  // ---------- Optional sign-up (results are never locked) ----------
+  $("join").addEventListener("submit", function(e){
     e.preventDefault();
     var name = $("name").value.trim(), email = $("email").value.trim();
-    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("err4").textContent = "Add your first name and a valid email."; return; }
-    $("err4").textContent = "";
-    var btn = $("gate-btn"); btn.disabled = true; btn.textContent = "Crunching your numbers...";
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("err-join").textContent = "Add your first name and a valid email."; return; }
+    $("err-join").textContent = "";
+    var btn = $("join-btn"); btn.disabled = true; btn.textContent = "Sending...";
     var d = new FormData(e.target);
     d.append("_subject", "FTR calculator: " + name);
     d.append("Survival number", money(st.survival));
@@ -461,21 +467,11 @@
     d.append("Retainer price (75%)", money(st.basePrice));
     d.append("Retainer total if converted", money(st.basePrice * st.baseClients));
     d.append("Gap to survival", money(st.survival - st.basePrice * st.baseClients));
-    var done = false;
-    function go(){ if (done) return; done = true; reveal(name); }
+    d.append("Their adjusted plan", st.clients + " clients x " + money(st.price) + " = " + money(st.clients * st.price));
     fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { "Accept": "application/json" } })
-      .then(go).catch(go);
-    setTimeout(go, 4000); // never leave them waiting on the network
+      .then(function(r){ if (!r.ok) throw new Error(); e.target.hidden = true; $("joined").hidden = false; })
+      .catch(function(){ btn.disabled = false; btn.textContent = "Keep me posted"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
   });
-
-  function reveal(name){
-    $("quiz").hidden = true;
-    var r = $("results"); r.hidden = false; r.classList.add("reveal");
-    $("r-kicker").textContent = (name ? name + ", if" : "If") + " your jobs became retainers";
-    ensureRange(); syncSliders(); render(true);
-    var top = r.getBoundingClientRect().top + scrollY - 16;
-    scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
-  }
 
   // ---------- Results rendering ----------
   var C = 2 * Math.PI * 52;
@@ -588,19 +584,9 @@
     $("months-ret").textContent = (retTotal >= S ? 0 : 12) + " / 12";
   }
 
-  // Start again: change inputs without signing up twice
+  // Start again with different numbers
   $("again").addEventListener("click", function(){
     $("results").hidden = true; $("quiz").hidden = false;
-    $("gate").hidden = true;
-    var p = document.querySelector('[data-step="4"]');
-    p.querySelector(".q").textContent = "Your numbers are updated.";
-    p.querySelector(".hint").textContent = "No need to sign up again.";
-    if (!$("show-again")) {
-      var b = document.createElement("button");
-      b.className = "btn full"; b.id = "show-again"; b.type = "button"; b.textContent = "Show my numbers →";
-      b.addEventListener("click", function(){ reveal($("name").value.trim()); });
-      p.insertBefore(b, p.querySelector(".peek"));
-    }
     show(1);
     scrollTo({ top: document.querySelector("main").getBoundingClientRect().top + scrollY - 16, behavior: reduce ? "auto" : "smooth" });
   });
