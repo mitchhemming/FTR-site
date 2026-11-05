@@ -620,7 +620,7 @@
     var toKit = fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: name, email: email }) })
       .then(function(r){ return r.ok; }).catch(function(){ return false; });
     toKit.then(function(ok){
-      if (ok) { e.target.hidden = true; $("joined").hidden = false; track("join", { clients: st.clients, price: st.price }); }
+      if (ok) { e.target.hidden = true; $("joined").hidden = false; track("join", { clients: st.clients, price: st.price, name: name, email: email }); }
       else { btn.disabled = false; btn.textContent = "Save my spot \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; }
     });
   });

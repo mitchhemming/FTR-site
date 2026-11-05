@@ -9,7 +9,7 @@ Static site for freedomthroughretainers.com. No build step.
   - A short curiosity section that hints at the price and the positioning without explaining the method and an optional name and email sign-up that posts their answers and adjusted plan to Formspree.
 - Settings at the bottom of `index.html`: `FORM_ENDPOINT`, `RETAINER_RATE`, `YEAR` and `MID_SPREAD` (how the 12 months are laid out).
 - No video, application form or call booking.
-- Anonymous stats: `api/track.js` saves one JSON record per calculator completion (`calc/`) and one per waitlist join (`join/`, including where they left the sliders) to a private Vercel Blob store (ftr-site-blob, Sydney). No names or emails are stored there. The page sends events from `track()` in `index.html` and records `utm_source` / `utm_campaign` or the referrer.
+- Anonymous stats: `api/track.js` saves one JSON record per calculator completion (`calc/`) and one per waitlist join (`join/`, including where they left the sliders) to a private Vercel Blob store (ftr-site-blob, Sydney). Names and emails are stored only on `join/` records (people who joined the waitlist). The page sends events from `track()` in `index.html` and records `utm_source` / `utm_campaign` or the referrer.
 - Private stats page: `/api/stats?key=STATS_PASSWORD` (add `&format=csv` to download). Needs the `STATS_PASSWORD` environment variable set in Vercel.
 - `package.json` only exists for the `@vercel/blob` dependency used by the functions; there is no build step.
 - `privacy.html`, `terms.html`: supporting pages (clean URLs via vercel.json).

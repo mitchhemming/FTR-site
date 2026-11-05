@@ -48,12 +48,13 @@ module.exports = async (req, res) => {
     return Object.assign({}, c, {
       avgMonth: c.aov * c.jobs, swing: c.high - c.low,
       finalClients: p.clients != null ? p.clients : c.clients, finalPrice: p.price != null ? p.price : c.price,
-      joined: joined.has(c.id) ? "yes" : "no"
+      joined: joined.has(c.id) ? "yes" : "no",
+      name: (planBy[c.id] || {}).name || "", email: (planBy[c.id] || {}).email || ""
     });
   }).sort((a, b) => (a.ts < b.ts ? 1 : -1));
 
   if (url.searchParams.get("format") === "csv") {
-    const cols = ["ts", "survival", "aov", "jobs", "avgMonth", "low", "high", "swing", "shortMonths", "clients", "price", "finalClients", "finalPrice", "joined", "source", "campaign", "device"];
+    const cols = ["ts", "name", "email", "survival", "aov", "jobs", "avgMonth", "low", "high", "swing", "shortMonths", "clients", "price", "finalClients", "finalPrice", "joined", "source", "campaign", "device"];
     const csv = [cols.join(",")].concat(rows.map((r) => cols.map((k) => JSON.stringify(r[k] == null ? "" : r[k])).join(","))).join("\n");
     res.setHeader("content-type", "text/csv"); res.setHeader("content-disposition", 'attachment; filename="ftr-calculator.csv"');
     return res.end(csv);
@@ -67,7 +68,7 @@ module.exports = async (req, res) => {
   const bucketRows = buckets.map(([a, b, l]) => { const n = survs.filter((v) => v >= a && v < b).length; const pct = survs.length ? Math.round((n / survs.length) * 100) : 0; return `<tr><th>${l}</th><td>${n}</td><td><div class="bar"><i style="width:${pct}%"></i></div></td><td>${pct}%</td></tr>`; }).join("");
   const src = {}; rows.forEach((r) => { const k = r.source || "direct"; src[k] = (src[k] || 0) + 1; });
   const srcRows = Object.entries(src).sort((a, b) => b[1] - a[1]).map(([k, n]) => `<tr><th>${esc(k)}</th><td>${n}</td></tr>`).join("") || `<tr><td colspan="2">No data yet</td></tr>`;
-  const recent = rows.slice(0, 50).map((r) => `<tr><td>${esc(new Date(r.ts).toLocaleString("en-AU", { timeZone: "Australia/Brisbane", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }))}</td><td>${$(r.survival)}</td><td>${$(r.aov)}</td><td>${r.jobs}</td><td>${$(r.low)}</td><td>${$(r.high)}</td><td>${r.finalClients} × ${$(r.finalPrice)}</td><td>${r.joined}</td><td>${esc(r.source || "direct")}</td></tr>`).join("") || `<tr><td colspan="9">No completions yet</td></tr>`;
+  const recent = rows.slice(0, 50).map((r) => `<tr><td>${esc(new Date(r.ts).toLocaleString("en-AU", { timeZone: "Australia/Brisbane", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }))}</td><td>${$(r.survival)}</td><td>${$(r.aov)}</td><td>${r.jobs}</td><td>${$(r.low)}</td><td>${$(r.high)}</td><td>${r.finalClients} × ${$(r.finalPrice)}</td><td>${r.email ? esc(r.name || "") + "<br><span style=\"color:var(--muted)\">" + esc(r.email) + "</span>" : "no"}</td><td>${esc(r.source || "direct")}</td></tr>`).join("") || `<tr><td colspan="9">No completions yet</td></tr>`;
   const key = encodeURIComponent(url.searchParams.get("key"));
 
   res.setHeader("content-type", "text/html; charset=utf-8");
@@ -90,7 +91,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.5rem .6
 .btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;border-radius:8px;padding:.6rem 1rem;font-weight:600}
 </style></head><body><div class="wrap">
 <h1>Calculator stats</h1>
-<p class="sub">Every completed calculator, saved anonymously. Times in Brisbane time. <a href="?key=${key}">Refresh</a></p>
+<p class="sub">Every completed calculator. Names and emails appear only for people who joined the waitlist. Times in Brisbane time. <a href="?key=${key}">Refresh</a></p>
 <div class="kpis">
 <div class="kpi"><b>${rows.length}</b><span>completed calculators</span></div>
 <div class="kpi"><b>${joined.size}</b><span>joined the waitlist</span></div>

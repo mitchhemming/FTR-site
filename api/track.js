@@ -1,5 +1,5 @@
 // Saves one anonymous record per calculator event to the private Blob store.
-// No names or emails are stored here (waitlist sign-ups still go to Formspree).
+// Calculator answers are anonymous. A name and email are stored only when someone joins the waitlist.
 const { put } = require("@vercel/blob");
 const { readBody, money, count, text, validId } = require("./_lib");
 
@@ -18,7 +18,9 @@ module.exports = async (req, res) => {
     });
     if (rec.survival === null || rec.aov === null || rec.jobs === null || rec.low === null || rec.high === null) { res.statusCode = 400; return res.end(); }
   } else {
-    Object.assign(rec, { clients: count(b.clients, 1000), price: money(b.price) });
+    // Waitlist join: they chose to give their name and email, so it's stored with their answers.
+    const email = typeof b.email === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email.trim()) ? b.email.trim().slice(0, 200) : "";
+    Object.assign(rec, { clients: count(b.clients, 1000), price: money(b.price), name: text(b.name, 60), email });
   }
 
   const folder = b.type === "complete" ? "calc" : b.type;
