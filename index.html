@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freedom Through Retainers</title>
-<meta name="description" content="A 90-day 1-on-1 program for established photographers and videographers. Cover your fixed costs with monthly retainers so project work becomes a choice, not the bills.">
+<meta name="description" content="Work out how many monthly retainers it takes to cover your fixed costs. A free 60-second calculator from Mitch Hemming.">
 <meta property="og:title" content="Freedom Through Retainers">
-<meta property="og:description" content="Cover your fixed costs with monthly retainers in 90 days. For established photo and video business owners.">
+<meta property="og:description" content="How many retainers would cover your fixed costs? Work out your foundation in 60 seconds.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freedomthroughretainers.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F3D3E'/%3E%3Crect x='6' y='21' width='20' height='3' fill='%23C9A227'/%3E%3C/svg%3E">
@@ -23,9 +23,9 @@
     --teal-ink:#0B2F30;
     --brass:#C9A227;
     --max:680px;
-    --wide:880px;
   }
   *{box-sizing:border-box}
+  [hidden]{display:none!important}
   html{-webkit-text-size-adjust:100%}
   body{
     margin:0;background:var(--paper);color:var(--ink);
@@ -34,136 +34,75 @@
   }
   h1,h2,h3{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-0.025em;line-height:1.05;margin:0}
   h1{font-size:clamp(2rem,5.4vw,3.2rem)}
-  h2{font-size:clamp(1.5rem,3.6vw,2.1rem);margin-bottom:1rem}
-  h3{font-size:1.15rem;font-weight:600;margin-bottom:.25rem}
   p{margin:0 0 1rem}
   a{color:var(--teal)}
   .wrap{width:min(100% - 32px,var(--max));margin:0 auto}
-  .wide{width:min(100% - 32px,var(--wide));margin:0 auto}
-  section{padding:3.5rem 0}
-  section + section{border-top:1px solid var(--line)}
+  .sans{font-family:"Schibsted Grotesk",system-ui,sans-serif}
 
-  /* Hero */
-  .hero{padding:1.5rem 0 5rem}
-  .mark{font-size:.82rem;letter-spacing:.01em;color:var(--muted);margin:0 0 2.25rem;display:flex;flex-direction:column;align-items:center;gap:.35rem}
+  /* Hero (unchanged) */
+  .hero{padding:1.5rem 0 2.5rem}
+  .mark{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.82rem;letter-spacing:.01em;color:var(--muted);margin:0 0 2.25rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;text-align:center}
   .avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:.35rem}
   .mark-name{color:var(--teal);font-weight:600}
-  .mark-by{margin-left:.5rem;color:var(--ink);font-weight:500}
-  .mark-by{margin-left:0}
-  @media(min-width:421px){.mark-name{margin-right:.5rem}.mark-row{display:flex;gap:.5rem}}
+  .mark-by{color:var(--ink);font-weight:500}
   .hero h1{text-align:center;margin:0 auto;white-space:nowrap}
   .ul{position:relative;display:inline-block;white-space:nowrap}
   .ul-svg{position:absolute;left:-2%;right:-2%;bottom:-.08em;width:104%;height:.22em;color:var(--brass);pointer-events:none}
   @media(max-width:700px){.hero h1{font-size:clamp(1.45rem,7.2vw,2.1rem);letter-spacing:-0.015em}}
-  .micro{color:var(--muted);font-size:1.1rem;line-height:1.55;margin:0 auto 1.5rem;max-width:62ch;text-align:center}
+  .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
 
-  @media(max-width:600px){
-    .hero{padding:1rem 0 4rem}
-    .mark{margin-bottom:1.5rem}
-    .video{margin-top:1.5rem}
-    .frame{border-radius:6px}
-    .frame .placeholder{font-size:1.05rem}
-    .cta{margin-top:1.75rem}
-    .btn{display:block;width:100%;padding:1rem}
-    .micro{font-size:.9rem}
-    section{padding:2.75rem 0}
-    form{gap:1.2rem}
-    footer{font-size:.78rem;line-height:1.75}
-    footer .sep{display:none}
-  }
-
-  /* Video */
-  .video{margin:2rem auto 0}
-  .mark{text-align:center}
-  .frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--teal-ink);border-radius:8px;overflow:hidden}
-  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .frame .placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#CFE3E1;font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:1.25rem;padding:1rem;text-align:center}
-  .cta{margin:2.5rem auto 0;text-align:center}
-  .btn{
-    font-family:"Schibsted Grotesk",system-ui,sans-serif;letter-spacing:-0.01em;
-    display:inline-block;background:var(--teal);color:#fff;text-decoration:none;
-    padding:1rem 1.75rem;border-radius:6px;font-weight:600;font-size:1.05rem;border:0;cursor:pointer;
-  }
-  .btn:hover{background:var(--teal-ink)}
-  .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
-
-  /* Lists */
-  ul,ol{padding-left:1.25rem;margin:0 0 1rem}
-  li{margin-bottom:.5rem}
-  .two{display:grid;gap:2rem;grid-template-columns:1fr}
-  @media(min-width:720px){.two{grid-template-columns:1fr 1fr}}
-  .steps li{margin-bottom:1rem}
-  .steps b{display:block}
-
-  /* Table */
-  table{width:100%;border-collapse:collapse;margin:0 0 1rem;font-size:1rem}
-  th,td{text-align:left;padding:.75rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
-  th{font-weight:600;width:40%}
-  @media(max-width:560px){th,td{display:block;width:100%;padding:.35rem 0}th{border:0;padding-top:.9rem}}
-
-  .quote{font-family:"Schibsted Grotesk",sans-serif;font-size:1.35rem;line-height:1.35;border-left:3px solid var(--brass);padding-left:1rem;margin:1.5rem 0}
-
-  /* Price */
-  .price{font-family:"Schibsted Grotesk",sans-serif;font-size:2.2rem;line-height:1.1;margin:0 0 .25rem}
-  .price small{display:block;font-family:"Schibsted Grotesk",sans-serif;font-size:1rem;color:var(--muted);margin-top:.5rem}
-
-  /* FAQ */
-  details{border-bottom:1px solid var(--line);padding:.9rem 0}
-  details:first-of-type{border-top:1px solid var(--line)}
-  summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";color:var(--muted);font-weight:400}
-  details[open] summary::after{content:"\2013"}
-  details p{margin:.75rem 0 0;color:var(--ink)}
-
-  /* Form */
-  form{display:grid;gap:1.4rem;max-width:560px;margin:0 auto}
-  #apply .wrap > h2, #apply .wrap > p{text-align:center}
-  .field{display:grid;gap:.4rem}
-  label,fieldset.choice legend,.mark{font-family:"Schibsted Grotesk",system-ui,sans-serif}
-  label{display:block;font-weight:600;line-height:1.3;font-size:1rem}
-  .hint{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:400;color:var(--muted);font-size:.9rem;line-height:1.4}
-  input,select,textarea{
-    display:block;width:100%;font:inherit;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;line-height:1.3;height:48px;padding:0 .9rem;
-    border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none
-  }
-  select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235C6770' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.4rem}
-  textarea{height:auto;min-height:120px;padding:.75rem .9rem;resize:vertical}
-  .form-note{color:var(--muted);font-size:.95rem}
-  #apply .intro{text-align:center}
-  .submit{text-align:center}
-  .btn[disabled]{opacity:.75;cursor:progress}
-  .btn .spin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;vertical-align:-3px;margin-right:.5rem;animation:spin .7s linear infinite}
-  .btn.busy .spin{display:inline-block}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  /* Form fades out, booking fades in */
-  #apply-form,#apply .intro{transition:opacity .4s ease}
-  #apply-form.fade,#apply .intro.fade{opacity:0;pointer-events:none}
-  .cal .placeholder{padding:3rem 1rem;text-align:center;color:var(--muted)}
-  @media(prefers-reduced-motion:reduce){#apply-form,#apply .intro{transition:none}.btn .spin{animation:none}}
-  fieldset.choice{border:0;padding:0;margin:0;min-width:0}
-  fieldset.choice legend{font-weight:600;line-height:1.3;padding:0;margin-bottom:.4rem}
-  .opt{display:flex;align-items:center;gap:.75rem;font-weight:400;height:48px;padding:0 .9rem;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+  /* Calculator card */
+  .calc{padding:0 0 5rem}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:2rem 1.75rem 1.75rem;max-width:560px;margin:0 auto}
+  @media(max-width:600px){.hero{padding:1rem 0 2rem}.mark{margin-bottom:1.5rem}.card{padding:1.5rem 1.15rem 1.25rem}}
+  .kicker{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+  .progress{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin:0 0 1.5rem}
+  .progress span{display:block;height:100%;width:0;background:var(--brass);transition:width .3s ease}
+  .step{display:none}
+  .step.on{display:block}
+  .q{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.35rem;line-height:1.2;letter-spacing:-0.02em;margin:0 0 .4rem}
+  .hint{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:.92rem;line-height:1.45;margin:0 0 1.1rem}
+  .opt{display:flex;align-items:center;gap:.75rem;width:100%;min-height:52px;padding:.6rem .95rem;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;color:var(--ink);text-align:left}
   .opt + .opt{margin-top:.5rem}
-  .opt input{width:18px;height:18px;margin:0;padding:0;accent-color:var(--teal);appearance:auto;-webkit-appearance:auto;border:0}
-  .opt:has(input:checked){border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
+  .opt:hover{border-color:var(--teal)}
+  .opt.sel{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
+  .money{position:relative}
+  .money span{position:absolute;left:.95rem;top:50%;transform:translateY(-50%);font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--muted);font-size:1.15rem}
+  input{display:block;width:100%;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1.05rem;height:52px;padding:0 .95rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none}
+  .money input{padding-left:2rem;font-size:1.25rem;font-weight:600}
+  .field + .field{margin-top:.8rem}
+  label.lbl{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:600;font-size:.95rem;margin:0 0 .35rem}
+  .err{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:#9B2C2C;font-size:.9rem;min-height:1.3em;margin:.5rem 0 0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.25rem}
+  .back{background:none;border:0;padding:.5rem 0;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.95rem;color:var(--muted);cursor:pointer}
+  .back[hidden]{display:none}
+  .btn{font-family:"Schibsted Grotesk",system-ui,sans-serif;letter-spacing:-0.01em;display:inline-block;background:var(--teal);color:#fff;text-decoration:none;padding:.95rem 1.6rem;border-radius:6px;font-weight:600;font-size:1.02rem;border:0;cursor:pointer;text-align:center}
+  .btn:hover{background:var(--teal-ink)}
+  .btn.full{display:block;width:100%}
+  .btn[disabled]{opacity:.7;cursor:progress}
+  .btn:focus-visible,.opt:focus-visible,input:focus-visible,.back:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+
+  /* Result */
+  .big{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(2.4rem,9vw,3.4rem);line-height:1;letter-spacing:-0.03em;color:var(--teal);margin:.2rem 0 .3rem}
+  .big small{font-size:.38em;font-weight:600;color:var(--muted);letter-spacing:0}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.25rem 0}
+  .stat{border:1px solid var(--line);border-radius:6px;padding:.8rem .9rem}
+  .stat b{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1.5rem;line-height:1.1;color:var(--ink)}
+  .stat span{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.85rem;line-height:1.3;color:var(--muted);margin-top:.2rem}
+  .explain{font-size:1.05rem}
+  .rule{border:0;border-top:1px solid var(--line);margin:1.5rem 0}
+  .h-join{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-0.015em;margin:0 0 .35rem}
+  .alt{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.92rem;color:var(--muted);text-align:center;margin:1rem 0 0}
+  .done{text-align:center;padding:.5rem 0}
+  .done .tick{width:48px;height:48px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.4rem}
+  .fine{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8rem;color:var(--muted);margin:.75rem 0 0;text-align:center}
 
   footer{font-family:"Schibsted Grotesk",system-ui,sans-serif;padding:3rem 0 3.5rem;color:#8A949B;font-size:.78rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8A949B}
   footer p{margin:0}
   footer .mob{display:none}
-  @media(max-width:600px){footer .mob{display:inline}}
-  .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
-
-
-  /* Apply section is hidden until a button reveals it */
-  #apply{display:none}
-  #apply.open{display:block;padding-bottom:5rem}
-
-  @media(prefers-reduced-motion:no-preference){
-    details p{animation:fade .18s ease-out}
-    @keyframes fade{from{opacity:0}to{opacity:1}}
-  }
+  @media(max-width:600px){footer .mob{display:inline}footer .sep{display:none}}
+  @media(prefers-reduced-motion:reduce){.progress span{transition:none}}
 </style>
 </head>
 <body>
@@ -173,65 +112,92 @@
     <p class="mark"><img class="avatar" src="/assets/mitch.jpg" alt="Mitch Hemming" width="400" height="400"><span class="mark-name">Freedom Through Retainers<sup class="tm">&trade;</sup></span><span class="mark-by">by Mitch Hemming</span></p>
     <h1>Cover your fixed costs<br>with monthly retainers in <span class="ul">90 days<svg class="ul-svg" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10 C 40 4, 90 3, 197 7" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
   </div>
-  <div class="wide video">
-    <div class="frame" id="vsl">
-      <!-- Set VIMEO_ID in the script at the bottom. Until then this placeholder shows. -->
-      <div class="placeholder">Free training: how to build a foundation with retainers</div>
-    </div>
-  </div>
-  <div class="wrap cta">
-    <p class="micro">90 days of 1-on-1 coaching with Mitch Hemming.<br>For established photographers, videographers &amp; media business owners.</p>
-    <button class="btn apply-btn" type="button">Apply now</button>
-  </div>
 </header>
 
-<main>
-
-<section id="apply">
+<main class="calc">
   <div class="wrap">
-    <h2 class="intro">Apply</h2>
-    <p class="intro">Tell me a bit about your business and where you're at 👇🏼</p>
+    <div class="card" id="card">
+      <p class="kicker" id="kicker">Work out your foundation &middot; 60 seconds</p>
+      <div class="progress" aria-hidden="true"><span id="bar"></span></div>
 
-    <!--
-      FORM ENDPOINT
-      Option 1 (quickest): Formspree. Create a form at formspree.io, paste the endpoint into FORM_ENDPOINT below.
-      Option 2: Tally. Replace this whole <form> with the Tally embed and add a hidden field "variant".
-      The hidden "variant" field is filled by the script so you can see which page version each applicant saw.
-    -->
-    <form id="apply-form" method="POST" action="#" novalidate>
-      <input type="hidden" name="_subject" value="New FTR application">
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-      <div class="field"><label for="name">Full name</label><input id="name" name="Full name" required autocomplete="name"></div>
-      <div class="field"><label for="email">Email address</label><input id="email" name="Email" type="email" required autocomplete="email"></div>
-      <div class="field"><label for="instagram">Instagram account</label><input id="instagram" name="Instagram" placeholder="@handle" required></div>
-      <div class="field"><label for="website">Website</label><input id="website" name="Website" type="text" placeholder="yourstudio.com" autocomplete="url" autocapitalize="none" spellcheck="false"></div>
-      <div class="field"><label for="location">Location</label><span class="hint">City, country</span><input id="location" name="Location" required></div>
-      <div class="field"><label for="years">How many years working professionally?</label><input id="years" name="Years professional" type="text" inputmode="numeric" placeholder="e.g. 6" required></div>
-      <div class="field">
-        <label for="revenue">Average monthly revenue</label>
-        <select id="revenue" name="Average monthly revenue" required>
-          <option value="" disabled selected>Choose</option>
-          <option>$3k to $5k</option><option>$5k to $10k</option><option>$10k to $15k</option><option>$15k+</option>
-        </select>
+      <!-- Step 1 -->
+      <div class="step on" data-step="1">
+        <p class="q">What kind of business do you run?</p>
+        <p class="hint">Pick the closest one.</p>
+        <div data-choice="business">
+          <button type="button" class="opt" data-value="Photography">Photography</button>
+          <button type="button" class="opt" data-value="Videography">Videography</button>
+          <button type="button" class="opt" data-value="Photo and video">Photo and video</button>
+          <button type="button" class="opt" data-value="Other service business">Another service business</button>
+        </div>
       </div>
-      <fieldset class="field choice">
-        <legend>What do you shoot?</legend>
-        <label class="opt"><input type="radio" name="Photo or video" value="Photo only" required><span>Photo only</span></label>
-        <label class="opt"><input type="radio" name="Photo or video" value="Video only"><span>Video only</span></label>
-        <label class="opt"><input type="radio" name="Photo or video" value="Both photo and video"><span>Both photo and video</span></label>
-      </fieldset>
-      <div class="field"><label for="niche">Primary niche or industry</label><span class="hint">e.g. automotive, real estate, weddings, hospitality</span><input id="niche" name="Primary niche" required></div>
-      <div class="field"><label for="blocker">What's the main thing holding your business back right now?</label><textarea id="blocker" name="Main thing holding them back" required></textarea></div>
-      <div class="submit">
-        <button class="btn" type="submit" id="submit-btn"><span class="spin" aria-hidden="true"></span><span class="label">Submit</span></button>
-        <p class="form-note" id="form-status" aria-live="polite"></p>
-      </div>
-    </form>
 
+      <!-- Step 2 -->
+      <div class="step" data-step="2">
+        <p class="q">What are your fixed costs each month?</p>
+        <p class="hint">Everything that has to be paid whether you work or not. Rent, wages, software, insurance, loans, and the minimum you need to pay yourself.</p>
+        <div class="money"><span>$</span><input id="fixed" inputmode="numeric" autocomplete="off" placeholder="8,000" aria-label="Monthly fixed costs in dollars"></div>
+        <p class="err" id="err2" aria-live="polite"></p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step" data-step="3">
+        <p class="q">What's a typical one-off job worth to you?</p>
+        <p class="hint">Your average single project or booking, before any retainer.</p>
+        <div class="money"><span>$</span><input id="job" inputmode="numeric" autocomplete="off" placeholder="1,500" aria-label="Typical job value in dollars"></div>
+        <p class="err" id="err3" aria-live="polite"></p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step" data-step="4">
+        <p class="q">How much of your income is recurring right now?</p>
+        <p class="hint">Money that arrives every month without you having to win it again.</p>
+        <div data-choice="recurring">
+          <button type="button" class="opt" data-value="None">None of it</button>
+          <button type="button" class="opt" data-value="Under 25%">Under 25%</button>
+          <button type="button" class="opt" data-value="25 to 50%">25 to 50%</button>
+          <button type="button" class="opt" data-value="Over 50%">Over 50%</button>
+        </div>
+      </div>
+
+      <!-- Result + waitlist -->
+      <div class="step" data-step="5">
+        <p class="kicker" style="margin-bottom:.2rem">Your foundation</p>
+        <p class="big"><span id="r-fixed">$0</span> <small>/ month</small></p>
+        <div class="stats">
+          <div class="stat"><b id="r-count">0</b><span>retainers to cover it</span></div>
+          <div class="stat"><b id="r-price">$0</b><span>per retainer, per month</span></div>
+        </div>
+        <p class="explain" id="r-text"></p>
+
+        <hr class="rule">
+
+        <form id="join" novalidate>
+          <p class="h-join">Want help building it?</p>
+          <p class="hint">Freedom Through Retainers is a 90-day 1-on-1 program. Places are limited. Join the waitlist and you'll hear first when the next intake opens.</p>
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="field"><label class="lbl" for="name">First name</label><input id="name" name="Name" autocomplete="given-name" required></div>
+          <div class="field"><label class="lbl" for="email">Email</label><input id="email" name="Email" type="email" autocomplete="email" required></div>
+          <p class="err" id="err5" aria-live="polite"></p>
+          <button class="btn full" type="submit" id="join-btn">Join the waitlist</button>
+          <p class="fine">No spam. One email when the intake opens, plus the occasional note from me.</p>
+        </form>
+
+        <div class="done" id="done" hidden>
+          <div class="tick" aria-hidden="true">&#10003;</div>
+          <p class="h-join">You're on the list.</p>
+          <p class="hint">I'll be in touch when the next intake opens.</p>
+        </div>
+
+        <p class="alt">Rather talk? <a id="dm" href="https://instagram.com/mitchhemming" target="_blank" rel="noopener">DM me your foundation number on Instagram</a>.</p>
+      </div>
+
+      <div class="nav" id="nav">
+        <button type="button" class="back" id="back" hidden>&larr; Back</button>
+        <button type="button" class="btn" id="next" hidden>Next</button>
+      </div>
+    </div>
   </div>
-</section>
-
 </main>
 
 <footer>
@@ -244,50 +210,109 @@
 
 <script>
   // ---- Settings ----
-  var VIMEO_ID = "";                       // e.g. "123456789". Leave blank until the VSL is recorded.
-  var FORM_ENDPOINT = "https://formspree.io/f/mdeenrgl";                  // e.g. "https://formspree.io/f/abcdwxyz". Blank = form shows a notice instead of sending.
-  var BOOKING_URL = "https://calendly.com/mitch-consistentcreative/30min";                    // e.g. "https://cal.com/mitchhemming/ftr-call". Blank = placeholder text.
+  var FORM_ENDPOINT = "https://formspree.io/f/mdeenrgl"; // Waitlist sign-ups go here.
+  var RETAINER_RATIO = 2 / 3; // A retainer is priced at about two thirds of a one-off job.
 
-  // ---- Video ----
-  if (VIMEO_ID) {
-    document.getElementById("vsl").innerHTML =
-      '<iframe src="https://player.vimeo.com/video/' + VIMEO_ID + '?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Freedom Through Retainers training"></iframe>';
+  var steps = 5, cur = 1, answers = {};
+  var card = document.getElementById("card");
+  var bar = document.getElementById("bar");
+  var back = document.getElementById("back");
+  var next = document.getElementById("next");
+  var kicker = document.getElementById("kicker");
+
+  function money(n){ return "$" + Math.round(n).toLocaleString("en-AU"); }
+  function num(id){ return parseFloat(String(document.getElementById(id).value).replace(/[^0-9.]/g, "")) || 0; }
+
+  function show(n){
+    cur = n;
+    card.querySelectorAll(".step").forEach(function(s){ s.classList.toggle("on", +s.dataset.step === n); });
+    bar.style.width = (n >= steps ? 100 : ((n - 1) / (steps - 1)) * 100) + "%";
+    back.hidden = (n === 1 || n === steps);
+    next.hidden = !(n === 2 || n === 3);
+    kicker.hidden = (n === steps);
+    document.querySelector(".progress").hidden = (n === steps);
+    document.getElementById("nav").hidden = (n === steps);
+    var f = card.querySelector('.step.on input:not([name="_gotcha"])');
+    if (f && n !== steps) setTimeout(function(){ f.focus({ preventScroll: true }); }, 50);
   }
 
-  // ---- Reveal application on click ----
-  document.querySelectorAll(".apply-btn").forEach(function(b){
-    b.addEventListener("click", function(){
-      var a = document.getElementById("apply");
-      a.classList.add("open");
-      a.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-      setTimeout(function(){ var f = document.getElementById("name"); if (f) f.focus({ preventScroll: true }); }, 500);
+  // Choice questions advance on tap
+  card.querySelectorAll("[data-choice]").forEach(function(group){
+    group.querySelectorAll(".opt").forEach(function(b){
+      b.addEventListener("click", function(){
+        group.querySelectorAll(".opt").forEach(function(x){ x.classList.remove("sel"); });
+        b.classList.add("sel");
+        answers[group.dataset.choice] = b.dataset.value;
+        setTimeout(function(){ cur === 4 ? result() : show(cur + 1); }, 180);
+      });
     });
   });
-  if (location.hash === "#apply") { document.getElementById("apply").classList.add("open"); }
 
-  function goToBooking(){
-    var n = encodeURIComponent(document.getElementById("name").value);
-    var e = encodeURIComponent(document.getElementById("email").value);
-    location.href = "/book?name=" + n + "&email=" + e;
+  // Format money inputs as you type
+  ["fixed", "job"].forEach(function(id){
+    var el = document.getElementById(id);
+    el.addEventListener("input", function(){
+      var v = el.value.replace(/[^0-9]/g, "");
+      el.value = v ? (+v).toLocaleString("en-AU") : "";
+      document.getElementById(id === "fixed" ? "err2" : "err3").textContent = "";
+    });
+    el.addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); next.click(); } });
+  });
+
+  next.addEventListener("click", function(){
+    if (cur === 2) {
+      var f = num("fixed");
+      if (f < 100) { document.getElementById("err2").textContent = "Enter your monthly fixed costs."; return; }
+      document.getElementById("err2").textContent = ""; answers.fixed = f; show(3);
+    } else if (cur === 3) {
+      var j = num("job");
+      if (j < 50) { document.getElementById("err3").textContent = "Enter what a typical job is worth."; return; }
+      document.getElementById("err3").textContent = ""; answers.job = j; show(4);
+    }
+  });
+  back.addEventListener("click", function(){ if (cur > 1) show(cur - 1); });
+
+  function result(){
+    var price = Math.max(50, Math.round(answers.job * RETAINER_RATIO / 50) * 50);
+    var count = Math.max(1, Math.ceil(answers.fixed / price));
+    answers.price = price; answers.count = count;
+    document.getElementById("r-fixed").textContent = money(answers.fixed);
+    document.getElementById("r-count").textContent = count;
+    document.getElementById("r-price").textContent = money(price);
+    var txt = count + " business client" + (count === 1 ? "" : "s") + " paying " + money(price) +
+      " a month covers everything you have to pay. Every job you win on top of that is profit, not survival.";
+    if (answers.recurring === "Over 50%") txt += " You're already partway there. The work is closing the gap.";
+    document.getElementById("r-text").textContent = txt;
+    show(steps);
   }
 
-  // ---- Form ----
-  (function(){
-    var form = document.getElementById("apply-form");
-    var status = document.getElementById("form-status");
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      var btn = document.getElementById("submit-btn"), label = btn.querySelector(".label");
-      function busy(on){ btn.disabled = on; btn.classList.toggle("busy", on); label.textContent = "Submit"; }
-      if (!FORM_ENDPOINT) { status.textContent = "Applications open shortly. Email contact@consistentcreative.com in the meantime."; return; }
-      status.textContent = "";
-      busy(true);
-      fetch(FORM_ENDPOINT, { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } })
-        .then(function(r){ if (r.ok) { btn.classList.remove("busy"); label.textContent = "Received!"; setTimeout(goToBooking, 900); } else { throw new Error(); } })
-        .catch(function(){ busy(false); status.textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
-    });
-  })();
+  // Waitlist submit
+  document.getElementById("join").addEventListener("submit", function(e){
+    e.preventDefault();
+    var form = e.target, err = document.getElementById("err5"), btn = document.getElementById("join-btn");
+    var name = document.getElementById("name").value.trim(), email = document.getElementById("email").value.trim();
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Add your first name and a valid email."; return; }
+    err.textContent = ""; btn.disabled = true; btn.textContent = "Sending...";
+    var data = new FormData(form);
+    data.append("_subject", "FTR waitlist: " + name);
+    data.append("Business type", answers.business || "");
+    data.append("Monthly fixed costs", money(answers.fixed || 0));
+    data.append("Typical job value", money(answers.job || 0));
+    data.append("Recurring income now", answers.recurring || "");
+    data.append("Retainers needed", answers.count || "");
+    data.append("Retainer price", money(answers.price || 0));
+    fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { "Accept": "application/json" } })
+      .then(function(r){
+        if (!r.ok) throw new Error();
+        form.hidden = true; document.getElementById("done").hidden = false;
+      })
+      .catch(function(){
+        btn.disabled = false; btn.textContent = "Join the waitlist";
+        err.textContent = "That didn't send. Try again, or email contact@consistentcreative.com.";
+      });
+  });
+
+  show(1);
 </script>
 </body>
 </html>
