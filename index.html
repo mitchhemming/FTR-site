@@ -221,6 +221,19 @@
   .secret-close b{color:#fff}
   @media(max-width:600px){.secret{margin-left:-.35rem;margin-right:-.35rem;padding:1.75rem 1.1rem 1.6rem}}
 
+  /* Waitlist offer */
+  .offer{border:2px solid var(--teal);border-radius:14px;padding:2rem 1.4rem 1.6rem;margin:1.5rem 0 0;background:#fff}
+  .offer-kicker{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brass);margin:0 0 .6rem}
+  .offer-title{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(1.4rem,5.2vw,1.8rem);line-height:1.15;letter-spacing:-0.025em;color:var(--teal);max-width:20ch;margin:0 auto .7rem}
+  .offer-text{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;line-height:1.5;color:var(--muted);max-width:42ch;margin:0 auto 1.1rem}
+  .offer-points{list-style:none;padding:0;margin:0 auto 1.6rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem}
+  .offer-points li{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.86rem;font-weight:600;color:var(--teal);background:var(--teal-soft);border-radius:999px;padding:.4rem .8rem;margin:0}
+  .offer-points li::before{content:"\2713";margin-right:.4rem;color:var(--brass)}
+  .offer-form-title{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin:0 0 .9rem}
+  #join{border-top:1px solid var(--line);padding-top:1.4rem}
+  @media(max-width:420px){.offer-points li{font-size:.78rem;padding:.38rem .7rem;white-space:nowrap}}
+  @media(max-width:600px){.offer{margin-left:-.35rem;margin-right:-.35rem;padding:1.7rem 1.1rem 1.4rem}}
+
   footer{font-family:"Schibsted Grotesk",system-ui,sans-serif;padding:3rem 0 3.5rem;color:#8A949B;font-size:.78rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8A949B}
   footer p{margin:0}
@@ -358,21 +371,29 @@
           <p class="secret-close">That's the exact method behind my own business, and what I teach step by step in <b>Freedom Through Retainers</b>.</p>
         </div>
 
-        <div class="section">
-          <p class="h2">Want to know when it opens?</p>
-          <p class="hint">Leave your name and email and I'll let you know when the next intake of Freedom Through Retainers opens. No obligation.</p>
+        <div class="offer" id="waitlist">
+          <p class="offer-kicker">Freedom Through Retainers<sup class="tm">&trade;</sup></p>
+          <p class="offer-title">Cover your fixed costs with monthly retainers in&nbsp;90&nbsp;days.</p>
+          <p class="offer-text">A 90-day, 1-on-1 program where I show you exactly how to price, position and land the retainers that cover what you need, so you never have a low month again.</p>
+          <ul class="offer-points">
+            <li>90 days, 1-on-1 with me</li>
+            <li>Built for established service businesses</li>
+            <li>Small cohorts, limited places</li>
+          </ul>
+
           <form id="join" novalidate>
+            <p class="offer-form-title">Join the waitlist for the next cohort</p>
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <div class="field"><label class="lbl" for="name">First name</label><input class="txt" id="name" name="Name" autocomplete="given-name" required></div>
             <div class="field"><label class="lbl" for="email">Email</label><input class="txt" id="email" name="Email" type="email" autocomplete="email" required></div>
             <p class="err" id="err-join" aria-live="polite"></p>
-            <button class="btn full" type="submit" id="join-btn">Keep me posted</button>
-            <p class="fine">Your details stay with me. Unsubscribe any time.</p>
+            <button class="btn full" type="submit" id="join-btn">Join the waitlist &rarr;</button>
+            <p class="fine">You'll be first to know when the next intake opens. No obligation, unsubscribe any time.</p>
           </form>
           <div class="joined" id="joined" hidden>
             <div class="tick" aria-hidden="true">&#10003;</div>
-            <p class="h2">You're on the list.</p>
-            <p class="hint" style="margin:0">I'll be in touch when the next intake opens.</p>
+            <p class="offer-form-title" style="margin-bottom:.3rem">You're on the waitlist.</p>
+            <p class="hint" style="margin:0">I'll email you first when the next cohort opens.</p>
           </div>
         </div>
 
@@ -518,7 +539,7 @@
     $("err-join").textContent = "";
     var btn = $("join-btn"); btn.disabled = true; btn.textContent = "Sending...";
     var d = new FormData(e.target);
-    d.append("_subject", "FTR calculator: " + name);
+    d.append("_subject", "FTR waitlist: " + name);
     d.append("Survival number", money(st.survival));
     d.append("Average job", money(st.aov));
     d.append("Jobs per month", st.jobs);
@@ -531,7 +552,7 @@
     d.append("Their adjusted plan", st.clients + " clients x " + money(st.price) + " = " + money(st.clients * st.price));
     fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { "Accept": "application/json" } })
       .then(function(r){ if (!r.ok) throw new Error(); e.target.hidden = true; $("joined").hidden = false; })
-      .catch(function(){ btn.disabled = false; btn.textContent = "Keep me posted"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
+      .catch(function(){ btn.disabled = false; btn.textContent = "Join the waitlist \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
   });
 
   // ---------- Results rendering ----------
