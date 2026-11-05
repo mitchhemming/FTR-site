@@ -205,20 +205,20 @@
   #join{max-width:420px;margin:0 auto}
 
   /* "Easy part" callout */
-  .secret{background:var(--teal);color:#fff;border-radius:14px;padding:2rem 1.4rem 1.8rem;margin:2rem 0 0;position:relative;overflow:hidden}
-  .secret::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(201,162,39,.28),rgba(201,162,39,0) 60%);pointer-events:none}
+  .secret{background:linear-gradient(180deg,#E6EEEC 0%,#EEF3F1 100%);color:var(--ink);border:1px solid #D3E0DD;border-radius:14px;padding:2rem 1.4rem 1.8rem;margin:2rem 0 0;position:relative;overflow:hidden}
+  .secret::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(201,162,39,.16),rgba(201,162,39,0) 60%);pointer-events:none}
   .secret > *{position:relative}
-  .secret-title{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(1.45rem,5.5vw,1.85rem);line-height:1.12;letter-spacing:-0.025em;margin:0 auto .7rem;max-width:18ch}
-  .secret-intro{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;line-height:1.5;color:#C9DCDA;max-width:40ch;margin:0 auto 1.5rem}
-  .secret-intro b{color:var(--brass);font-weight:700}
+  .secret-title{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(1.45rem,5.5vw,1.85rem);line-height:1.12;letter-spacing:-0.025em;color:var(--teal);margin:0 auto .7rem;max-width:18ch}
+  .secret-intro{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;line-height:1.5;color:var(--muted);max-width:40ch;margin:0 auto 1.5rem}
+  .secret-intro b{color:var(--teal);font-weight:700}
   .keys{display:grid;gap:.8rem;grid-template-columns:1fr}
   @media(min-width:560px){.keys{grid-template-columns:1fr 1fr}}
-  .key{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-top:3px solid var(--brass);border-radius:12px;padding:1.35rem 1.15rem 1.25rem}
-  .key-num{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:2.4rem;line-height:1;letter-spacing:-0.04em;color:var(--brass);margin:0 0 .55rem}
-  .key-h{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-0.02em;color:#fff;margin:0 0 .4rem}
-  .key-p{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.95rem;line-height:1.5;color:#D8E6E4;margin:0}
-  .secret-close{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;line-height:1.5;color:#C9DCDA;max-width:38ch;margin:1.5rem auto 0}
-  .secret-close b{color:#fff}
+  .key{background:#fff;border:1px solid #D9E3E0;border-top:3px solid var(--brass);border-radius:12px;padding:1.35rem 1.15rem 1.25rem;box-shadow:0 8px 20px -14px rgba(15,61,62,.35)}
+  .key-num{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:2.4rem;line-height:1;letter-spacing:-0.04em;color:#B08C1C;margin:0 0 .55rem}
+  .key-h{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-0.02em;color:var(--teal);margin:0 0 .4rem}
+  .key-p{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.95rem;line-height:1.5;color:var(--ink);margin:0}
+  .secret-close{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:1rem;line-height:1.5;color:var(--muted);max-width:38ch;margin:1.5rem auto 0}
+  .secret-close b{color:var(--teal)}
   @media(max-width:600px){.secret{margin-left:-.35rem;margin-right:-.35rem;padding:1.75rem 1.1rem 1.6rem}}
 
   /* Waitlist offer */
