@@ -234,6 +234,7 @@
   .offer-form-title{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin:0 0 .9rem}
   #join{border-top:1px solid var(--line);padding-top:1.4rem}
   @media(max-width:420px){.offer-points li{font-size:.78rem;padding:.38rem .7rem;white-space:nowrap}}
+  @media(max-width:600px){.offer-title{font-size:1.45rem}.offer-text{font-size:1rem;margin-bottom:.4rem}.outcomes li{font-size:.94rem;padding:.55rem 0 .55rem 2rem}.outcomes{margin-bottom:1.2rem}}
   @media(max-width:600px){.offer{margin-left:-.35rem;margin-right:-.35rem;padding:1.7rem 1.1rem 1.4rem}}
 
   /* Display type: Archivo, stretched */
@@ -266,6 +267,8 @@
   .note img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
   .note p{font-family:"Archivo",system-ui,sans-serif;font-size:.95rem;line-height:1.45;color:var(--ink);margin:0}
   .note span{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-top:.35rem}
+  .offer-meta{font-family:"Archivo",system-ui,sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);margin:0 0 1.2rem}
+  .offer-text b{color:var(--ink)}
   .offer-sub{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:1rem;color:var(--ink);margin:0 0 .7rem}
   .outcomes{list-style:none;padding:0;margin:0 auto 1.5rem;max-width:420px;text-align:left}
   .outcomes li{position:relative;font-family:"Archivo",system-ui,sans-serif;font-size:.98rem;line-height:1.45;color:var(--muted);padding:.65rem 0 .65rem 2.1rem;border-bottom:1px solid var(--line);margin:0}
@@ -419,25 +422,13 @@
         <div class="offer" id="waitlist">
           <p class="offer-kicker"><span>Freedom Through Retainers<sup class="tm">&trade;</sup></span></p>
           <p class="offer-title">Cover your fixed costs with monthly retainers in&nbsp;90&nbsp;days.</p>
-          <p class="offer-text">A 90-day, 1-on-1 program with one goal: <b>replace your fixed costs with retainers in 90 days.</b> I show you exactly how to price, position and land them, so you never have a low month again.</p>
-          <ul class="offer-points">
-            <li>90 days, 1-on-1 with me</li>
-            <li>Built for established service businesses</li>
-            <li>Small cohorts, limited places</li>
-          </ul>
-
-          <div class="note">
-            <img src="/assets/mitch.jpg" alt="" width="400" height="400">
-            <p>&ldquo;Retainers are what turned my freelancing into a real business with a team that runs it. This is the exact method I use, taught 1&#8209;on&#8209;1.&rdquo;<span>Mitch Hemming</span></p>
-          </div>
-
-          <p class="offer-sub">In 90 days you'll walk away with</p>
+          <p class="offer-text">One goal: <b>replace your fixed costs with retainers.</b></p>
+          <p class="offer-meta">90 days &middot; 1&#8209;on&#8209;1 with me &middot; Small cohorts</p>
           <ul class="outcomes">
             <li><b>Your retainer offer</b>, priced and packaged so clients say yes</li>
-            <li><b>The right clients to pitch</b>, and exactly what to say to them</li>
-            <li><b>Your first retainers pitched</b>, with a clear plan to build towards your number</li>
+            <li><b>The right clients to pitch</b>, and exactly what to say</li>
+            <li><b>Your first retainers pitched</b>, with a plan to reach your number</li>
           </ul>
-
 
           <form id="join" novalidate>
             <p class="offer-form-title">Save your spot on the waitlist</p>
@@ -446,7 +437,7 @@
             <div class="field"><label class="lbl" for="email">Email</label><input class="txt" id="email" name="Email" type="email" autocomplete="email" required></div>
             <p class="err" id="err-join" aria-live="polite"></p>
             <button class="btn full" type="submit" id="join-btn">Save my spot &rarr;</button>
-            <p class="fine">No payment now, no obligation. Waitlist members hear first, before it opens to anyone else.</p>
+            <p class="fine">No payment, no obligation. The waitlist hears first.</p>
           </form>
           <div class="joined" id="joined" hidden>
             <div class="tick" aria-hidden="true">&#10003;</div>
@@ -745,6 +736,18 @@
     show(1);
     scrollTo({ top: document.querySelector("main").getBoundingClientRect().top + scrollY - 16, behavior: reduce ? "auto" : "smooth" });
   });
+
+  // Keep the hero heading on two lines and inside the screen on every device and font
+  function fitHero(){
+    var h = document.querySelector(".hero h1"), box = document.querySelector(".hero .wrap");
+    if (!h || !box) return;
+    h.style.fontSize = "";
+    var room = box.clientWidth, w = h.getBoundingClientRect().width;
+    if (w > room) h.style.fontSize = (parseFloat(getComputedStyle(h).fontSize) * room / w * 0.98) + "px";
+  }
+  fitHero();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHero);
+  addEventListener("resize", fitHero);
 
   show(1);
 })();
