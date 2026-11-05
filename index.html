@@ -257,6 +257,26 @@
   input[type=range]::-moz-range-thumb{background:var(--brass)!important;border-color:#111214!important}
   .mark-name{color:var(--ink)!important;font-weight:700}
 
+  /* Waitlist offer, extra parts */
+  .hl{background:linear-gradient(transparent 58%,var(--brass) 58%,var(--brass) 92%,transparent 92%);padding:0 .08em;white-space:nowrap}
+  .note{display:flex;gap:.9rem;align-items:center;text-align:left;background:#F6F7F8;border-radius:12px;padding:.9rem 1rem;margin:0 auto 1.6rem;max-width:460px}
+  .offer-text b{color:var(--ink)}
+  .note img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+  .note p{font-family:"Archivo",system-ui,sans-serif;font-size:.95rem;line-height:1.45;color:var(--ink);margin:0}
+  .note span{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-top:.35rem}
+  .offer-sub{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:1rem;color:var(--ink);margin:0 0 .7rem}
+  .outcomes{list-style:none;padding:0;margin:0 auto 1.5rem;max-width:420px;text-align:left}
+  .outcomes li{position:relative;font-family:"Archivo",system-ui,sans-serif;font-size:.98rem;line-height:1.45;color:var(--muted);padding:.65rem 0 .65rem 2.1rem;border-bottom:1px solid var(--line);margin:0}
+  .outcomes li:last-child{border-bottom:0}
+  .outcomes li b{color:var(--ink)}
+  .outcomes li::before{content:"\2713";position:absolute;left:0;top:.68rem;width:22px;height:22px;border-radius:50%;background:var(--brass);color:#111214;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .fit{display:grid;gap:.6rem;grid-template-columns:1fr;margin:0 auto 1.6rem;max-width:460px}
+  @media(min-width:560px){.fit{grid-template-columns:1fr 1fr}}
+  .fit div{font-family:"Archivo",system-ui,sans-serif;font-size:.88rem;line-height:1.45;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:.8rem .9rem}
+  .fit b{display:block;color:var(--ink);font-size:.92rem;margin-bottom:.2rem}
+  .spots{font-family:"Archivo",system-ui,sans-serif;font-size:.9rem;color:var(--muted);margin:0 0 .5rem}
+  .spots span{display:inline-block;background:#111214;color:#fff;font-weight:700;border-radius:999px;padding:.2rem .65rem;margin-right:.3rem}
+
   footer{font-family:"Archivo",system-ui,sans-serif;padding:3rem 0 3.5rem;color:#8B9098;font-size:.78rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
   footer a{color:#8B9098}
   footer p{margin:0}
@@ -397,26 +417,44 @@
         <div class="offer" id="waitlist">
           <p class="offer-kicker"><span>Freedom Through Retainers<sup class="tm">&trade;</sup></span></p>
           <p class="offer-title">Cover your fixed costs with monthly retainers in&nbsp;90&nbsp;days.</p>
-          <p class="offer-text">A 90-day, 1-on-1 program where I show you exactly how to price, position and land the retainers that cover what you need, so you never have a low month again.</p>
+          <p class="offer-text">A 90-day, 1-on-1 program where I show you exactly how to price, position and land the retainers that cover your <b id="offer-num">fixed costs</b> every month, so you never have a low month again.</p>
           <ul class="offer-points">
             <li>90 days, 1-on-1 with me</li>
             <li>Built for established service businesses</li>
             <li>Small cohorts, limited places</li>
           </ul>
 
+          <div class="note">
+            <img src="/assets/mitch.jpg" alt="" width="400" height="400">
+            <p>&ldquo;Retainers are what turned my freelancing into a real business with a team that runs it. This is the exact method I use, taught 1&#8209;on&#8209;1.&rdquo;<span>Mitch Hemming</span></p>
+          </div>
+
+          <p class="offer-sub">In 90 days you'll walk away with</p>
+          <ul class="outcomes">
+            <li><b>Your retainer offer</b>, priced and packaged so clients say yes</li>
+            <li><b>The right clients to pitch</b>, and exactly what to say to them</li>
+            <li><b>Your first retainers signed</b>, with a clear path to your full number</li>
+          </ul>
+
+          <div class="fit">
+            <div><b>For you if</b>you've been in business a few years, have clients who trust you, and you're tired of chasing the next job.</div>
+            <div><b>Not for you if</b>you're still looking for your first client.</div>
+          </div>
+
           <form id="join" novalidate>
-            <p class="offer-form-title">Join the waitlist for the next cohort</p>
+            <p class="spots"><span>10 places</span> in the first cohort</p>
+            <p class="offer-form-title">Save your spot on the waitlist</p>
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <div class="field"><label class="lbl" for="name">First name</label><input class="txt" id="name" name="Name" autocomplete="given-name" required></div>
             <div class="field"><label class="lbl" for="email">Email</label><input class="txt" id="email" name="Email" type="email" autocomplete="email" required></div>
             <p class="err" id="err-join" aria-live="polite"></p>
-            <button class="btn full" type="submit" id="join-btn">Join the waitlist &rarr;</button>
-            <p class="fine">You'll be first to know when the next intake opens. No obligation, unsubscribe any time.</p>
+            <button class="btn full" type="submit" id="join-btn">Save my spot &rarr;</button>
+            <p class="fine">No payment now, no obligation. Waitlist members hear first, before it opens to anyone else.</p>
           </form>
           <div class="joined" id="joined" hidden>
             <div class="tick" aria-hidden="true">&#10003;</div>
-            <p class="offer-form-title" style="margin-bottom:.3rem">You're on the waitlist.</p>
-            <p class="hint" style="margin:0">I'll email you first when the next cohort opens.</p>
+            <p class="offer-form-title" style="margin-bottom:.3rem">Your spot on the waitlist is saved.</p>
+            <p class="hint" style="margin:0">You'll hear from me first when the next cohort opens.</p>
           </div>
         </div>
 
@@ -575,7 +613,7 @@
     d.append("Their adjusted plan", st.clients + " clients x " + money(st.price) + " = " + money(st.clients * st.price));
     fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { "Accept": "application/json" } })
       .then(function(r){ if (!r.ok) throw new Error(); e.target.hidden = true; $("joined").hidden = false; })
-      .catch(function(){ btn.disabled = false; btn.textContent = "Join the waitlist \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
+      .catch(function(){ btn.disabled = false; btn.textContent = "Save my spot \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; });
   });
 
   // ---------- Results rendering ----------
@@ -614,6 +652,9 @@
     var s = $("status");
     if (covered) { s.className = "status ok"; s.textContent = "✓ Covers what you need" + (total > S ? ", " + money(total - S) + " spare" : ""); }
     else { s.className = "status short"; s.textContent = money(S - total) + " short of what you need"; }
+
+    // Waitlist headline uses their own number
+    $("offer-num").textContent = money(S);
 
     // The problem
     if (short.length) {
