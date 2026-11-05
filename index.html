@@ -9,7 +9,7 @@
 <meta property="og:description" content="See what 12 months of retainers looks like next to 12 months of chasing jobs.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freedomthroughretainers.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111214'/%3E%3Crect x='6' y='21' width='20' height='3' fill='%23C9D8FF'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111214'/%3E%3Crect x='6' y='21' width='20' height='3' fill='%23C6F135'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
@@ -21,9 +21,9 @@
     --line:#DCDFE3;
     --teal:#111214;
     --teal-ink:#000000;
-    --teal-soft:#E6EDFF;
-    --brass:#2457FF;
-    --brass-soft:#E6EDFF;
+    --teal-soft:#EEF8CF;
+    --brass:#C6F135;
+    --brass-soft:#EEF8CF;
     --short:#D2443C;
     --short-soft:#F3C4BF;
     --bar:#CBCFD5;
@@ -47,7 +47,7 @@
   .hero h1{text-align:center;margin:0;white-space:nowrap;width:max-content;position:relative;left:50%;transform:translateX(-50%)}
   .ul{position:relative;display:inline-block;white-space:nowrap}
   .ul{z-index:0}
-  .ul-svg{position:absolute;left:-3%;right:-3%;bottom:.02em;width:106%;height:.42em;color:#C9D8FF;pointer-events:none;z-index:-1}
+  .ul-svg{position:absolute;left:-3%;right:-3%;bottom:.02em;width:106%;height:.42em;color:var(--brass);pointer-events:none;z-index:-1}
   @media(max-width:700px){.hero h1{font-size:min(2.1rem,calc((100vw - 36px) / 16.6));letter-spacing:-0.015em}}
   .tm{font-size:.55em;line-height:0;vertical-align:super;margin-left:1px;font-weight:400}
 
@@ -245,16 +245,16 @@
   .offer-kicker{color:var(--ink)!important;text-transform:none!important;letter-spacing:0!important;font-size:.9rem!important;display:inline-flex;align-items:center;gap:.45rem}
   .offer-kicker::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--brass)}
   /* Accent usage */
-  .status.ok{color:#2457FF!important}
+  .status.ok{color:#36450A!important}
   .offer-points li{background:#F1F2F4!important;color:var(--ink)!important}
-  .offer-points li::before{color:#fff!important;background:var(--brass);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;vertical-align:1px}
-  #join-btn{background:var(--brass);color:#fff}
-  #join-btn:hover{background:#1A44D6}
+  .offer-points li::before{color:#111214!important;background:var(--brass);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;vertical-align:1px}
+  #join-btn{background:var(--brass);color:#111214}
+  #join-btn:hover{background:#B3DE1F}
   .key{border-top:4px solid var(--brass)!important}
   .chart .lbl-s{fill:#111214!important}
   :focus-visible{outline-color:#111214!important}
-  input[type=range]::-webkit-slider-thumb{background:var(--brass)!important;border-color:#fff!important;box-shadow:0 0 0 1px #2457FF,0 2px 6px rgba(17,18,20,.3)!important}
-  input[type=range]::-moz-range-thumb{background:var(--brass)!important;border-color:#fff!important}
+  input[type=range]::-webkit-slider-thumb{background:var(--brass)!important;border-color:#111214!important}
+  input[type=range]::-moz-range-thumb{background:var(--brass)!important;border-color:#111214!important}
   .mark-name{color:var(--ink)!important;font-weight:700}
 
   footer{font-family:"Archivo",system-ui,sans-serif;padding:3rem 0 3.5rem;color:#8B9098;font-size:.78rem;line-height:1.7;text-align:center;border-top:1px solid var(--line)}
@@ -670,7 +670,7 @@
     out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ys + '" y2="' + ys + '" stroke="#111214" stroke-width="1.6" stroke-dasharray="5 4"/>';
     var labelY = ys - 5 < T + 6 ? ys + 13 : ys - 5;
     if (retainer && vals[0] >= S && Math.abs(y(vals[0]) - ys) < 14) labelY = ys + 13;
-    out += '<rect x="' + (W - R - 74) + '" y="' + (labelY - 9) + '" width="74" height="13" rx="3" fill="#E6EDFF"/>';
+    out += '<rect x="' + (W - R - 74) + '" y="' + (labelY - 9) + '" width="74" height="13" rx="3" fill="#EEF8CF"/>';
     out += '<text class="lbl-s" x="' + (W - R - 3) + '" y="' + labelY + '" text-anchor="end">You need ' + short(S) + '</text>';
     var c = $(id);
     c.innerHTML = out;
