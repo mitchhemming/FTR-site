@@ -6,7 +6,7 @@
 <title>Freedom Through Retainers</title>
 <meta name="description" content="See what your business looks like when your jobs become monthly retainers. A free calculator from Mitch Hemming.">
 <meta property="og:title" content="Freedom Through Retainers">
-<meta property="og:description" content="Turn your average job into a monthly retainer and see how close you are to covering your survival number.">
+<meta property="og:description" content="See what 12 months of retainers looks like next to 12 months of chasing jobs.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freedomthroughretainers.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F3D3E'/%3E%3Crect x='6' y='21' width='20' height='3' fill='%23C9A227'/%3E%3C/svg%3E">
@@ -112,7 +112,7 @@
   .ring-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:"Schibsted Grotesk",system-ui,sans-serif}
   .ring-txt b{font-size:1.55rem;line-height:1;letter-spacing:-0.02em;color:var(--teal)}
   .ring-txt span{font-size:.7rem;color:var(--muted);margin-top:.2rem;text-transform:uppercase;letter-spacing:.06em}
-  .total{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(1.85rem,8vw,3rem);line-height:1;letter-spacing:-0.035em;color:var(--teal);margin:0 0 .45rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .total{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:clamp(1.85rem,8vw,3rem);line-height:1;letter-spacing:-0.035em;color:var(--teal);margin:0 0 .45rem;white-space:nowrap}
   .total small{font-size:.36em;font-weight:600;letter-spacing:0;color:var(--muted)}
   .status{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem;font-weight:600;margin:0;display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .7rem;border-radius:999px;line-height:1.3}
   .status.short{background:#F6E3DD;color:var(--short)}
@@ -125,7 +125,7 @@
   .slider + .slider{margin-top:1.3rem}
   .slider-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin:0 0 .4rem;font-family:"Schibsted Grotesk",system-ui,sans-serif}
   .slider-top label{font-weight:600;font-size:.95rem}
-  .slider-top output{font-weight:700;font-size:1.2rem;color:var(--teal);font-variant-numeric:tabular-nums}
+  .slider-top output{font-weight:700;font-size:1.2rem;color:var(--teal)}
   input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:transparent;margin:0;cursor:pointer}
   input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(to right,var(--teal) 0,var(--teal) var(--p,50%),#D6DCD8 var(--p,50%))}
   input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:#D6DCD8}
@@ -157,6 +157,14 @@
   .vs span{display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.82rem;line-height:1.35;color:var(--muted);margin-top:.25rem}
   .vs .bad b{color:var(--short)}
   .vs .good b{color:var(--teal)}
+  .swing{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.95rem;line-height:1.45;margin:1rem auto 0;max-width:44ch}
+  .swing b{color:var(--short)}
+  .swing strong{color:var(--teal)}
+  .res-title{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.5rem;line-height:1.15;letter-spacing:-0.025em;color:var(--ink);margin:0 0 .25rem}
+  .panel-title{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-weight:700;font-size:1.1rem;margin:0 0 .6rem}
+  .panel .total{margin-bottom:.5rem}
+  .panel .status{margin-bottom:1.1rem}
+  .vs b{font-size:2.4rem;margin:.15rem 0 0}
   .disclaim{font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.75rem;color:var(--muted);margin:.6rem 0 0}
 
   .how{list-style:none;padding:0;margin:1rem 0 0;counter-reset:h}
@@ -213,7 +221,7 @@
       <div id="quiz">
         <p class="calc-title">Calculate your retainers</p>
         <p class="kicker">Free &middot; takes 60 seconds</p>
-        <div class="progress" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 
         <!-- 1. Survival number -->
         <div class="step on" data-step="1">
@@ -246,6 +254,25 @@
           <p class="live" id="live-now"></p>
         </div>
 
+        <!-- 4. Lowest month -->
+        <div class="step" data-step="4">
+          <p class="q">Roughly, what did your quietest month bring in?</p>
+          <p class="hint">Total revenue in your lowest month over the last year or so.</p>
+          <label class="bigin"><input id="low" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Revenue in your lowest month"></label>
+          <p class="unit">in your lowest month</p>
+          <p class="err" id="err4" aria-live="polite"></p>
+        </div>
+
+        <!-- 5. Highest month -->
+        <div class="step" data-step="5">
+          <p class="q">And your best month?</p>
+          <p class="hint">Total revenue in your highest month over the same period.</p>
+          <label class="bigin"><input id="high" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Revenue in your highest month"></label>
+          <p class="unit">in your best month</p>
+          <p class="err" id="err5" aria-live="polite"></p>
+          <p class="live" id="live-swing" hidden></p>
+        </div>
+
         <div class="nav" id="nav">
           <button type="button" class="btn" id="next">Next</button>
           <button type="button" class="back" id="back">&larr; Back</button>
@@ -254,68 +281,43 @@
 
       <!-- Results -->
       <div id="results" hidden>
-        <p class="kicker" id="r-kicker">If your jobs became retainers</p>
-        <div class="total-wrap">
-          <div class="ring" aria-hidden="true">
-            <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="val" id="ring" cx="60" cy="60" r="52"/></svg>
-            <div class="ring-txt"><b id="pct">0%</b><span>covered</span></div>
-          </div>
-          <div>
-            <p class="total"><span id="total">$0</span> <small>/ month</small></p>
-            <p class="status" id="status"></p>
-          </div>
+        <p class="kicker">Your next 12 months</p>
+        <p class="res-title">Chasing jobs vs retainers</p>
+        <svg class="chart" id="chart" viewBox="0 0 340 200" role="img" aria-label="Twelve months of income from chasing jobs compared with a steady retainer line"></svg>
+        <div class="legend">
+          <span><i style="background:var(--bar)"></i>Chasing jobs</span>
+          <span><i style="background:var(--short-soft)"></i>Short months</span>
+          <span><i style="background:var(--teal)"></i>Retainers</span>
+          <span><i style="background:var(--brass)"></i>What you need</span>
         </div>
-        <p class="eq" id="eq"></p>
+        <div class="vs">
+          <div class="bad"><span>Chasing jobs</span><b id="months-now">0</b><span>short months a year</span></div>
+          <div class="good"><span>On retainers</span><b id="months-ret">0</b><span>short months a year</span></div>
+        </div>
+        <p class="swing" id="swing"></p>
 
         <div class="panel">
+          <p class="panel-title">Adjust your retainers</p>
+          <p class="total"><span id="total">$0</span> <small>a month</small></p>
+          <p class="status" id="status"></p>
           <div class="slider">
             <div class="slider-top"><label for="s-clients">Retainer clients</label><output id="o-clients"></output></div>
             <input type="range" id="s-clients" min="1" max="20" step="1">
-            <div class="scale"><span id="c-min"></span><span id="c-max"></span></div>
           </div>
           <div class="slider">
-            <div class="slider-top"><label for="s-price">Retainer price</label><output id="o-price"></output></div>
+            <div class="slider-top"><label for="s-price">Price per client</label><output id="o-price"></output></div>
             <input type="range" id="s-price" min="100" max="5000" step="50">
-            <div class="scale"><span id="p-min"></span><span id="p-max"></span></div>
           </div>
-          <div class="fixes">
-            <p>Hit your number with</p>
-            <div class="chips">
-              <button type="button" class="chip" data-fix="clients">More clients</button>
-              <button type="button" class="chip" data-fix="price">A higher price</button>
-              <button type="button" class="chip" data-fix="both">A bit of both</button>
-              <button type="button" class="chip" data-fix="reset">Reset</button>
-            </div>
-          </div>
-        </div>
-        <p class="note" id="capacity"></p>
-
-        <div class="section">
-          <p class="h2">Your year, two ways</p>
-          <p class="hint" style="margin:0">Same average income, very different months. Grey bars are project income landing unevenly. The teal line is your retainers, arriving on the same day every month.</p>
-          <svg class="chart" id="chart" viewBox="0 0 340 200" role="img" aria-label="Twelve months of uneven project income compared with a steady retainer line"></svg>
-          <div class="legend">
-            <span><i style="background:var(--bar)"></i>Project income</span>
-            <span><i style="background:var(--short-soft)"></i>Below survival</span>
-            <span><i style="background:var(--teal)"></i>Retainers</span>
-            <span><i style="background:var(--brass)"></i>Survival number</span>
-          </div>
-          <div class="vs">
-            <div class="bad"><b id="months-now">0 / 12</b><span>months below survival on project work alone</span></div>
-            <div class="good"><b id="months-ret">0 / 12</b><span>months below survival with your retainers</span></div>
-          </div>
-          <p class="disclaim">The project pattern is an illustration based on your average, not your actual months.</p>
+          <p class="fine" style="margin-top:1rem">Priced at 75% of your average job. Drag either slider to try your own mix.</p>
         </div>
 
         <div class="section">
           <p class="h2">The numbers are the easy part.</p>
-          <p class="hint" style="margin:0">Anyone can move a slider. Doing it in a real business, without scaring off clients or going backwards, is where people get stuck:</p>
+          <p class="hint" style="margin:0">Doing it without losing clients or going backwards is where people get stuck:</p>
           <ol class="how">
-            <li>Which of your current clients should you offer a retainer to first?</li>
-            <li>What goes into a retainer so it's worth paying for every single month?</li>
-            <li>How do you pitch it without discounting yourself or losing the work you already have?</li>
-            <li>How do you switch over without a dip in income while you do it?</li>
-            <li>How do you fit the retainer work in so it doesn't swallow your week?</li>
+            <li>Which clients do you offer a retainer to first?</li>
+            <li>How do you pitch it without discounting yourself?</li>
+            <li>How do you switch over without a dip in income?</li>
           </ol>
           <p class="closer">That's what I've spent years working out in my own business, and it's exactly what I teach in Freedom Through Retainers.</p>
         </div>
@@ -358,8 +360,10 @@
   // ---- Settings ----
   var FORM_ENDPOINT = "https://formspree.io/f/mdeenrgl"; // Name, email and answers are sent here.
   var RETAINER_RATE = 0.75;                              // Retainer price starts at 75% of the average job.
-  // Illustrative month-to-month swing for project income (normalised to the average).
-  var PATTERN = [1.42, 0.58, 1.12, 0.41, 1.55, 0.86, 0.66, 1.28, 0.52, 1.18, 0.95, 0.62];
+  // Year model: about 20% of months at their lowest, 20% at their highest, the rest in between.
+  // 12 months: L = lowest month, H = highest month, numbers = middle months spread around their average.
+  var YEAR = ["m0", "H", "m1", "L", "m2", "m3", "H", "m4", "m5", "L", "m6", "m7"];
+  var MID_SPREAD = [0.9, 1.08, 0.96, 1.12, 0.93, 1.04, 0.98, 1.06];
   var MONTHS = ["J","F","M","A","M","J","J","A","S","O","N","D"];
 
   var $ = function(id){ return document.getElementById(id); };
@@ -380,19 +384,21 @@
     document.querySelectorAll("#quiz .step").forEach(function(s){ s.classList.toggle("on", +s.dataset.step === n); });
     bars.forEach(function(b, i){ b.classList.toggle("on", i < n); });
     $("back").hidden = n === 1;
-    $("next").innerHTML = n === 3 ? "See my numbers &rarr;" : "Next";
+    $("next").innerHTML = n === 5 ? "See my numbers &rarr;" : "Next";
     if (n === 3) liveNow();
     var f = document.querySelector('#quiz .step.on input:not([name="_gotcha"])');
     if (f && matchMedia("(hover:hover)").matches) setTimeout(function(){ f.focus({ preventScroll: true }); }, 60);
   }
 
   // Money inputs: format as you type
-  ["survival", "aov"].forEach(function(id, i){
+  [["survival", "err1"], ["aov", "err2"], ["low", "err4"], ["high", "err5"]].forEach(function(pair){
+    var id = pair[0], errId = pair[1];
     var el = $(id);
     el.addEventListener("input", function(){
       var v = el.value.replace(/[^0-9]/g, "").slice(0, 7);
       el.value = v ? "$" + (+v).toLocaleString("en-AU") : "";
-      $("err" + (i + 1)).textContent = "";
+      $(errId).textContent = "";
+      if (id === "high" || id === "low") liveSwing();
     });
     el.addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); $("next").click(); } });
   });
@@ -421,10 +427,26 @@
       st.aov = a; show(3);
     } else if (st.step === 3) {
       st.jobs = Math.max(1, num($("jobs").value) || 1);
+      show(4);
+    } else if (st.step === 4) {
+      var lo = num($("low").value);
+      if (lo < 1) { $("err4").textContent = "Enter roughly what your quietest month brought in."; return; }
+      st.low = lo; show(5);
+    } else if (st.step === 5) {
+      var hi = num($("high").value);
+      if (hi < 1) { $("err5").textContent = "Enter roughly what your best month brought in."; return; }
+      if (hi < st.low) { $("err5").textContent = "Your best month should be at least your quietest month (" + money(st.low) + ")."; return; }
+      st.high = hi;
       setup(); reveal();
     }
   });
   $("back").addEventListener("click", function(){ if (st.step > 1) show(st.step - 1); });
+
+  function liveSwing(){
+    var lo = num($("low").value), hi = num($("high").value), el = $("live-swing");
+    if (lo > 0 && hi > lo) { el.hidden = false; el.innerHTML = "That's a swing of <b>" + money(hi - lo) + "</b> between your best and worst months."; }
+    else el.hidden = true;
+  }
 
   // ---------- Model ----------
   var sc = $("s-clients"), sp = $("s-price");
@@ -432,7 +454,8 @@
     st.pStep = priceStep(st.aov);
     st.basePrice = Math.max(st.pStep, roundTo(st.aov * RETAINER_RATE, st.pStep));
     st.baseClients = st.jobs;
-    st.clients = st.baseClients; st.price = st.basePrice;
+    st.price = st.basePrice;
+    st.clients = Math.max(st.jobs, Math.ceil(st.survival / st.basePrice)); // start on a plan that covers what they need
     sc.min = 1; sc.max = Math.max(20, st.jobs * 3, Math.ceil(st.survival / st.basePrice) + 2);
     sp.min = Math.max(st.pStep, roundTo(st.aov * 0.3, st.pStep)); sp.step = st.pStep;
     sp.max = Math.max(ceilTo(st.aov * 2, st.pStep), ceilTo(st.survival / Math.max(1, st.jobs) * 1.2, st.pStep));
@@ -463,6 +486,8 @@
     d.append("Survival number", money(st.survival));
     d.append("Average job", money(st.aov));
     d.append("Jobs per month", st.jobs);
+    d.append("Lowest month", money(st.low));
+    d.append("Highest month", money(st.high));
     d.append("Current average monthly", money(st.aov * st.jobs));
     d.append("Retainer price (75%)", money(st.basePrice));
     d.append("Retainer total if converted", money(st.basePrice * st.baseClients));
@@ -474,9 +499,6 @@
   });
 
   // ---------- Results rendering ----------
-  var C = 2 * Math.PI * 52;
-  $("ring").style.strokeDasharray = C;
-  $("ring").style.strokeDashoffset = C;
   var shown = 0, raf;
   function countTo(to){
     cancelAnimationFrame(raf);
@@ -493,67 +515,39 @@
   function syncSliders(){
     sc.value = st.clients; sp.value = st.price;
     paint(sc); paint(sp);
-    $("c-min").textContent = sc.min; $("c-max").textContent = sc.max;
-    $("p-min").textContent = short(+sp.min); $("p-max").textContent = short(+sp.max);
   }
   function paint(el){ el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); }
 
-  sc.addEventListener("input", function(){ st.clients = +sc.value; paint(sc); clearFix(); render(); });
-  sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); clearFix(); render(); });
-  function clearFix(){ document.querySelectorAll("[data-fix]").forEach(function(x){ x.classList.remove("sel"); }); }
-
-  document.querySelectorAll("[data-fix]").forEach(function(b){
-    b.addEventListener("click", function(){
-      var S = st.survival, f = b.dataset.fix;
-      if (f === "clients") { st.clients = Math.max(1, Math.ceil(S / st.price)); }
-      else if (f === "price") { st.price = Math.max(st.pStep, ceilTo(S / st.clients, st.pStep)); }
-      else if (f === "both") {
-        var k = Math.sqrt(S / (st.basePrice * st.baseClients));
-        st.clients = Math.max(1, Math.round(st.baseClients * k));
-        st.price = Math.max(st.pStep, ceilTo(S / st.clients, st.pStep));
-      } else { st.clients = st.baseClients; st.price = st.basePrice; }
-      clearFix(); if (f !== "reset") b.classList.add("sel");
-      ensureRange(); syncSliders(); render();
-    });
-  });
+  sc.addEventListener("input", function(){ st.clients = +sc.value; paint(sc); render(); });
+  sp.addEventListener("input", function(){ st.price = +sp.value; paint(sp); render(); });
 
   function render(first){
-    var S = st.survival, total = st.clients * st.price, pct = total / S;
+    var S = st.survival, total = st.clients * st.price;
     $("o-clients").textContent = st.clients;
-    $("o-price").textContent = money(st.price) + "/mo";
+    $("o-price").textContent = money(st.price);
     countTo(total);
-    $("pct").textContent = Math.round(pct * 100) + "%";
-    var ring = $("ring");
-    ring.classList.toggle("over", pct >= 1);
-    var off = C * (1 - Math.min(1, pct));
-    if (first && !reduce) { ring.style.strokeDashoffset = C; requestAnimationFrame(function(){ requestAnimationFrame(function(){ ring.style.strokeDashoffset = off; }); }); }
-    else ring.style.strokeDashoffset = off;
-
     var s = $("status");
-    if (total >= S) { s.className = "status ok"; s.textContent = "✓ Survival covered" + (total > S ? ", " + money(total - S) + " spare" : ""); }
-    else { s.className = "status short"; s.textContent = money(S - total) + " short of survival"; }
-
-    $("eq").innerHTML = "<b>" + st.clients + "</b> client" + (st.clients === 1 ? "" : "s") + " &times; <b>" + money(st.price) +
-      "</b> a month. Your starting point was your " + st.jobs + " jobs a month at 75% of your " + money(st.aov) + " average.";
-
-    var free = st.jobs - st.clients, cap = $("capacity");
-    if (total >= S && free > 0) {
-      cap.innerHTML = "Survival is locked in before the month starts. That leaves room for about <b>" + free + " more job" + (free === 1 ? "" : "s") +
-        "</b> at full price, roughly <b>" + money(free * st.aov) + "</b> a month of pure profit on top.";
-    } else if (total >= S) {
-      cap.innerHTML = "Survival is locked in before the month starts. Every project you take on top of this is profit, not rent money." +
-        (free < 0 ? " Just note that's " + (-free) + " more client" + (free === -1 ? "" : "s") + " than the jobs you handle now, so how you deliver matters." : "");
-    } else {
-      cap.innerHTML = "You're " + money(S - total) + " away. Try <b>more clients</b>, <b>a higher price</b>, or a bit of both.";
-    }
+    if (total >= S) { s.className = "status ok"; s.textContent = "\u2713 Covers what you need" + (total > S ? ", " + money(total - S) + " spare" : ""); }
+    else { s.className = "status short"; s.textContent = money(S - total) + " short of what you need"; }
     drawChart(total, first);
   }
 
   // ---------- Chart ----------
-  var norm = PATTERN.reduce(function(a, b){ return a + b; }, 0) / PATTERN.length;
+  function yearValues(){
+    var lo = st.low, hi = st.high, range = hi - lo;
+    var centre = st.aov * st.jobs;
+    if (!(centre > lo && centre < hi)) centre = (lo + hi) / 2;
+    var floor = lo + range * 0.1, ceil = hi - range * 0.1;
+    return YEAR.map(function(k){
+      if (k === "L") return lo;
+      if (k === "H") return hi;
+      var v = centre * MID_SPREAD[+k.slice(1)];
+      return range > 0 ? Math.min(ceil, Math.max(floor, v)) : lo;
+    });
+  }
   function drawChart(retTotal, animate){
-    var S = st.survival, avg = st.aov * st.jobs;
-    var vals = PATTERN.map(function(m){ return avg * m / norm; });
+    var S = st.survival;
+    var vals = yearValues();
     var W = 340, H = 200, L = 34, R = 6, T = 14, B = 22, cw = W - L - R, ch = H - T - B;
     var max = Math.max.apply(null, vals.concat([S, retTotal])) * 1.12;
     var y = function(v){ return T + ch - (v / max) * ch; };
@@ -576,12 +570,13 @@
     out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yr + '" y2="' + yr + '" stroke="var(--teal)" stroke-width="3.5" stroke-linecap="round"/>';
     var close = Math.abs(ys - yr) < 13, up = yr <= ys;
     out += '<text class="lbl-r" x="' + (W - R) + '" y="' + (yr + (close && !up ? 14 : -6)) + '" text-anchor="end">Retainers ' + short(retTotal) + '</text>';
-    out += '<text class="lbl-s" x="' + (L + 4) + '" y="' + (ys + (close && up ? 13 : -5)) + '">Survival ' + short(S) + '</text>';
+    out += '<text class="lbl-s" x="' + (L + 4) + '" y="' + (ys + (close && up ? 13 : -5)) + '">You need ' + short(S) + '</text>';
     var c = $("chart");
     c.innerHTML = out;
     if (animate && !reduce) { c.classList.remove("grow"); void c.getBoundingClientRect(); c.classList.add("grow"); } else c.classList.remove("grow");
-    $("months-now").textContent = below + " / 12";
-    $("months-ret").textContent = (retTotal >= S ? 0 : 12) + " / 12";
+    $("months-now").textContent = below;
+    $("months-ret").textContent = retTotal >= S ? 0 : 12;
+    $("swing").innerHTML = "Chasing jobs, your income swings by <b>" + money(st.high - st.low) + "</b> from month to month. On retainers it swings by <strong>$0</strong>.";
   }
 
   // Start again with different numbers
