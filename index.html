@@ -291,6 +291,11 @@
   footer .mob{display:none}
   @media(max-width:600px){footer .mob{display:inline}footer .sep{display:none}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  /* Next step CTA */
+  .cta{text-align:center;margin:2.5rem 0 0;padding:2rem 1.25rem;background:var(--ink);border-radius:14px;color:#fff}
+  .cta-title{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;font-variation-settings:"wdth" 118;font-size:clamp(1.5rem,6vw,2rem);line-height:1.1;letter-spacing:-0.025em;margin:0 0 .5rem}
+  .cta-text{font-family:"Archivo",system-ui,sans-serif;font-size:1rem;line-height:1.45;color:#C9CDD3;margin:0 0 1.4rem}
+  .cta-btn{background:var(--brass)!important;color:var(--ink)!important;font-weight:700;font-size:1.08rem}
 </style>
 </head>
 <body>
@@ -403,6 +408,7 @@
           <p class="status" id="status"></p>
           <p class="fine" style="margin-top:.9rem">We've started you at a price clients happily commit to every month.</p>
         </div>
+        <button type="button" class="again" id="again">Start again with different numbers</button>
 
         <!-- The curiosity -->
         <div class="secret">
@@ -423,34 +429,11 @@
           <p class="secret-close">That's the exact method behind my own business, and what I teach step by step in <b>Freedom Through Retainers</b>.</p>
         </div>
 
-        <div class="offer" id="waitlist">
-          <p class="offer-kicker"><span>Freedom Through Retainers<sup class="tm">&trade;</sup></span></p>
-          <p class="offer-title">Cover your fixed costs with monthly retainers in&nbsp;90&nbsp;days.</p>
-          <p class="offer-text">One goal: <b>replace your fixed costs with retainers.</b></p>
-          <p class="offer-meta">90 days &middot; 1&#8209;on&#8209;1 with me &middot; Small cohorts</p>
-          <ul class="outcomes">
-            <li><b>Your retainer offer</b>, priced &amp; packaged so clients say yes</li>
-            <li><b>The right clients to pitch</b>, and exactly what to say</li>
-            <li><b>Your first retainers pitched</b>, with a plan to reach your number</li>
-          </ul>
-
-          <form id="join" novalidate>
-            <p class="offer-form-title">Save your spot on the waitlist</p>
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-            <div class="field"><label class="lbl" for="name">First name</label><input class="txt" id="name" name="Name" autocomplete="given-name" required></div>
-            <div class="field"><label class="lbl" for="email">Email</label><input class="txt" id="email" name="Email" type="email" autocomplete="email" required></div>
-            <p class="err" id="err-join" aria-live="polite"></p>
-            <button class="btn full" type="submit" id="join-btn">Save my spot &rarr;</button>
-            <p class="fine">No payment, no obligation. The waitlist hears first.</p>
-          </form>
-          <div class="joined" id="joined" hidden>
-            <div class="tick" aria-hidden="true">&#10003;</div>
-            <p class="offer-form-title" style="margin-bottom:.3rem">Your spot on the waitlist is saved.</p>
-            <p class="hint" style="margin:0">You'll hear from me first when the next cohort opens.</p>
-          </div>
+        <div class="cta" id="next-step">
+          <p class="cta-title">DM me &ldquo;FTR&rdquo; on Instagram</p>
+          <p class="cta-text">I&rsquo;ll send you the details of my 90-day intensive.</p>
+          <a class="btn full cta-btn" id="cta-btn" href="https://www.instagram.com/mitchhemming/" target="_blank" rel="noopener">Go to @mitchhemming &rarr;</a>
         </div>
-
-        <button type="button" class="again" id="again">Start again with different numbers</button>
       </div>
 
     </div>
@@ -609,21 +592,8 @@
     scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
   }
 
-  // ---------- Optional sign-up (results are never locked) ----------
-  $("join").addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = $("name").value.trim(), email = $("email").value.trim();
-    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("err-join").textContent = "Add your first name and a valid email."; return; }
-    $("err-join").textContent = "";
-    var btn = $("join-btn"); btn.disabled = true; btn.textContent = "Sending...";
-    // Kit holds the waitlist. Calculator numbers are already saved anonymously by track().
-    var toKit = fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: name, email: email }) })
-      .then(function(r){ return r.ok; }).catch(function(){ return false; });
-    toKit.then(function(ok){
-      if (ok) { e.target.hidden = true; $("joined").hidden = false; track("join", { clients: st.clients, price: st.price, name: name, email: email }); }
-      else { btn.disabled = false; btn.textContent = "Save my spot \u2192"; $("err-join").textContent = "That didn't send. Try again, or email contact@consistentcreative.com."; }
-    });
-  });
+  // ---------- Next step: Instagram DM ----------
+  $("cta-btn").addEventListener("click", function(){ track("cta", { clients: st.clients, price: st.price }); });
 
   // ---------- Results rendering ----------
   var shown = 0, raf;

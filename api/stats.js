@@ -39,8 +39,9 @@ module.exports = async (req, res) => {
   if (!process.env.STATS_PASSWORD) { res.statusCode = 503; res.setHeader("content-type", "text/plain"); return res.end("Stats are locked. Add a STATS_PASSWORD environment variable in Vercel, then redeploy."); }
   if (!keyOk(url.searchParams.get("key"))) { res.statusCode = 401; res.setHeader("content-type", "text/plain"); return res.end("Not authorised."); }
 
-  const [calcB, joinB] = await Promise.all([listAll("calc/"), listAll("join/")]);
+  const [calcB, joinB, ctaB] = await Promise.all([listAll("calc/"), listAll("join/"), listAll("cta/")]);
   const [calc, joins] = await Promise.all([readAll(calcB), readAll(joinB)]);
+  const ctaClicks = ctaB.length; // one record per visitor who tapped the Instagram button
   const planBy = Object.fromEntries(joins.map((p) => [p.id, p])); // sign-ups record where they left the sliders
   const joined = new Set(joins.map((j) => j.id));
   const rows = calc.map((c) => {
@@ -94,8 +95,9 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.5rem .6
 <p class="sub">Every completed calculator. Names and emails appear only for people who joined the waitlist. Times in Brisbane time. <a href="?key=${key}">Refresh</a></p>
 <div class="kpis">
 <div class="kpi"><b>${rows.length}</b><span>completed calculators</span></div>
-<div class="kpi"><b>${joined.size}</b><span>joined the waitlist</span></div>
-<div class="kpi"><b>${rows.length ? Math.round((joined.size / rows.length) * 100) : 0}%</b><span>completion to waitlist</span></div>
+<div class="kpi"><b>${ctaClicks}</b><span>tapped the Instagram button</span></div>
+<div class="kpi"><b>${rows.length ? Math.round((ctaClicks / rows.length) * 100) : 0}%</b><span>completion to Instagram</span></div>
+<div class="kpi"><b>${joined.size}</b><span>joined the old waitlist</span></div>
 <div class="kpi"><b>${num(avg(col("shortMonths")))}</b><span>average short months a year</span></div>
 </div>
 ${medSurv ? `<p class="note">At the median survival number of <b>${$(medSurv)}</b>, a $${PROGRAM_PRICE.toLocaleString("en-AU")} program is about <b>${Math.round((PROGRAM_PRICE / medSurv) * 100)}%</b> of one month's costs. At the median job value of ${$(medAov)}, it's about <b>${num(PROGRAM_PRICE / medAov)}</b> jobs.</p>` : ""}
