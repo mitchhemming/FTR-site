@@ -343,6 +343,17 @@
   .offer-h{max-width:28ch!important}
   .offer-p b.nowrap{white-space:nowrap}
   .offer-box .cta-text{max-width:34ch;margin-left:auto!important;margin-right:auto!important}
+
+  /* Jobs vs retainers comparison */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.1rem 0 1rem}
+  .vs-col{border:1px solid var(--line);border-radius:12px;padding:1rem .8rem;text-align:center;background:#fff}
+  .vs-col.on{border:2px solid var(--brass);background:var(--brass-soft)}
+  .vs-label{font-family:"Archivo",system-ui,sans-serif;font-size:.8rem;font-weight:600;color:var(--muted);margin:0 0 .35rem}
+  .vs-col.on .vs-label{color:var(--ink)}
+  .vs-big{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;font-variation-settings:"wdth" 118;font-size:clamp(1.35rem,6vw,1.75rem);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);margin:0 0 .35rem}
+  .vs-col:not(.on) .vs-big{color:var(--muted)}
+  .vs-sub{font-family:"Archivo",system-ui,sans-serif;font-size:.85rem;line-height:1.35;color:var(--muted);margin:0}
+  .vs-col.on .vs-sub{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -438,6 +449,18 @@
         <div class="section">
           <p class="kicker">With retainers</p>
           <p class="res-title" id="ret-title"></p>
+          <div class="vs">
+            <div class="vs-col">
+              <p class="vs-label">Chasing jobs</p>
+              <p class="vs-big" id="vs-jobs"></p>
+              <p class="vs-sub" id="vs-jobs-sub"></p>
+            </div>
+            <div class="vs-col on">
+              <p class="vs-label">Retainers</p>
+              <p class="vs-big" id="vs-ret"></p>
+              <p class="vs-sub" id="vs-ret-sub"></p>
+            </div>
+          </div>
           <p class="story" id="ret-text"></p>
         </div>
 
@@ -689,10 +712,14 @@
 
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
-    $("ret-title").textContent = covered ? "You only need " + cl + " at " + money(st.price) + " a month." : "Closer. Not covered yet.";
+    $("ret-title").textContent = covered ? "Why chase " + st.jobs + " job" + (st.jobs === 1 ? "" : "s") + " a month?" : "Closer. Not covered yet.";
+    $("vs-jobs").textContent = st.jobs + " job" + (st.jobs === 1 ? "" : "s");
+    $("vs-jobs-sub").textContent = "to find every month, for " + short(st.low) + " to " + short(st.high) + ".";
+    $("vs-ret").textContent = cl + " at " + short(st.price);
+    $("vs-ret-sub").textContent = "signed once, for " + money(total) + " every month.";
     $("ret-text").innerHTML = covered
-      ? "That's <b>" + money(total) + "</b> locked in before the month even starts, every month. Your <b>" + money(S) + "</b> is covered. Every job on top is profit."
-      : "<b>" + cl + "</b> at <b>" + money(st.price) + "</b> a month is <b>" + money(total) + "</b>. You're " + money(S - total) + " short. Drag the sliders below to close the gap.";
+      ? "Your <b>" + money(S) + "</b> is covered before the month starts. Every job on top is profit."
+      : "You're <b>" + money(S - total) + "</b> short. Drag the sliders below to close the gap.";
 
     // The curiosity
     $("how-intro").innerHTML = "Getting <b>" + st.clients + " clients</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, comes down to two things most service businesses get wrong:";
