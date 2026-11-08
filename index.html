@@ -296,6 +296,23 @@
   .cta-title{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;font-variation-settings:"wdth" 118;font-size:clamp(1.5rem,6vw,2rem);line-height:1.1;letter-spacing:-0.025em;margin:0 0 .5rem}
   .cta-text{font-family:"Archivo",system-ui,sans-serif;font-size:1rem;line-height:1.45;color:#C9CDD3;margin:0 0 1.4rem}
   .cta-btn{background:var(--brass)!important;color:var(--ink)!important;font-weight:700;font-size:1.08rem}
+
+  /* Curiosity + offer + CTA: one dark block (v2) */
+  .secret{background:var(--ink)!important;color:#fff!important;border:0!important;text-align:center}
+  .secret-title{color:#fff!important}
+  .secret-intro{color:#C9CDD3!important}
+  .secret-intro b{color:#fff!important}
+  .secret .key{background:#1C1D20!important;border:1px solid #2C2E33!important;border-top:4px solid var(--brass)!important;box-shadow:none!important;text-align:left}
+  .secret .key-num{color:var(--brass)!important}
+  .secret .key-h{color:#fff!important}
+  .secret .key-p{color:#C9CDD3!important}
+  .offer-box{margin:2rem 0 0;padding:1.8rem 0 0;border-top:1px solid #2C2E33}
+  .offer-tag{display:inline-block;background:var(--brass);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:.85rem;border-radius:999px;padding:.3rem .8rem;margin:0 0 .9rem}
+  .offer-h{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;font-variation-settings:"wdth" 118;font-size:clamp(1.3rem,5vw,1.6rem);line-height:1.15;letter-spacing:-0.02em;color:#fff;max-width:22ch;margin:0 auto .7rem}
+  .offer-p{font-family:"Archivo",system-ui,sans-serif;font-size:1rem;line-height:1.5;color:#C9CDD3;max-width:38ch;margin:0 auto}
+  .offer-p b{color:#fff}
+  .secret .cta{background:none!important;margin:1.6rem 0 0!important;padding:0!important;border-radius:0}
+  .secret .cta-title{color:#fff;font-size:clamp(1.35rem,5.5vw,1.75rem)}
 </style>
 </head>
 <body>
@@ -408,11 +425,9 @@
           <p class="status" id="status"></p>
           <p class="fine" style="margin-top:.9rem">We've started you at a price clients happily commit to every month.</p>
         </div>
-        <button type="button" class="again" id="again">Start again with different numbers</button>
-
-        <!-- The curiosity -->
+        <!-- The curiosity + offer + CTA, one block -->
         <div class="secret">
-          <p class="secret-title">Knowing your number is the easy part.</p>
+          <p class="secret-title">Knowing your number is the easy&nbsp;part.</p>
           <p class="secret-intro" id="how-intro"></p>
           <div class="keys">
             <div class="key">
@@ -426,13 +441,18 @@
               <p class="key-p">Pitch the right kind of client in the right way and they don't just say yes. They stay.</p>
             </div>
           </div>
-          <p class="secret-close">It's what took me from inconsistent income to steady retainers, and what I teach step by step in <b>Freedom Through Retainers</b>.</p>
-        </div>
 
-        <div class="cta" id="next-step">
-          <p class="cta-title">DM me &ldquo;FTR&rdquo; on Instagram</p>
-          <p class="cta-text">I&rsquo;ll send you the details of my 90 day intensive.</p>
-          <a class="btn full cta-btn" id="cta-btn" href="https://www.instagram.com/mitchhemming/" target="_blank" rel="noopener">Go to @mitchhemming &rarr;</a>
+          <div class="offer-box">
+            <p class="offer-tag">The 90 Day Intensive</p>
+            <p class="offer-h">I built a 1 on 1 coaching intensive to help you put this in place.</p>
+            <p class="offer-p">It's exactly what took me from inconsistent income to steady retainers. I'll walk you through it, step by step, inside <b>Freedom Through Retainers&trade;</b>.</p>
+          </div>
+
+          <div class="cta" id="next-step">
+            <p class="cta-title">Want in? DM me &ldquo;FTR&rdquo;</p>
+            <p class="cta-text">I&rsquo;ll send you the details on Instagram.</p>
+            <a class="btn full cta-btn" id="cta-btn" href="https://www.instagram.com/mitchhemming/" target="_blank" rel="noopener">Go to @mitchhemming &rarr;</a>
+          </div>
         </div>
       </div>
 
@@ -694,13 +714,6 @@
     if (animate && !reduce) { c.classList.remove("grow"); void c.getBoundingClientRect(); c.classList.add("grow"); } else c.classList.remove("grow");
   }
 
-  // Start again with different numbers
-  $("again").addEventListener("click", function(){
-    trackId = newId(); st.tracked = false;
-    $("results").hidden = true; $("quiz").hidden = false;
-    show(1);
-    scrollTo({ top: document.querySelector("main").getBoundingClientRect().top + scrollY - 16, behavior: reduce ? "auto" : "smooth" });
-  });
 
   // Keep the hero heading on two lines and inside the screen on every device and font
   function fitHero(){
