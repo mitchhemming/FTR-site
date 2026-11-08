@@ -331,8 +331,8 @@
   .offer-box .cta-btn{background:var(--ink)!important;color:#fff!important}
 
   /* v4: hero without lede; offer block toned down */
-  .hero .mark{margin-bottom:1.25rem}
-  .hero{padding-bottom:1.75rem}
+  body.done .hero h1,body.done .hero .lede{display:none}
+  body.done .hero .mark{margin-bottom:0}
   .offer-box{background:#fff!important;border:1px solid var(--line)!important;border-top:4px solid var(--brass)!important;box-shadow:0 10px 28px -18px rgba(17,18,20,.35)}
   .offer-tag{background:var(--brass)!important;color:var(--ink)!important}
   .offer-p{color:var(--muted)!important}
@@ -347,6 +347,7 @@
   <div class="wrap">
     <p class="mark"><img class="avatar" src="/assets/mitch.jpg" alt="Mitch Hemming" width="400" height="400"><span class="mark-name">Freedom Through Retainers<sup class="tm">&trade;</sup></span><span class="mark-by">by Mitch Hemming</span></p>
     <h1>Cover your fixed costs<br>with monthly retainers in <span class="ul">90 days<svg class="ul-svg" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C 40 6, 90 5, 197 8" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/></svg></span></h1>
+    <p class="lede">Most photographers and videographers live job to job. Retainers turn clients into fixed monthly income. See it with your numbers.</p>
   </div>
 </header>
 
@@ -623,6 +624,7 @@
 
   function reveal(){
     $("quiz").hidden = true;
+    document.body.classList.add("done");
     var r = $("results"); r.hidden = false; r.classList.remove("reveal"); void r.offsetWidth; r.classList.add("reveal");
     ensureRange(); syncSliders(); render(true);
     if (!st.tracked) {
