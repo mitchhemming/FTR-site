@@ -354,6 +354,28 @@
   .vs-col:not(.on) .vs-big{color:var(--muted)}
   .vs-sub{font-family:"Archivo",system-ui,sans-serif;font-size:.85rem;line-height:1.35;color:var(--muted);margin:0}
   .vs-col.on .vs-sub{color:var(--ink)}
+
+  /* v5: lighter "easy part" block, richer offer block */
+  .secret{background:#fff!important;color:var(--ink)!important;border:1px solid var(--line)!important}
+  .secret-title{color:var(--ink)!important}
+  .secret-intro{color:var(--muted)!important}
+  .secret-intro b{color:var(--ink)!important}
+  .secret .key{background:var(--paper)!important;border:1px solid var(--line)!important;border-top:4px solid var(--brass)!important}
+  .secret .key-num{color:var(--ink)!important}
+  .secret .key-h{color:var(--ink)!important}
+  .secret .key-p{color:var(--muted)!important}
+  .offer-box{background:var(--brass-soft)!important;border:2px solid var(--brass)!important;box-shadow:none!important}
+  .offer-h{max-width:24ch!important}
+  .offer-p{color:var(--ink)!important;max-width:40ch!important}
+  .offer-steps{list-style:none;counter-reset:o;margin:1.1rem auto 0;padding:0;max-width:400px;text-align:left;display:grid;gap:.55rem}
+  .offer-steps li{counter-increment:o;display:flex;gap:.7rem;align-items:flex-start;background:#fff;border-radius:10px;padding:.7rem .85rem;font-family:"Archivo",system-ui,sans-serif;font-size:.95rem;line-height:1.4;color:var(--muted)}
+  .offer-steps li b{color:var(--ink)}
+  .offer-steps li::before{content:counter(o);flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--brass);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;margin-top:.05rem}
+  .offer-meta{font-family:"Archivo",system-ui,sans-serif;font-size:.95rem;line-height:1.5;color:#3A3D42;margin:1.1rem auto 0;max-width:40ch}
+  .offer-meta b{color:var(--ink)}
+  .offer-box .cta{border-top:1px solid rgba(17,18,20,.15)!important}
+  .offer-box .cta-text{color:#3A3D42!important}
+  .offer-box .cta-btn{background:var(--ink)!important;color:#fff!important}
 </style>
 </head>
 <body>
@@ -496,8 +518,15 @@
 
         <div class="offer-box">
             <p class="offer-tag">The 90 Day Intensive</p>
-            <p class="offer-h">I built a 1 on 1 coaching intensive to help you put this in place.</p>
-            <p class="offer-p">It's exactly what took me from inconsistent income to steady retainers. I'll walk you through it, step by step, inside <b class="nowrap">Freedom Through Retainers&trade;</b>.</p>
+            <p class="offer-h" id="offer-h">Let&rsquo;s build a retainer system that covers what you need in 90 days.</p>
+            <p class="offer-p">No more starting every month at zero, waiting on the next job to land. Over 90 days, 1 on 1 with me, we&rsquo;ll:</p>
+            <ol class="offer-steps">
+              <li><span><b>Lock in your number</b> and how many retainers it takes.</span></li>
+              <li><span><b>Build the offer</b> clients say yes to, at the right price.</span></li>
+              <li><span><b>Pitch your existing clients</b> and sign your first retainers.</span></li>
+              <li><span><b>Stack them</b> until your costs are covered, every month.</span></li>
+            </ol>
+            <p class="offer-meta">The exact system that took me from freelance job to job to steady retainers.<br><b>5 spots. Starts 1 December.</b></p>
 
           <div class="cta" id="next-step">
             <p class="cta-title">Let&rsquo;s chat on Instagram.</p>
@@ -722,6 +751,7 @@
       : "You're <b>" + money(S - total) + "</b> short. Drag the sliders below to close the gap.";
 
     // The curiosity
+    $("offer-h").innerHTML = "Let&rsquo;s build a retainer system that covers your <span class=\"nowrap\">" + money(S) + "</span> a month, in 90 days.";
     $("how-intro").innerHTML = "Getting <b>" + st.clients + " clients</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, comes down to two things most service businesses get wrong:";
 
     var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
