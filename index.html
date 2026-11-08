@@ -409,6 +409,13 @@
   .soft-offer .cta-btn{background:var(--brass)!important;color:var(--ink)!important;white-space:nowrap}
   .cta-note{font-family:"Archivo",system-ui,sans-serif;font-size:.85rem;color:var(--muted);margin:.7rem 0 0}
   .soft-invite{margin-top:.8rem!important;color:var(--ink)!important}
+
+  /* Bridge block: Position, Price, Pitch */
+  .bridge{text-align:center}
+  .pp{display:grid;gap:.5rem;margin:1.1rem auto 0;max-width:420px;text-align:left}
+  .pp-row{display:flex;flex-direction:column;gap:.15rem;background:var(--paper);border-left:3px solid var(--brass);border-radius:8px;padding:.75rem .95rem}
+  .pp-k{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;font-variation-settings:"wdth" 118;font-size:1.05rem;color:var(--ink)}
+  .pp-v{font-family:"Archivo",system-ui,sans-serif;font-size:.95rem;line-height:1.4;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -513,10 +520,21 @@
           <p class="total"><span id="total">$0</span> <small>a month</small></p>
           <p class="status" id="status"></p>
         </div>
+        <!-- Bridge: problem + solution -->
+        <div class="section bridge">
+          <p class="res-title">Knowing your number is the easy&nbsp;part.</p>
+          <p class="story" id="how-intro"></p>
+          <div class="pp">
+            <div class="pp-row"><span class="pp-k">Position</span><span class="pp-v">Be the supplier clients want to commit&nbsp;to.</span></div>
+            <div class="pp-row"><span class="pp-k">Price</span><span class="pp-v">An easy yes for them that still pays you properly.</span></div>
+            <div class="pp-row"><span class="pp-k">Pitch</span><span class="pp-v">The right clients, asked the right way, so they stay.</span></div>
+          </div>
+        </div>
+
         <!-- Soft offer -->
         <div class="section soft-offer">
           <p class="res-title soft-h" id="offer-h">Cover your fixed costs with retainers in <span class="ul">90&nbsp;days<svg class="ul-svg" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C 40 6, 90 5, 197 8" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/></svg></span>.</p>
-          <p class="story" id="offer-p">In my 90 Day Intensive, I&rsquo;ll work with you personally to position, price &amp; pitch the retainers that cover your costs.</p>
+          <p class="story" id="offer-p">In my 90 Day Intensive, I&rsquo;ll work with you personally on all three until your costs are covered.</p>
           <p class="story soft-invite">DM me &ldquo;FTR&rdquo; and let&rsquo;s chat.</p>
           <div class="cta" id="next-step">
             <a class="btn full cta-btn" id="cta-btn" href="https://www.instagram.com/mitchhemming/" target="_blank" rel="noopener">DM me @mitchhemming &rarr;</a>
@@ -744,6 +762,7 @@
     $("pain-text").innerHTML = "Your average month is <b>" + money(avg) + "</b>, with income swinging from <b>" + short(st.low) + "</b> to <b>" + short(st.high) + "</b>.<br>" +
       (shortM.length ? "<b class=\"red\">" + shortM.length + " of 12</b> months dip below the <b>" + money(S) + "</b> you need." : "You never know how a month will land until it's over.");
 
+    $("how-intro").innerHTML = "Getting <b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, is where most people get stuck. It comes down to three things:";
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
     $("ret-title").textContent = covered ? "Sign " + cl + " once, at " + money(st.price) + " a month." : "Closer. Not covered yet.";
