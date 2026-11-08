@@ -719,8 +719,8 @@
     // The problem
     var avg = st.aov * st.jobs;
     $("pain-title").textContent = "Find " + st.jobs + " new job" + (st.jobs === 1 ? "" : "s") + " every month.";
-    $("pain-text").innerHTML = "That's your average month, about <b>" + money(avg) + "</b>, with income swinging from <b>" + short(st.low) + "</b> to <b>" + short(st.high) + "</b>" +
-      (shortM.length ? ". <b class=\"red\">" + shortM.length + " of 12</b> months dip below the <b>" + money(S) + "</b> you need." : ". You never know how a month will land until it's over.");
+    $("pain-text").innerHTML = "Your average month is <b>" + money(avg) + "</b>, with income swinging from <b>" + short(st.low) + "</b> to <b>" + short(st.high) + "</b>.<br>" +
+      (shortM.length ? "<b class=\"red\">" + shortM.length + " of 12</b> months dip below the <b>" + money(S) + "</b> you need." : "You never know how a month will land until it's over.");
 
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
