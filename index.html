@@ -439,7 +439,6 @@
           <p class="kicker">With retainers</p>
           <p class="res-title" id="ret-title"></p>
           <p class="story" id="ret-text"></p>
-          <svg class="chart" id="chart-ret" viewBox="0 0 340 180" role="img" aria-label="Your 12 months with retainers"></svg>
         </div>
 
         <div class="panel">
@@ -700,7 +699,6 @@
 
     var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
     drawBars("chart-now", vals, S, max, first);
-    drawBars("chart-ret", YEAR.map(function(){ return total; }), S, max, first, true);
   }
 
   // ---------- Charts ----------
