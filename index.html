@@ -313,6 +313,22 @@
   .offer-p b{color:#fff}
   .secret .cta{background:none!important;margin:1.6rem 0 0!important;padding:0!important;border-radius:0}
   .secret .cta-title{color:#fff;font-size:clamp(1.35rem,5.5vw,1.75rem)}
+
+  /* v3: condensed keys, offer as its own lime block */
+  .secret .key{padding:1rem 1.1rem!important}
+  .secret .key-h{display:flex;align-items:baseline;gap:.6rem;font-size:1.15rem!important;margin:0 0 .3rem!important}
+  .secret .key-num{display:inline!important;font-size:1.15rem!important;margin:0!important;letter-spacing:0!important}
+  .secret .key-p{font-size:.92rem!important}
+  .offer-box{margin:1rem 0 0!important;padding:2rem 1.4rem 1.6rem!important;border:0!important;background:var(--brass);color:var(--ink);border-radius:14px;text-align:center}
+  @media(max-width:600px){.offer-box{margin-left:-.35rem!important;margin-right:-.35rem!important;padding:1.75rem 1.1rem 1.4rem!important}}
+  .offer-tag{background:var(--ink)!important;color:var(--brass)!important}
+  .offer-h{color:var(--ink)!important}
+  .offer-p{color:#2A2C30!important}
+  .offer-p b{color:var(--ink)!important}
+  .offer-box .cta{background:none!important;margin:1.5rem 0 0!important;padding:1.4rem 0 0!important;border-top:1px solid rgba(17,18,20,.18);border-radius:0;color:var(--ink)}
+  .offer-box .cta-title{color:var(--ink);font-size:clamp(1.35rem,5.5vw,1.75rem)}
+  .offer-box .cta-text{color:#2A2C30}
+  .offer-box .cta-btn{background:var(--ink)!important;color:#fff!important}
 </style>
 </head>
 <body>
@@ -431,22 +447,20 @@
           <p class="secret-intro" id="how-intro"></p>
           <div class="keys">
             <div class="key">
-              <span class="key-num">01</span>
-              <p class="key-h">The price.</p>
+              <p class="key-h"><span class="key-num">01</span>The price.</p>
               <p class="key-p">There's a sweet spot where paying every month feels like an easy yes to the client, and still pays you properly.</p>
             </div>
             <div class="key">
-              <span class="key-num">02</span>
-              <p class="key-h">The positioning.</p>
+              <p class="key-h"><span class="key-num">02</span>The positioning.</p>
               <p class="key-p">Pitch the right kind of client in the right way and they don't just say yes. They stay.</p>
             </div>
           </div>
+        </div>
 
-          <div class="offer-box">
+        <div class="offer-box">
             <p class="offer-tag">The 90 Day Intensive</p>
             <p class="offer-h">I built a 1 on 1 coaching intensive to help you put this in place.</p>
             <p class="offer-p">It's exactly what took me from inconsistent income to steady retainers. I'll walk you through it, step by step, inside <b>Freedom Through Retainers&trade;</b>.</p>
-          </div>
 
           <div class="cta" id="next-step">
             <p class="cta-title">Want in? DM me &ldquo;FTR&rdquo;</p>
