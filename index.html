@@ -439,6 +439,7 @@
           <p class="kicker">With retainers</p>
           <p class="res-title" id="ret-title"></p>
           <p class="story" id="ret-text"></p>
+          <svg class="chart" id="chart-ret" viewBox="0 0 340 180" role="img" aria-label="Your 12 months with retainers"></svg>
         </div>
 
         <div class="panel">
@@ -502,8 +503,8 @@
   var RETAINER_RATE = 0.75;                              // Retainer price starts at 75% of the average job.
   // Year model: about 20% of months at their lowest, 20% at their highest, the rest in between.
   // 12 months: L = lowest month, H = highest month, numbers = middle months spread around their average.
-  var YEAR = ["m0", "H", "m1", "L", "m2", "m3", "H", "m4", "m5", "L", "m6", "m7"];
-  var MID_SPREAD = [0.9, 1.08, 0.96, 1.12, 0.93, 1.04, 0.98, 1.06];
+  var YEAR = ["m0", "m1", "H", "m2", "m3", "m4", "m5", "L", "m6", "m7", "m8", "m9"];
+  var MID_SPREAD = [0.92, 1.1, 0.86, 1.14, 0.97, 1.05, 0.84, 1.16, 0.95, 1.03]; // average month +/- up to ~16%
   var MONTHS = ["J","F","M","A","M","J","J","A","S","O","N","D"];
 
   var $ = function(id){ return document.getElementById(id); };
@@ -669,8 +670,8 @@
 
   function render(first){
     var S = st.survival, total = st.clients * st.price, vals = yearValues();
-    var short = vals.filter(function(v){ return v < S; });
-    var yearGap = short.reduce(function(a, v){ return a + (S - v); }, 0);
+    var shortM = vals.filter(function(v){ return v < S; });
+    var yearGap = shortM.reduce(function(a, v){ return a + (S - v); }, 0);
     var covered = total >= S;
 
     // Sliders and total
@@ -682,33 +683,33 @@
     else { s.className = "status short"; s.textContent = money(S - total) + " short of what you need"; }
 
     // The problem
-    if (short.length) {
-      $("pain-title").textContent = short.length + " of your 12 months fall short.";
-      $("pain-text").innerHTML = "Your quietest month brought in <b>" + money(st.low) + "</b> against the <b>" + money(S) +
-        "</b> you need. Over a year that's roughly <b class=\"red\">" + money(Math.round(yearGap / 100) * 100) + "</b> you have to find from savings, credit or the next job.";
-    } else {
-      $("pain-title").textContent = "Your quiet months still cover you. For now.";
-      $("pain-text").innerHTML = "But every month depends on the next job landing. Your income still swings by <b>" + money(st.high - st.low) + "</b> from your best month to your worst.";
-    }
+    var avg = st.aov * st.jobs;
+    $("pain-title").textContent = "Your income swings from " + short(st.low) + " to " + short(st.high) + ".";
+    $("pain-text").innerHTML = "An average month is about <b>" + money(avg) + "</b> (" + st.jobs + " job" + (st.jobs === 1 ? "" : "s") + " at " + money(st.aov) + "). Some months you're ahead, some you're behind" +
+      (shortM.length ? ", and <b class=\"red\">" + shortM.length + " of 12</b> dip below the <b>" + money(S) + "</b> you need." : ". You never know which until the month is over.");
 
     // The outcome
-    $("ret-title").textContent = covered ? "You never have a low month again." : "Closer. Not covered yet.";
-    $("ret-text").innerHTML = "<b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> at <b>" + money(st.price) + "</b> a month puts <b>" + money(total) +
-      "</b> in your account before the month even starts." + (covered ? " Every job you win on top of that is profit, not survival." : " You're " + money(S - total) + " short. Drag the sliders below to close the gap.");
+    var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
+    $("ret-title").textContent = covered ? "You only need " + cl + " at " + money(st.price) + " a month." : "Closer. Not covered yet.";
+    $("ret-text").innerHTML = covered
+      ? "That's <b>" + money(total) + "</b> locked in before the month even starts, every month. Your <b>" + money(S) + "</b> is covered. Every job on top is profit."
+      : "<b>" + cl + "</b> at <b>" + money(st.price) + "</b> a month is <b>" + money(total) + "</b>. You're " + money(S - total) + " short. Drag the sliders below to close the gap.";
 
     // The curiosity
     $("how-intro").innerHTML = "Getting <b>" + st.clients + " clients</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, comes down to two things most service businesses get wrong:";
 
     var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
     drawBars("chart-now", vals, S, max, first);
+    drawBars("chart-ret", YEAR.map(function(){ return total; }), S, max, first, true);
   }
 
   // ---------- Charts ----------
   function yearValues(){
+    // One best month, one worst month, the other ten hover around their average month (jobs x average job)
     var lo = st.low, hi = st.high, range = hi - lo;
     var centre = st.aov * st.jobs;
     if (!(centre > lo && centre < hi)) centre = (lo + hi) / 2;
-    var floor = lo + range * 0.1, ceil = hi - range * 0.1;
+    var floor = lo + range * 0.08, ceil = hi - range * 0.08;
     return YEAR.map(function(k){
       if (k === "L") return lo;
       if (k === "H") return hi;
@@ -727,7 +728,7 @@
     });
     vals.forEach(function(v, i){
       var x = L + i * bw + g / 2, h = (v / max) * ch, low = v < S;
-      var fill = low ? "var(--short-soft)" : (retainer ? "var(--teal)" : "var(--bar)");
+      var fill = low ? "var(--short-soft)" : (retainer ? "var(--brass)" : "var(--bar)");
       out += '<rect class="b" x="' + x.toFixed(1) + '" y="' + y(v).toFixed(1) + '" width="' + (bw - g).toFixed(1) + '" height="' + h.toFixed(1) +
         '" rx="2.5" fill="' + fill + '" style="animation-delay:' + (i * 35) + 'ms"/>';
       out += '<text x="' + (x + (bw - g) / 2).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle">' + MONTHS[i] + '</text>';
