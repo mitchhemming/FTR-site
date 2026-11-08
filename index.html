@@ -320,6 +320,7 @@
         <!-- 1. Survival number -->
         <div class="step on" data-step="1">
           <p class="q">What's the minimum you need each month to survive?</p>
+          <p class="hint">Personal and business costs combined.</p>
           <label class="bigin"><input id="survival" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Minimum monthly survival number in dollars"></label>
           <p class="unit">per month</p>
           <p class="err" id="err1" aria-live="polite"></p>
@@ -328,7 +329,7 @@
         <!-- 2. Average job value -->
         <div class="step" data-step="2">
           <p class="q">What do you earn from an average job?</p>
-          <p class="hint">A rough estimate is fine. What a typical shoot, project or booking pays you.</p>
+          <p class="hint">A rough estimate is fine.</p>
           <label class="bigin"><input id="aov" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Average dollars per job"></label>
           <p class="unit">per job</p>
           <p class="err" id="err2" aria-live="polite"></p>
@@ -337,7 +338,7 @@
         <!-- 3. Jobs per month -->
         <div class="step" data-step="3">
           <p class="q">How many jobs do you do in an average month?</p>
-          <p class="hint">Think across the whole year, good months and quiet ones.</p>
+          <p class="hint">Averaged across the year.</p>
           <div class="stepper">
             <button type="button" id="minus" aria-label="Fewer jobs">&minus;</button>
             <input id="jobs" inputmode="numeric" value="6" aria-label="Jobs per month">
@@ -350,7 +351,7 @@
         <!-- 4. Lowest month -->
         <div class="step" data-step="4">
           <p class="q">Roughly, what did your quietest month bring in?</p>
-          <p class="hint">Total revenue in your lowest month over the last year or so.</p>
+          <p class="hint">Total revenue, last 12 months.</p>
           <label class="bigin"><input id="low" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Revenue in your lowest month"></label>
           <p class="unit">in your lowest month</p>
           <p class="err" id="err4" aria-live="polite"></p>
@@ -359,7 +360,7 @@
         <!-- 5. Highest month -->
         <div class="step" data-step="5">
           <p class="q">And your best month?</p>
-          <p class="hint">Total revenue in your highest month over the same period.</p>
+          <p class="hint">Same period.</p>
           <label class="bigin"><input id="high" inputmode="numeric" autocomplete="off" placeholder="$0" aria-label="Revenue in your highest month"></label>
           <p class="unit">in your best month</p>
           <p class="err" id="err5" aria-live="polite"></p>
