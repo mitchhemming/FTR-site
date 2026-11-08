@@ -714,7 +714,7 @@
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
     $("ret-title").textContent = covered ? "Why chase " + st.jobs + " job" + (st.jobs === 1 ? "" : "s") + " a month?" : "Closer. Not covered yet.";
     $("vs-jobs").textContent = st.jobs + " job" + (st.jobs === 1 ? "" : "s");
-    $("vs-jobs-sub").textContent = "to find every month, for " + short(st.low) + " to " + short(st.high) + ".";
+    $("vs-jobs-sub").textContent = "to find every month. Income swings " + short(st.low) + " to " + short(st.high) + ".";
     $("vs-ret").textContent = cl + " at " + short(st.price);
     $("vs-ret-sub").textContent = "signed once, for " + money(total) + " every month.";
     $("ret-text").innerHTML = covered
