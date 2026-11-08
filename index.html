@@ -402,6 +402,12 @@
   .panel .status{margin-bottom:.2rem!important}
   .cta-btn{white-space:nowrap}
   @media(max-width:400px){.status{font-size:.82rem!important;padding-left:.7rem!important;padding-right:.7rem!important}.cta-btn{font-size:1rem!important}.offer-h{font-size:1.3rem!important}}
+
+  /* Soft offer: same flow as the sections above */
+  .soft-offer{text-align:center}
+  .soft-offer .cta{background:none!important;margin:1.25rem 0 0!important;padding:0!important;border:0!important;color:var(--ink)}
+  .soft-offer .cta-btn{background:var(--brass)!important;color:var(--ink)!important;white-space:nowrap}
+  .cta-note{font-family:"Archivo",system-ui,sans-serif;font-size:.85rem;color:var(--muted);margin:.7rem 0 0}
 </style>
 </head>
 <body>
@@ -506,16 +512,16 @@
           <p class="total"><span id="total">$0</span> <small>a month</small></p>
           <p class="status" id="status"></p>
         </div>
-        <div class="offer-box">
-            <p class="offer-tag">The 90 Day Intensive</p>
-            <p class="offer-h" id="offer-h">Let&rsquo;s build a retainer system that covers what you need in 90 days.</p>
-            <p class="offer-p">No more starting every month at zero. 1&nbsp;on&nbsp;1 with me, step by step.<br><b>5 spots. Starts 1 December.</b></p>
-
+        <!-- Soft offer -->
+        <div class="section soft-offer">
+          <p class="kicker">Want help setting it up?</p>
+          <p class="res-title soft-h" id="offer-h">I&rsquo;ll help you build it in 90 days.</p>
+          <p class="story" id="offer-p"></p>
           <div class="cta" id="next-step">
-            <p class="cta-title">Let&rsquo;s chat on Instagram.</p>
-            <p class="cta-text">DM me &ldquo;FTR&rdquo; and I&rsquo;ll tell you more about the program.</p>
-            <a class="btn full cta-btn" id="cta-btn" href="https://www.instagram.com/mitchhemming/" target="_blank" rel="noopener">DM me @mitchhemming &rarr;</a>
+            <a class="btn full cta-btn" id="cta-btn" href="https://www.instagram.com/mitchhemming/" target="_blank" rel="noopener">DM me &ldquo;FTR&rdquo; on Instagram &rarr;</a>
+            <p class="cta-note">5 spots, starting 1 December.</p>
           </div>
+        </div>
         </div>
       </div>
 
@@ -729,7 +735,7 @@
       ? "That's <b>" + money(total) + "</b> every month, covering your <b>" + money(S) + "</b> before the month starts. Every job on top is profit."
       : "<b>" + cl + "</b> at <b>" + money(st.price) + "</b> is <b>" + money(total) + "</b>. You're " + money(S - total) + " short. Drag the sliders below to close the gap.";
 
-    $("offer-h").innerHTML = "Let&rsquo;s build a retainer system that covers your <span class=\"nowrap\">" + money(S) + "</span> a month, in 90 days.";
+    $("offer-p").innerHTML = "My 90 Day Intensive is 1&nbsp;on&nbsp;1 with me, step by step, until your <b>" + money(S) + "</b> is covered by retainers.";
 
     var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
     drawBars("chart-now", vals, S, max, first);
