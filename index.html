@@ -734,7 +734,6 @@
       ? "That's <b>" + money(total) + "</b> every month, covering your <b>" + money(S) + "</b> before the month starts. Every job on top is profit."
       : "<b>" + cl + "</b> at <b>" + money(st.price) + "</b> is <b>" + money(total) + "</b>. You're " + money(S - total) + " short. Drag the sliders below to close the gap.";
 
-    $("offer-h").innerHTML = "Cover your <span class=\"nowrap\">" + money(S) + "</span> with retainers in 90&nbsp;days.";
     $("offer-p").innerHTML = "That&rsquo;s my 90 Day Intensive. 1&nbsp;on&nbsp;1 with me, step by step.";
 
     var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
