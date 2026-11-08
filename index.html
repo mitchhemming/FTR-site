@@ -384,6 +384,15 @@
   .offer-box .cta-text{color:var(--muted)!important}
   .offer-box .cta{border-top:1px solid var(--line)!important}
   .offer-box .cta-btn{background:var(--brass)!important;color:var(--ink)!important}
+
+  /* v7: tighter easy part */
+  .secret{padding:1.6rem 1.2rem 1.4rem!important}
+  .secret-intro{margin-bottom:1rem!important}
+  .secret .keys{gap:.5rem}
+  .secret .key{padding:.8rem 1rem!important;border-top-width:3px!important}
+  .secret .key-h{font-size:1.05rem!important;margin:0 0 .15rem!important}
+  .secret .key-num{font-size:1.05rem!important}
+  .offer-box{margin-top:1.2rem!important}
 </style>
 </head>
 <body>
@@ -479,18 +488,6 @@
         <div class="section">
           <p class="kicker">With retainers</p>
           <p class="res-title" id="ret-title"></p>
-          <div class="vs">
-            <div class="vs-col">
-              <p class="vs-label">Chasing jobs</p>
-              <p class="vs-big" id="vs-jobs"></p>
-              <p class="vs-sub" id="vs-jobs-sub"></p>
-            </div>
-            <div class="vs-col on">
-              <p class="vs-label">Retainers</p>
-              <p class="vs-big" id="vs-ret"></p>
-              <p class="vs-sub" id="vs-ret-sub"></p>
-            </div>
-          </div>
           <p class="story" id="ret-text"></p>
         </div>
 
@@ -515,11 +512,11 @@
           <div class="keys">
             <div class="key">
               <p class="key-h"><span class="key-num">01</span>The price.</p>
-              <p class="key-p">There's a sweet spot where paying every month feels like an easy yes to the client, and still pays you properly.</p>
+              <p class="key-p">The sweet spot that's an easy yes for them and still pays you properly.</p>
             </div>
             <div class="key">
               <p class="key-h"><span class="key-num">02</span>The positioning.</p>
-              <p class="key-p">Pitch the right kind of client in the right way and they don't just say yes. They stay.</p>
+              <p class="key-p">The right clients, pitched the right way, stay for years.</p>
             </div>
           </div>
         </div>
@@ -743,24 +740,19 @@
 
     // The problem
     var avg = st.aov * st.jobs;
-    $("pain-title").textContent = "Your income swings from " + short(st.low) + " to " + short(st.high) + ".";
-    $("pain-text").innerHTML = "An average month is about <b>" + money(avg) + "</b> (" + st.jobs + " job" + (st.jobs === 1 ? "" : "s") + " at " + money(st.aov) + "). Some months you're ahead, some you're behind" +
-      (shortM.length ? ", and <b class=\"red\">" + shortM.length + " of 12</b> dip below the <b>" + money(S) + "</b> you need." : ". You never know which until the month is over.");
+    $("pain-title").textContent = "Find " + st.jobs + " new job" + (st.jobs === 1 ? "" : "s") + " every month.";
+    $("pain-text").innerHTML = "That's your average month, about <b>" + money(avg) + "</b>, with income swinging from <b>" + short(st.low) + "</b> to <b>" + short(st.high) + "</b>" +
+      (shortM.length ? ". <b class=\"red\">" + shortM.length + " of 12</b> months dip below the <b>" + money(S) + "</b> you need." : ". You never know how a month will land until it's over.");
 
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
-    $("ret-title").textContent = covered ? "Why chase " + st.jobs + " job" + (st.jobs === 1 ? "" : "s") + " a month?" : "Closer. Not covered yet.";
-    $("vs-jobs").textContent = st.jobs + " job" + (st.jobs === 1 ? "" : "s");
-    $("vs-jobs-sub").textContent = "to find every month. Income swings " + short(st.low) + " to " + short(st.high) + ".";
-    $("vs-ret").textContent = cl + " at " + short(st.price);
-    $("vs-ret-sub").textContent = "signed once, for " + money(total) + " every month.";
+    $("ret-title").textContent = covered ? "Or sign " + cl + " once, at " + money(st.price) + " a month." : "Closer. Not covered yet.";
     $("ret-text").innerHTML = covered
-      ? "Your <b>" + money(S) + "</b> is covered before the month starts. Every job on top is profit."
-      : "You're <b>" + money(S - total) + "</b> short. Drag the sliders below to close the gap.";
+      ? "That's <b>" + money(total) + "</b> every month, covering your <b>" + money(S) + "</b> before the month starts. Every job on top is profit."
+      : "<b>" + cl + "</b> at <b>" + money(st.price) + "</b> is <b>" + money(total) + "</b>. You're " + money(S - total) + " short. Drag the sliders below to close the gap.";
 
-    // The curiosity
     $("offer-h").innerHTML = "Let&rsquo;s build a retainer system that covers your <span class=\"nowrap\">" + money(S) + "</span> a month, in 90 days.";
-    $("how-intro").innerHTML = "Getting <b>" + st.clients + " clients</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, comes down to two things most service businesses get wrong:";
+    $("how-intro").innerHTML = "Getting <b>" + st.clients + " clients</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, comes down to two things:";
 
     var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
     drawBars("chart-now", vals, S, max, first);
