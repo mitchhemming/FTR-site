@@ -724,7 +724,7 @@
 
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
-    $("ret-title").textContent = covered ? "Or sign " + cl + " once, at " + money(st.price) + " a month." : "Closer. Not covered yet.";
+    $("ret-title").textContent = covered ? "Sign " + cl + " once, at " + money(st.price) + " a month." : "Closer. Not covered yet.";
     $("ret-text").innerHTML = covered
       ? "That's <b>" + money(total) + "</b> every month, covering your <b>" + money(S) + "</b> before the month starts. Every job on top is profit."
       : "<b>" + cl + "</b> at <b>" + money(st.price) + "</b> is <b>" + money(total) + "</b>. You're " + money(S - total) + " short. Drag the sliders below to close the gap.";
