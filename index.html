@@ -773,7 +773,7 @@
     $("pain-text").innerHTML = "Your average month is <b>" + money(avg) + "</b>, with income swinging from <b>" + short(st.low) + "</b> to <b>" + short(st.high) + "</b>.<br>" +
       (shortM.length ? "<b class=\"red\">" + shortM.length + " of 12</b> months dip below the <b>" + money(S) + "</b> you need." : "You never know how a month will land until it's over.");
 
-    $("how-intro").innerHTML = "Getting <b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> to pay <b>" + money(st.price) + "</b> every month (&amp; stay for years) is where most people get stuck. My 3 step process fixes that:";
+    $("how-intro").innerHTML = "Getting <b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> to pay <b>" + money(st.price) + "</b> every month (&amp; stay for years) is where most people get stuck. I solve it in 3 steps:";
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
     $("ret-title").textContent = covered ? "Sign " + cl + " once, at " + money(st.price) + " a month." : "Closer. Not covered yet.";
