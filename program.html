@@ -44,6 +44,10 @@
   .price div{flex:1 1 200px;border:1px solid var(--line);border-radius:10px;padding:1rem}
   .price b{display:block;font-size:1.9rem;line-height:1}
   .price span{color:var(--muted);font-size:.9rem}
+  .price em{display:block;font-style:normal;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 .4rem}
+  .price small{font-size:.45em;font-weight:600;letter-spacing:0;color:var(--muted)}
+  .price .best{border:2px solid var(--ink)}
+  .price .best em{color:var(--ink)}
   .join{background:var(--ink);color:#fff;text-align:center;border:0}
   .join h2{font-size:clamp(1.5rem,6vw,2rem)}
   .join p{color:#C9CDD3}
@@ -124,10 +128,10 @@
   </section>
 
   <section class="card">
-    <h2>Investment</h2>
+    <h2>Investment <span class="muted" style="font-weight:500;font-size:.8rem;letter-spacing:0">(AUD)</span></h2>
     <div class="price">
-      <div><b>$3,000</b><span>paid upfront (AUD)</span></div>
-      <div><b>3 &times; $1,200</b><span>monthly payment plan, $3,600 total (AUD)</span></div>
+      <div class="best"><em>Best value</em><b>$3,000</b><span>Pay in full and save $600</span></div>
+      <div><em>Easy start</em><b>$1,200<small>/month</small></b><span>3 monthly payments</span></div>
     </div>
     <p class="muted"><b>5 spots only</b>, because every session is 1-on-1 with me.<br><b>Starts Monday 1 December 2026.</b> Enrolment closes when the 5 spots are filled.</p>
   </section>
