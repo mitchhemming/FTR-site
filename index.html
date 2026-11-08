@@ -417,6 +417,14 @@
   .pp-k{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;font-variation-settings:"wdth" 118;font-size:1.05rem;color:var(--ink)}
   .pp-v{font-family:"Archivo",system-ui,sans-serif;font-size:.95rem;line-height:1.4;color:var(--muted)}
   .pp-v{text-wrap:pretty}
+
+  /* Numbered 3 step process */
+  .pp-row{flex-direction:row!important;align-items:flex-start;gap:.9rem!important;padding:.95rem 1rem!important}
+  .pp-n{flex:none;font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;font-variation-settings:"wdth" 118;font-size:2.4rem;line-height:.9;color:var(--ink);min-width:1.4rem;text-align:center}
+  .pp-body{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+  .pp-ul{list-style:none;margin:0;padding:0;display:grid;gap:.2rem}
+  .pp-ul li{position:relative;padding-left:.9rem;font-family:"Archivo",system-ui,sans-serif;font-size:.93rem;line-height:1.4;color:var(--muted);text-wrap:pretty}
+  .pp-ul li::before{content:"";position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 1px rgba(17,18,20,.25)}
 </style>
 </head>
 <body>
@@ -526,9 +534,9 @@
           <p class="res-title">Knowing your number is the easy&nbsp;part.</p>
           <p class="story" id="how-intro"></p>
           <div class="pp">
-            <div class="pp-row"><span class="pp-k">Position</span><span class="pp-v">Turn what you already shoot into a monthly service, and become the premium supplier clients want to lock in, not another freelancer they can replace.</span></div>
-            <div class="pp-row"><span class="pp-k">Price</span><span class="pp-v">The monthly rate that&rsquo;s an easy yes for the client, still pays you properly, and makes cancelling the last thing they want to&nbsp;do.</span></div>
-            <div class="pp-row"><span class="pp-k">Pitch</span><span class="pp-v">Who to pitch first (it&rsquo;s rarely who you think), what to say, and how to get a yes without&nbsp;discounting.</span></div>
+            <div class="pp-row"><span class="pp-n">1</span><div class="pp-body"><span class="pp-k">Position</span><ul class="pp-ul"><li>Turn what you already shoot into a monthly service</li><li>Become the premium supplier clients want to lock&nbsp;in</li><li>Not another freelancer they can replace</li></ul></div></div>
+            <div class="pp-row"><span class="pp-n">2</span><div class="pp-body"><span class="pp-k">Price</span><ul class="pp-ul"><li>A monthly rate that&rsquo;s an easy yes for the client</li><li>Still pays you properly</li><li>Makes cancelling the last thing they want to do</li></ul></div></div>
+            <div class="pp-row"><span class="pp-n">3</span><div class="pp-body"><span class="pp-k">Pitch</span><ul class="pp-ul"><li>Who to pitch first (it&rsquo;s rarely who you think)</li><li>Exactly what to say</li><li>How to get a yes without discounting</li></ul></div></div>
           </div>
         </div>
 
@@ -763,7 +771,7 @@
     $("pain-text").innerHTML = "Your average month is <b>" + money(avg) + "</b>, with income swinging from <b>" + short(st.low) + "</b> to <b>" + short(st.high) + "</b>.<br>" +
       (shortM.length ? "<b class=\"red\">" + shortM.length + " of 12</b> months dip below the <b>" + money(S) + "</b> you need." : "You never know how a month will land until it's over.");
 
-    $("how-intro").innerHTML = "Getting <b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, is where most people get stuck. It comes down to three things:";
+    $("how-intro").innerHTML = "Getting <b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> to pay <b>" + money(st.price) + "</b> every month (&amp; stay for years) is where most people get stuck. My 3 step process fixes that:";
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
     $("ret-title").textContent = covered ? "Sign " + cl + " once, at " + money(st.price) + " a month." : "Closer. Not covered yet.";
