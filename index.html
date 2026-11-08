@@ -427,6 +427,10 @@
   .pp-ul li::before{content:"";position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 1px rgba(17,18,20,.25)}
   .pp-n{font-size:2rem!important}
   .pp-row{align-items:center!important}
+  /* Desktop: keep the CTA column the same width as the 3 steps */
+  .soft-offer .story,.bridge .story{max-width:440px;margin-left:auto;margin-right:auto}
+  .soft-offer .cta{max-width:420px;margin-left:auto!important;margin-right:auto!important}
+  .pp-row{padding:1rem 1.1rem!important}
 </style>
 </head>
 <body>
@@ -538,7 +542,7 @@
           <div class="pp">
             <div class="pp-row"><span class="pp-n">1</span><div class="pp-body"><span class="pp-k">Position</span><span class="pp-v">Clients who see you as the one supplier worth keeping for&nbsp;years.</span></div></div>
             <div class="pp-row"><span class="pp-n">2</span><div class="pp-body"><span class="pp-k">Price</span><span class="pp-v">A monthly rate clients happily say yes to, that pays you&nbsp;properly.</span></div></div>
-            <div class="pp-row"><span class="pp-n">3</span><div class="pp-body"><span class="pp-k">Pitch</span><span class="pp-v">A repeatable way to sign retainers, without discounting or&nbsp;chasing.</span></div></div>
+            <div class="pp-row"><span class="pp-n">3</span><div class="pp-body"><span class="pp-k">Pitch</span><span class="pp-v">A repeatable way to sign retainers, without discounting or chasing.</span></div></div>
           </div>
         </div>
 
@@ -773,7 +777,7 @@
     $("pain-text").innerHTML = "Your average month is <b>" + money(avg) + "</b>, with income swinging from <b>" + short(st.low) + "</b> to <b>" + short(st.high) + "</b>.<br>" +
       (shortM.length ? "<b class=\"red\">" + shortM.length + " of 12</b> months dip below the <b>" + money(S) + "</b> you need." : "You never know how a month will land until it's over.");
 
-    $("how-intro").innerHTML = "Getting <b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> to pay <b>" + money(st.price) + "</b> every month (&amp; stay for years) is where most people get stuck. I solve it in 3 steps:";
+    $("how-intro").innerHTML = "Getting <b>" + st.clients + " client" + (st.clients === 1 ? "" : "s") + "</b> to pay <b>" + money(st.price) + "</b> every month (&amp; stay for years) is where most people get stuck. I solve it in&nbsp;3&nbsp;steps:";
     // The outcome
     var cl = st.clients + " client" + (st.clients === 1 ? "" : "s");
     $("ret-title").textContent = covered ? "Sign " + cl + " once, at " + money(st.price) + " a month." : "Closer. Not covered yet.";
