@@ -12,6 +12,8 @@
 <style>
   :root{--paper:#F1F2F4;--ink:#111214;--muted:#5B616A;--line:#DCDFE3;--lime:#C6F135;--lime-soft:#EEF8CF}
   *{box-sizing:border-box}
+  .ul{position:relative;display:inline-block;white-space:nowrap;z-index:0}
+  .ul-svg{position:absolute;left:-3%;right:-3%;bottom:.02em;width:106%;height:.42em;color:var(--lime);pointer-events:none;z-index:-1}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-size:1.06rem;line-height:1.55}
   .wrap{width:min(100% - 36px,680px);margin:0 auto}
   header{padding:2.5rem 0 1.5rem;text-align:center}
@@ -63,7 +65,7 @@
   <div class="wrap">
     <p class="mark"><img src="/assets/mitch.jpg" alt="Mitch Hemming" width="400" height="400"><b>Freedom Through Retainers&trade;</b><span>by Mitch Hemming</span></p>
     <span class="tag">The 90 Day Intensive</span>
-    <h1>Cover your fixed costs with monthly retainers in 90&nbsp;days.</h1>
+    <h1>Cover your fixed costs with monthly retainers in <span class="ul">90&nbsp;days<svg class="ul-svg" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C 40 6, 90 5, 197 8" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/></svg></span>.</h1>
     <p class="meta">One on one with me &middot; Starts Monday 1 December 2026 &middot; 5 spots</p>
   </div>
 </header>
