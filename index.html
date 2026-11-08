@@ -393,6 +393,7 @@
   .secret .key-h{font-size:1.05rem!important;margin:0 0 .15rem!important}
   .secret .key-num{font-size:1.05rem!important}
   .offer-box{margin-top:1.2rem!important}
+  .offer-lead{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:.95rem;color:var(--muted);margin:0 0 .9rem}
 </style>
 </head>
 <body>
@@ -478,11 +479,6 @@
         <p class="res-title" id="pain-title"></p>
         <p class="story" id="pain-text"></p>
         <svg class="chart" id="chart-now" viewBox="0 0 340 180" role="img" aria-label="Your next 12 months chasing jobs"></svg>
-        <div class="legend">
-          <span><i style="background:var(--short-soft)"></i>Short month</span>
-          <span><i style="background:var(--bar)"></i>Covered</span>
-          <span><i style="background:repeating-linear-gradient(90deg,#111214 0 4px,transparent 4px 7px);height:2px;border-radius:0"></i>What you need</span>
-        </div>
 
         <!-- The outcome -->
         <div class="section">
@@ -505,33 +501,11 @@
           <p class="status" id="status"></p>
           <p class="fine" style="margin-top:.9rem">We've started you at a price clients happily commit to every month.</p>
         </div>
-        <!-- The curiosity + offer + CTA, one block -->
-        <div class="secret">
-          <p class="secret-title">Knowing your number is the easy&nbsp;part.</p>
-          <p class="secret-intro" id="how-intro"></p>
-          <div class="keys">
-            <div class="key">
-              <p class="key-h"><span class="key-num">01</span>The price.</p>
-              <p class="key-p">The sweet spot that's an easy yes for them and still pays you properly.</p>
-            </div>
-            <div class="key">
-              <p class="key-h"><span class="key-num">02</span>The positioning.</p>
-              <p class="key-p">The right clients, pitched the right way, stay for years.</p>
-            </div>
-          </div>
-        </div>
-
         <div class="offer-box">
+            <p class="offer-lead">Knowing your number is the easy&nbsp;part.</p>
             <p class="offer-tag">The 90 Day Intensive</p>
             <p class="offer-h" id="offer-h">Let&rsquo;s build a retainer system that covers what you need in 90 days.</p>
-            <p class="offer-p">No more starting every month at zero, waiting on the next job to land. In 90 days, 1 on 1 with me, we&rsquo;ll:</p>
-            <ol class="offer-steps">
-              <li><span><b>Lock in your number</b> and how many retainers it takes.</span></li>
-              <li><span><b>Build the offer</b> clients say yes to, at the right price.</span></li>
-              <li><span><b>Pitch the right clients</b>, past, present or new, and sign your first retainers.</span></li>
-              <li><span><b>Stack them</b> until your costs are covered, every month.</span></li>
-            </ol>
-            <p class="offer-meta">The exact system that took me from freelance job to job to steady retainers.<br><b>5 spots. Starts 1 December.</b></p>
+            <p class="offer-p">No more starting every month at zero. 1 on 1 with me, step by step.<br><b>5 spots. Starts 1 December.</b></p>
 
           <div class="cta" id="next-step">
             <p class="cta-title">Let&rsquo;s chat on Instagram.</p>
@@ -752,7 +726,6 @@
       : "<b>" + cl + "</b> at <b>" + money(st.price) + "</b> is <b>" + money(total) + "</b>. You're " + money(S - total) + " short. Drag the sliders below to close the gap.";
 
     $("offer-h").innerHTML = "Let&rsquo;s build a retainer system that covers your <span class=\"nowrap\">" + money(S) + "</span> a month, in 90 days.";
-    $("how-intro").innerHTML = "Getting <b>" + st.clients + " clients</b> to pay <b>" + money(st.price) + "</b> every month, and stay for years, comes down to two things:";
 
     var max = Math.max.apply(null, vals.concat([S, total])) * 1.12;
     drawBars("chart-now", vals, S, max, first);
