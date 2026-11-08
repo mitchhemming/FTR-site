@@ -545,7 +545,21 @@
   // Year model: about 20% of months at their lowest, 20% at their highest, the rest in between.
   // 12 months: L = lowest month, H = highest month, numbers = middle months spread around their average.
   var YEAR = ["m0", "m1", "H", "m2", "m3", "m4", "m5", "L", "m6", "m7", "m8", "m9"];
-  var MID_SPREAD = [0.92, 1.1, 0.86, 1.14, 0.97, 1.05, 0.84, 1.16, 0.95, 1.03]; // average month +/- up to ~16%
+  var MID_SPREAD = [0.92, 1.1, 0.86, 1.14, 0.97, 1.05, 0.84, 1.16, 0.95, 1.03];
+  // Fresh, natural looking year for each person: shuffled spread of roughly +/-22% around their average month,
+  // with a little jitter, averaging back to their average. Best and worst months land in random, non adjacent spots.
+  function buildYear(){
+    var base = [-0.22, -0.17, -0.12, -0.07, -0.03, 0.03, 0.07, 0.12, 0.17, 0.22];
+    var m = base.map(function(v){ return 1 + v + (Math.random() - 0.5) * 0.06; });
+    for (var i = m.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = m[i]; m[i] = m[j]; m[j] = t; }
+    var avg = m.reduce(function(a, v){ return a + v; }, 0) / m.length;
+    MID_SPREAD = m.map(function(v){ return v / avg; });
+    var h, l;
+    do { h = Math.floor(Math.random() * 12); l = Math.floor(Math.random() * 12); } while (Math.abs(h - l) < 3);
+    var k = 0;
+    YEAR = [];
+    for (var x = 0; x < 12; x++) YEAR.push(x === h ? "H" : x === l ? "L" : "m" + (k++));
+  }
   var MONTHS = ["J","F","M","A","M","J","J","A","S","O","N","D"];
 
   var $ = function(id){ return document.getElementById(id); };
@@ -669,6 +683,7 @@
   }
 
   function reveal(){
+    if (!st.yearBuilt) { buildYear(); st.yearBuilt = true; }
     $("quiz").hidden = true;
     document.body.classList.add("done");
     var r = $("results"); r.hidden = false; r.classList.remove("reveal"); void r.offsetWidth; r.classList.add("reveal");
@@ -747,7 +762,7 @@
     var lo = st.low, hi = st.high, range = hi - lo;
     var centre = st.aov * st.jobs;
     if (!(centre > lo && centre < hi)) centre = (lo + hi) / 2;
-    var floor = lo + range * 0.08, ceil = hi - range * 0.08;
+    var floor = lo + range * 0.06, ceil = hi - range * 0.06;
     return YEAR.map(function(k){
       if (k === "L") return lo;
       if (k === "H") return hi;
