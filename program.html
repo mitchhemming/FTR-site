@@ -57,6 +57,12 @@
   .muted{color:var(--muted);font-size:.9rem}
   footer{padding:2rem 0 3rem;color:#8B9098;font-size:.78rem;line-height:1.7;text-align:center}
   footer a{color:inherit}
+  .maths{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:1rem}
+  .maths div{background:var(--lime-soft);border-radius:10px;padding:.9rem .7rem;text-align:center}
+  .maths b{display:block;font-stretch:118%;font-variation-settings:"wdth" 118;font-weight:800;font-size:clamp(1.15rem,5vw,1.6rem);line-height:1.1}
+  .maths span{display:block;font-size:.8rem;color:var(--muted);margin-top:.3rem;line-height:1.3}
+  .anchor{margin:0 0 .7rem;font-size:.95rem}
+  .anchor s{color:var(--muted);font-weight:700}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -66,7 +72,7 @@
   <div class="wrap">
     <p class="mark"><img src="/assets/mitch.jpg" alt="Mitch Hemming" width="400" height="400"><b>Freedom Through Retainers&trade;</b><span>by Mitch Hemming</span></p>
     <span class="tag">The 90 Day Intensive</span>
-    <h1>Cover your fixed costs with monthly retainers in <span class="ul">90&nbsp;days<svg class="ul-svg" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C 40 6, 90 5, 197 8" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/></svg></span>.</h1>
+    <h1>Cover your fixed costs with monthly retainers in 90&nbsp;days.</h1>
     <p class="meta">One on one with me &middot; Starts Monday 1 December 2026 &middot; 5 spots</p>
   </div>
 </header>
@@ -74,79 +80,91 @@
 <main class="wrap">
 
   <section class="card">
-    <h2>Hey, I&rsquo;m Mitch</h2>
-    <p>I started out as a freelance photographer and videographer, paid job by job, with income that was never the same two months in a row.</p>
-    <p>Then I changed my business model to retainers. Clients paying me every month, for work I could plan around. That one change gave me the consistency and stability I&rsquo;d been chasing, and it&rsquo;s how I still run my business today.</p>
-    <p>This intensive is me walking you through exactly how I did it, side by side.</p>
+    <h2>In one line</h2>
+    <p>A 90 day, one on one program that helps photographers and videographers swap inconsistent income for business clients who pay them every month.</p>
   </section>
 
   <section class="card">
-    <h2>Who this is for</h2>
-    <p>You&rsquo;re a photographer or videographer. You&rsquo;re full time, or you&rsquo;re committed to getting there, and you&rsquo;re already earning $5k or more a month from clients.</p>
-    <p>It doesn&rsquo;t matter how long you&rsquo;ve been at it. You do good work, but your income swings month to month and you&rsquo;re ready for some structure and stability.</p>
-    <p>This program is about working with businesses. Retainers come from business clients who need your work every month.</p>
-    <p class="sub">It&rsquo;s probably not the right fit if</p>
+    <h2>The problem</h2>
+    <p>You chase clients. You quote. You book the job. Then it goes sideways.</p>
+    <ul class="cross">
+      <li>The job gets cancelled</li>
+      <li>The client pulls out</li>
+      <li>The weather wipes out the shoot</li>
+      <li>Your schedules clash and you can&rsquo;t take it</li>
+    </ul>
+    <p class="sub">And next month, you start from zero again. You&rsquo;re always reacting to your month.</p>
+  </section>
+
+  <section class="card">
+    <h2>The fix: retainers</h2>
+    <p>Business clients who pay you a set amount every month for ongoing work. You plan your month ahead instead of reacting to it.</p>
+    <div class="maths">
+      <div><b>$1,000</b><span>a month from one retainer client</span></div>
+      <div><b>$12,000</b><span>a year from that one client</span></div>
+      <div><b>$120,000</b><span>a year from 10 of them</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Hey, I&rsquo;m Mitch</h2>
+    <p>I started out as a freelance photographer and videographer with income that was never the same two months in a row. Then I changed my business model to retainers. That one change gave me the consistency and stability I&rsquo;d been chasing, and it&rsquo;s how I still run my business today.</p>
+    <p>This intensive is me walking you through exactly how I did it.</p>
+  </section>
+
+  <section class="card">
+    <h2>Who it&rsquo;s for</h2>
+    <ul class="ticks">
+      <li>Photographers and videographers, full time or committed to it</li>
+      <li>Already earning $5k+ a month from clients</li>
+      <li>Working with businesses, or wanting to</li>
+    </ul>
+    <p class="sub">Not for you if</p>
     <ul class="cross">
       <li>You&rsquo;re not committed to doing this full time</li>
-      <li>You&rsquo;re not earning $5k a month from clients yet</li>
-      <li>You&rsquo;re after a course to watch rather than work to do</li>
+      <li>You want a course to watch rather than work to do</li>
     </ul>
-  </section>
-
-  <section class="card">
-    <h2>Why your income swings</h2>
-    <p>If this sounds familiar, you&rsquo;re not doing anything wrong. Nobody teaches us this stuff.</p>
-    <ul class="cross">
-      <li>You get paid job by job, so every month starts back at zero</li>
-      <li>You&rsquo;re not sure of the exact number you need each month</li>
-      <li>You don&rsquo;t know how to price a monthly retainer</li>
-      <li>You&rsquo;re not sure how to pitch it so clients say yes</li>
-    </ul>
-    <p class="sub">Where you&rsquo;ll be in 90 days</p>
-    <p>Your fixed costs covered every month by clients who pay you on retainer. Less chasing. More breathing room.</p>
-    <p>And because it&rsquo;s a system, it doesn&rsquo;t stop there. Once your Foundation is covered, you&rsquo;ll know exactly how to keep adding retainer clients and scale it predictably.</p>
   </section>
 
   <section class="card">
     <h2>Your 90 days</h2>
     <p class="muted">Six sessions, just you and me. Each one gets you to the next milestone.</p>
     <ol class="steps">
-      <li><div><b>Week 1: Know your Foundation number</b><span>Your Foundation number is what you must cover every month, no matter what. You&rsquo;ll leave knowing it, and exactly how many retainer clients it takes.</span></div></li>
-      <li><div><b>Week 2: Your retainer offer, ready to go</b><span>Together we pick which of your current and past clients to approach and set your price. You start pitching this week.</span></div></li>
-      <li><div><b>Week 4: Pitching with confidence</b><span>We work through every question and concern your clients raise, so you always know what to say.</span></div></li>
-      <li><div><b>Week 6: Your first retainer signed</b><span>Your first client paying you every single month. This one feels good.</span></div></li>
-      <li><div><b>Week 8: Retainers stacked and scheduled</b><span>A weekly rhythm built around your retainer clients.</span></div></li>
-      <li><div><b>Week 12: Your Foundation covered</b><span>Your fixed costs paid by retainers. Any spare time goes to bigger, better paid jobs.</span></div></li>
+      <li><div><b>Week 1: Know your number</b><span>What you must cover every month, and how many retainers it takes.</span></div></li>
+      <li><div><b>Week 2: Position and price</b><span>Which clients to approach and what to charge. You start pitching.</span></div></li>
+      <li><div><b>Week 4: Pitch with confidence</b><span>What to say, and how to handle every question.</span></div></li>
+      <li><div><b>Week 6: First retainer signed</b><span>Your first client paying you every month.</span></div></li>
+      <li><div><b>Week 8: Stack and schedule</b><span>Your month planned around your retainer clients.</span></div></li>
+      <li><div><b>Week 12: Fixed costs covered</b><span>Your bills paid by retainers before the month starts.</span></div></li>
     </ol>
   </section>
 
   <section class="card">
     <h2>What you get</h2>
     <ul class="ticks">
-      <li><b>Six private sessions</b> with me, one for each milestone</li>
-      <li><b>Foundation calculator</b> to find your number</li>
-      <li><b>Retainer pricing calculator</b> to price your offer with confidence</li>
-      <li><b>Pitch script</b> so you know exactly what to say to clients</li>
+      <li><b>Six private sessions</b> with me, one per milestone</li>
+      <li><b>The FTR toolkit:</b> fixed cost calculator, retainer pricing calculator and pitch script</li>
     </ul>
-    <p class="sub">A bonus when you join this intake</p>
+    <p class="sub">Bonus when you join this intake</p>
     <ul class="ticks">
-      <li><b>Retainer Agreement Builder</b>: an agreement ready for you to use, so you can sign clients quickly without paying a lawyer</li>
+      <li><b>Scaling Roadmap:</b> the plan for growing into a $20k+ a month retainer business, for once your fixed costs are covered</li>
     </ul>
   </section>
 
   <section class="card guarantee">
     <h2>My promise to you</h2>
     <p><b>Sign your first retainer client within 90 days or get every dollar back.</b></p>
-    <p class="muted">All I ask is that you turn up to your sessions and pitch at least 10 clients. If you do that and haven&rsquo;t signed a retainer by day 90, I&rsquo;ll refund you in full. No awkward conversations.</p>
+    <p class="muted">All I ask is that you turn up to your sessions and pitch at least 10 clients.</p>
   </section>
 
   <section class="card">
     <h2>Investment <span class="muted" style="font-weight:500;font-size:.8rem;letter-spacing:0">(AUD)</span></h2>
+    <p class="anchor"><s>$4,000</s> from the February intake. <b>Founding price for this intake:</b></p>
     <div class="price">
       <div class="best"><em>Best value</em><b>$3,000</b><span>Pay in full and save $600</span></div>
       <div><em>Spread it out</em><b>$1,200<small>/month</small></b><span>3 monthly payments</span></div>
     </div>
-    <p class="muted">I&rsquo;m keeping this to <b>5 spots</b> so I can give every person my full attention.<br>We start <b>Monday 1 December 2026</b>, and enrolment closes once those spots are filled.</p>
+    <p class="muted">One retainer at $1,000 a month pays this back in 3 months.<br><b>5 spots</b>, starting <b>Monday 1 December 2026</b>. Enrolment closes when they&rsquo;re filled.</p>
   </section>
 
   <section class="card join">
