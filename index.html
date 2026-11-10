@@ -432,6 +432,7 @@
   .soft-offer .cta{max-width:420px;margin-left:auto!important;margin-right:auto!important}
   .pp-row{padding:1rem 1.1rem!important}
 </style>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -714,6 +715,9 @@
     var body = Object.assign({ id: trackId, type: type, source: source, campaign: qs.get("utm_campaign") || "", device: innerWidth < 700 ? "mobile" : "desktop" }, data || {});
     try { fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(function(){}); } catch (e) {}
   }
+
+  track("view");
+  $("survival").addEventListener("input", function(){ if (!st.started) { st.started = true; track("start"); } });
 
   function reveal(){
     if (!st.yearBuilt) { buildYear(); st.yearBuilt = true; }

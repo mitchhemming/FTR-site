@@ -6,7 +6,7 @@ const { readBody, money, count, text, validId } = require("./_lib");
 module.exports = async (req, res) => {
   if (req.method !== "POST") { res.statusCode = 405; return res.end(); }
   const b = await readBody(req);
-  if (!b || !validId(b.id) || !["complete", "join", "cta"].includes(b.type)) { res.statusCode = 400; return res.end(); }
+  if (!b || !validId(b.id) || !["view", "start", "complete", "join", "cta"].includes(b.type)) { res.statusCode = 400; return res.end(); }
 
   const rec = { id: b.id, type: b.type, ts: new Date().toISOString() };
   if (b.type === "complete") {
@@ -17,6 +17,9 @@ module.exports = async (req, res) => {
       source: text(b.source, 80), campaign: text(b.campaign, 80), device: text(b.device, 10)
     });
     if (rec.survival === null || rec.aov === null || rec.jobs === null || rec.low === null || rec.high === null) { res.statusCode = 400; return res.end(); }
+  } else if (b.type === "view" || b.type === "start") {
+    // Landed on the page / answered the first question. Anonymous.
+    Object.assign(rec, { source: text(b.source, 80), campaign: text(b.campaign, 80), device: text(b.device, 10) });
   } else if (b.type === "cta") {
     // Clicked the Instagram button under the results. Anonymous.
     Object.assign(rec, { clients: count(b.clients, 1000), price: money(b.price), source: text(b.source, 80), device: text(b.device, 10) });

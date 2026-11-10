@@ -39,7 +39,8 @@ module.exports = async (req, res) => {
   if (!process.env.STATS_PASSWORD) { res.statusCode = 503; res.setHeader("content-type", "text/plain"); return res.end("Stats are locked. Add a STATS_PASSWORD environment variable in Vercel, then redeploy."); }
   if (!keyOk(url.searchParams.get("key"))) { res.statusCode = 401; res.setHeader("content-type", "text/plain"); return res.end("Not authorised."); }
 
-  const [calcB, joinB, ctaB] = await Promise.all([listAll("calc/"), listAll("join/"), listAll("cta/")]);
+  const [calcB, joinB, ctaB, viewB, startB] = await Promise.all([listAll("calc/"), listAll("join/"), listAll("cta/"), listAll("view/"), listAll("start/")]);
+  const views = viewB.length, starts = startB.length;
   const [calc, joins] = await Promise.all([readAll(calcB), readAll(joinB)]);
   const ctaClicks = ctaB.length; // one record per visitor who tapped the Instagram button
   const planBy = Object.fromEntries(joins.map((p) => [p.id, p])); // sign-ups record where they left the sliders
@@ -94,6 +95,8 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.5rem .6
 <h1>Calculator stats</h1>
 <p class="sub">Every completed calculator. Names and emails appear only for people who joined the waitlist. Times in Brisbane time. <a href="?key=${key}">Refresh</a></p>
 <div class="kpis">
+<div class="kpi"><b>${views}</b><span>page visits (from 11 Nov)</span></div>
+<div class="kpi"><b>${starts}</b><span>started the calculator (from 11 Nov)</span></div>
 <div class="kpi"><b>${rows.length}</b><span>completed calculators</span></div>
 <div class="kpi"><b>${ctaClicks}</b><span>tapped the Instagram button</span></div>
 <div class="kpi"><b>${rows.length ? Math.round((ctaClicks / rows.length) * 100) : 0}%</b><span>completion to Instagram</span></div>
