@@ -39,9 +39,9 @@ module.exports = async (req, res) => {
   if (!process.env.STATS_PASSWORD) { res.statusCode = 503; res.setHeader("content-type", "text/plain"); return res.end("Stats are locked. Add a STATS_PASSWORD environment variable in Vercel, then redeploy."); }
   if (!keyOk(url.searchParams.get("key"))) { res.statusCode = 401; res.setHeader("content-type", "text/plain"); return res.end("Not authorised."); }
 
-  const [calcB, joinB, ctaB, viewB, startB] = await Promise.all([listAll("calc/"), listAll("join/"), listAll("cta/"), listAll("view/"), listAll("start/")]);
+  const [calcB, joinB, ctaB, viewB, startB, progB] = await Promise.all([listAll("calc/"), listAll("join/"), listAll("cta/"), listAll("view/"), listAll("start/"), listAll("progress/")]);
   const views = viewB.length, starts = startB.length;
-  const [calc, joins] = await Promise.all([readAll(calcB), readAll(joinB)]);
+  const [calc, joins, prog] = await Promise.all([readAll(calcB), readAll(joinB), readAll(progB)]);
   const ctaClicks = ctaB.length; // one record per visitor who tapped the Instagram button
   const planBy = Object.fromEntries(joins.map((p) => [p.id, p])); // sign-ups record where they left the sliders
   const joined = new Set(joins.map((j) => j.id));
@@ -71,6 +71,17 @@ module.exports = async (req, res) => {
   const src = {}; rows.forEach((r) => { const k = r.source || "direct"; src[k] = (src[k] || 0) + 1; });
   const srcRows = Object.entries(src).sort((a, b) => b[1] - a[1]).map(([k, n]) => `<tr><th>${esc(k)}</th><td>${n}</td></tr>`).join("") || `<tr><td colspan="2">No data yet</td></tr>`;
   const recent = rows.slice(0, 50).map((r) => `<tr><td>${esc(new Date(r.ts).toLocaleString("en-AU", { timeZone: "Australia/Brisbane", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }))}</td><td>${$(r.survival)}</td><td>${$(r.aov)}</td><td>${r.jobs}</td><td>${$(r.low)}</td><td>${$(r.high)}</td><td>${r.finalClients} × ${$(r.finalPrice)}</td><td>${r.email ? esc(r.name || "") + "<br><span style=\"color:var(--muted)\">" + esc(r.email) + "</span>" : "no"}</td><td>${esc(r.source || "direct")}</td></tr>`).join("") || `<tr><td colspan="9">No completions yet</td></tr>`;
+  // Funnel: how far each visitor got through the five questions
+  const doneIds = new Set(calc.map((c) => c.id));
+  const reached = (k) => prog.filter((p) => !doneIds.has(p.id) && (p.answered || 0) >= k).length + calc.length;
+  const qNames = ["Survival number", "Average job", "Jobs per month", "Lowest month", "Highest month"];
+  const funnelBase = Math.max(starts, 1);
+  const funnelRows = [["Visited the page", views], ["Started (typed in question 1)", starts]]
+    .concat(qNames.map((n, i) => ["Answered " + (i + 1) + ". " + n, reached(i + 1)]))
+    .concat([["Tapped the Instagram button", ctaClicks]])
+    .map(([l, n], i) => { const pct = i === 0 ? "" : Math.round((n / funnelBase) * 100) + "%"; return `<tr><th>${l}</th><td>${n}</td><td>${pct}</td></tr>`; }).join("");
+  const partial = prog.filter((p) => !doneIds.has(p.id)).sort((a, b) => (a.ts < b.ts ? 1 : -1)).slice(0, 50)
+    .map((p) => `<tr><td>${esc(new Date(p.ts).toLocaleString("en-AU", { timeZone: "Australia/Brisbane", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }))}</td><td>${p.answered} of 5</td><td>${p.survival != null ? $(p.survival) : "–"}</td><td>${p.aov != null ? $(p.aov) : "–"}</td><td>${p.answered >= 3 && p.jobs != null ? p.jobs : "–"}</td><td>${p.answered >= 4 && p.low != null ? $(p.low) : "–"}</td><td>${esc(p.source || "direct")}</td></tr>`).join("") || `<tr><td colspan="7">No unfinished entries</td></tr>`;
   const key = encodeURIComponent(url.searchParams.get("key"));
 
   res.setHeader("content-type", "text/html; charset=utf-8");
@@ -104,12 +115,14 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.5rem .6
 <div class="kpi"><b>${num(avg(col("shortMonths")))}</b><span>average short months a year</span></div>
 </div>
 ${medSurv ? `<p class="note">At the median survival number of <b>${$(medSurv)}</b>, a $${PROGRAM_PRICE.toLocaleString("en-AU")} program is about <b>${Math.round((PROGRAM_PRICE / medSurv) * 100)}%</b> of one month's costs. At the median job value of ${$(medAov)}, it's about <b>${num(PROGRAM_PRICE / medAov)}</b> jobs.</p>` : ""}
+<div class="card"><h2>Calculator funnel</h2><table><tbody>${funnelRows}</tbody></table><p style="color:var(--muted);margin:.6rem 0 0;font-size:.85rem">Percentages are of people who started. Visits and starts are counted from 11 Nov.</p></div>
 <div class="card"><h2>What people entered</h2><table><thead><tr><th></th><th>Median</th><th>Average</th><th>Middle 50%</th></tr></thead><tbody>
 ${metric("Survival number (monthly)", "survival", $)}${metric("Average job", "aov", $)}${metric("Jobs per month", "jobs", (v) => num(v))}${metric("Average month (job × jobs)", "avgMonth", $)}${metric("Lowest month", "low", $)}${metric("Best month", "high", $)}${metric("Swing (best minus lowest)", "swing", $)}${metric("Retainer clients they settled on", "finalClients", (v) => num(v))}${metric("Retainer price they settled on", "finalPrice", $)}
 </tbody></table></div>
 <div class="card"><h2>Survival number spread</h2><table><tbody>${bucketRows}</tbody></table></div>
 <div class="card"><h2>Where they came from</h2><table><tbody>${srcRows}</tbody></table></div>
 <div class="card"><h2>Latest 50</h2><table><thead><tr><th>When</th><th>Survival</th><th>Avg job</th><th>Jobs</th><th>Lowest</th><th>Best</th><th>Final plan</th><th>Joined</th><th>Source</th></tr></thead><tbody>${recent}</tbody></table></div>
+<div class="card"><h2>Unfinished entries</h2><table><thead><tr><th>When</th><th>Got to</th><th>Survival</th><th>Avg job</th><th>Jobs</th><th>Lowest</th><th>Source</th></tr></thead><tbody>${partial}</tbody></table></div>
 <p><a class="btn" href="?key=${key}&format=csv">Download all as a spreadsheet (CSV)</a></p>
 </div></body></html>`);
 };

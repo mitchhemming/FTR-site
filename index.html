@@ -611,6 +611,10 @@
   var bars = document.querySelectorAll(".progress i");
   function show(n){
     st.step = n;
+    if (n > 1 && n > (st.maxStep || 1)) {
+      st.maxStep = n;
+      track("progress", { answered: n - 1, survival: st.survival, aov: st.aov, jobs: st.jobs, low: st.low });
+    }
     document.querySelectorAll("#quiz .step").forEach(function(s){ s.classList.toggle("on", +s.dataset.step === n); });
     bars.forEach(function(b, i){ b.classList.toggle("on", i < n); });
     $("back").hidden = n === 1;
