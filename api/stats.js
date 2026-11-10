@@ -1,6 +1,6 @@
 // Private stats page: /api/stats?key=YOUR_STATS_PASSWORD  (add &format=csv to download)
 const crypto = require("crypto");
-const { del, list, get } = require("@vercel/blob");
+const { list, get } = require("@vercel/blob");
 
 const PROGRAM_PRICE = 3000; // used for the "price vs their numbers" context only
 
@@ -39,12 +39,6 @@ module.exports = async (req, res) => {
   if (!process.env.STATS_PASSWORD) { res.statusCode = 503; res.setHeader("content-type", "text/plain"); return res.end("Stats are locked. Add a STATS_PASSWORD environment variable in Vercel, then redeploy."); }
   if (!keyOk(url.searchParams.get("key"))) { res.statusCode = 401; res.setHeader("content-type", "text/plain"); return res.end("Not authorised."); }
 
-  // TEMPORARY one-off reset (removed straight after use)
-  if (url.searchParams.get("reset") === "once") {
-    const all = (await Promise.all(["calc/", "cta/", "view/", "start/"].map(listAll))).flat();
-    for (let i = 0; i < all.length; i += 100) await del(all.slice(i, i + 100).map((b) => b.url));
-    res.setHeader("content-type", "text/plain"); return res.end("Deleted " + all.length + " records.");
-  }
   const [calcB, joinB, ctaB, viewB, startB] = await Promise.all([listAll("calc/"), listAll("join/"), listAll("cta/"), listAll("view/"), listAll("start/")]);
   const views = viewB.length, starts = startB.length;
   const [calc, joins] = await Promise.all([readAll(calcB), readAll(joinB)]);
