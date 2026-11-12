@@ -100,6 +100,18 @@
   .phases{margin-top:2.75rem!important;gap:.9rem!important}
   .phase{padding:1.5rem 1rem!important}
   header .meta{margin-top:1.75rem!important}
+  /* Retainer maths ladder */
+  .ladder-wrap{padding:.5rem 0 2.5rem}
+  .ladder{display:flex;align-items:stretch;justify-content:center;gap:.4rem;max-width:760px;margin:0 auto;text-align:center}
+  .ladder .step{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.1rem .5rem;display:flex;flex-direction:column;justify-content:center}
+  .ladder .step b{font-size:clamp(1.6rem,6.5vw,2.8rem);line-height:1;font-stretch:118%;font-variation-settings:"wdth" 118;font-weight:800;letter-spacing:-.03em}
+  .ladder .step span{font-size:clamp(.75rem,2.6vw,.9rem);color:var(--muted);font-weight:600;margin-top:.35rem}
+  .ladder .step.end{background:var(--lime-soft);border:2px solid var(--lime)}
+  .ladder .step.end span{color:var(--ink)}
+  .ladder .chev{align-self:center;font-weight:800;font-size:1.1rem;flex:none;display:flex;flex-direction:column;align-items:center}
+  .ladder .chev i{font-style:normal}
+  .ladder .x10{font-size:.7rem;color:var(--muted);font-weight:700;letter-spacing:.05em}
+  @media(max-width:480px){.ladder{flex-direction:column;max-width:300px}.ladder .chev{flex-direction:row;gap:.4rem}.ladder .chev i{transform:rotate(90deg)}}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -118,6 +130,16 @@
 </header>
 
 <main class="wrap">
+
+  <section class="ladder-wrap" aria-label="The retainer maths">
+    <div class="ladder">
+      <div class="step"><b>$1k</b><span>a month, one client</span></div>
+      <div class="chev"><i>&rarr;</i></div>
+      <div class="step"><b>$12k</b><span>a year you can count on</span></div>
+      <div class="chev"><span class="x10">&times;10</span><i>&rarr;</i></div>
+      <div class="step end"><b>$120k</b><span>a year, 10 clients</span></div>
+    </div>
+  </section>
 
   <section class="card">
     <h2>In one line</h2>
