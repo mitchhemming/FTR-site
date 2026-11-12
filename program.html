@@ -121,6 +121,12 @@
   .price .pp2>div{flex:1 1 0!important;min-width:0}
   .price .pp2 b{font-size:clamp(1.8rem,8vw,2.4rem)}
   .price .pp2 span{font-size:.85rem}
+  .price-label{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 .6rem}
+  .price.two{display:grid!important;grid-template-columns:1fr 1fr;gap:.6rem}
+  .price.two>div{text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1.1rem .5rem!important;min-width:0}
+  .price.two b{font-size:clamp(1.7rem,7.5vw,2.4rem);line-height:1}
+  .price.two small{font-size:.55em;color:var(--muted)}
+  .price.two span{margin-top:.35rem;font-size:.88rem}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -253,10 +259,10 @@
 
   <section class="card">
     <h2>Investment <span class="muted" style="font-weight:500;font-size:.8rem;letter-spacing:0">(AUD)</span></h2>
-    <div class="price">
-      <div class="best"><em>Founding price</em>
-        <div class="pp2"><div><b>$3,000</b><span>Pay in full</span></div><i>or</i><div><b>$1,500<small>&nbsp;x2</small></b><span>Paid fortnightly</span></div></div>
-      </div>
+    <p class="price-label">Founding price</p>
+    <div class="price two">
+      <div class="best"><b>$3,000</b><span>Pay in full</span></div>
+      <div><b>$1,500<small>&nbsp;x2</small></b><span>Paid fortnightly</span></div>
     </div>
     <p class="value-line">One <b>$1,000 a month</b> retainer is worth <b>$12,000 a year</b>. That&rsquo;s 4x your investment from one client.</p>
     <p class="value-line">Ten of them is <b>$10,000 a month</b>. <b>$120,000 a year</b>, known before each month starts.</p>
